@@ -1,0 +1,168 @@
+CC	= gcc -std=c99
+CXX	= g++ -std=c++17
+#CC	= clang
+#CXX	= clang++ -std=c++17
+OPTFLAGS= -O2 -funroll-loops
+WARNINGS= -Wall -Wconversion -Wpointer-arith -Wcast-align -Wcast-qual \
+	  -Wlarger-than-40000 -Wwrite-strings
+#	  -Wlarger-than-40000 -Wwrite-strings -Wpedantic -Wextra
+
+CFLAGS	= $(OPTFLAGS) $(WARNINGS)
+CXXFLAGS= $(OPTFLAGS) $(WARNINGS)
+LFLAGS	=
+
+BINARIES= gcd lag480 jacobi lagarias micropuzzle36 modInverse NTTest phivalues PrimeTable bigunsigned_test divsmall divtbl ProjectEuler668
+OBJECTS	= harmonic.o numbertheory.o
+LIBS	=
+
+RM	= rm -f
+
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $<
+
+all:	$(BINARIES) divisor_tables phivalues_tables NTTest.txt
+
+bigunsigned_test: bigunsigned_test.o bigunsigned.o numbertheory.o
+	$(CXX) bigunsigned_test.o bigunsigned.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+divsmall:	divsmall.o numbertheory.o
+	$(CXX) divsmall.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+divtbl:	divtbl.o getulong.o getulonglong.o numbertheory.o
+	$(CXX) divtbl.o getulong.o getulonglong.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+gcd:	gcd.o numbertheory.o
+	$(CXX) gcd.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+harmonic_upper: harmonic_upper.o $(OBJECTS)
+	$(CXX) harmonic_upper.o $(OBJECTS) -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+lag480: lag480.o $(OBJECTS)
+	$(CXX) lag480.o $(OBJECTS) -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+jacobi: jacobi.o numbertheory.o
+	$(CXX) jacobi.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+lagarias: lagarias.o $(OBJECTS) harmonic_ld.o
+	$(CXX) lagarias.o $(OBJECTS) harmonic_ld.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+micropuzzle36: micropuzzle36.o numbertheory.o
+	$(CXX) micropuzzle36.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+modInverse: modInverse.o numbertheory.o
+	$(CXX) modInverse.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+NTTest: NTTest.o $(OBJECTS)
+	$(CXX) NTTest.o $(OBJECTS) -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+phivalues: phivalues.o numbertheory.o
+	$(CXX) phivalues.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+PrimeTable: PrimeTable.o numbertheory.o
+	$(CXX) PrimeTable.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+ProjectEuler668: ProjectEuler668.o numbertheory.o
+	$(CXX) ProjectEuler668.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
+
+
+divtbl100.txt: divtbl
+	./$< 100 > $@
+
+divtbl1000.txt: divtbl
+	./$< 1000 > $@
+
+divtbl10000.txt: divtbl
+	./$< 10000 > $@
+
+divtbl1000000.txt: divtbl
+	./$< 1000000 > $@
+
+divtbl1000000000.txt: divtbl
+	./$< 1000000000 > $@
+
+divtbl3000000000.txt: divtbl
+	./$< 3000000000 > $@
+
+divsmall_70.txt: divsmall
+	./$< 70 > $@
+
+divisor_tables: divtbl100.txt divtbl1000.txt divtbl10000.txt divtbl1000000.txt divsmall_70.txt
+
+phivalues5.txt: phivalues
+	./phivalues 5 > phivalues5.txt
+
+phivalues6.txt: phivalues
+	./phivalues 6 > phivalues6.txt
+
+phivalues7.txt: phivalues
+	./phivalues 7 > phivalues7.txt
+
+phivalues_tables: phivalues5.txt phivalues6.txt phivalues7.txt
+
+NTTest.txt: NTTest
+	./NTTest > NTTest.txt
+
+
+bigunsigned.o:	bigunsigned.cpp bigunsigned.h numbertheory.h
+
+bigunsigned_test.o: bigunsigned_test.cpp bigunsigned.h numbertheory.h
+
+divsmall.o:	divsmall.cpp divrules.h numbertheory.h
+
+divtbl.o:	divtbl.cpp divrules.h getulong.h getulonglong.h numbertheory.h
+
+getlong.o:	getlong.cpp getlong.h
+
+getulong.o:	getulong.cpp getulong.h
+
+getulonglong.o:	getulonglong.cpp getulonglong.h
+
+harmonic.o:	harmonic.cpp harmonic.h
+
+harmonic_ld.o:	harmonic_ld.cpp harmonic.h
+
+numbertheory.o:	numbertheory.cpp numbertheory.h primetable_small.h primetable_medium.h primetable_large.h
+
+gcd.o:		gcd.cpp numbertheory.h
+
+harmonic_upper.o:	harmonic_upper.cpp harmonic.h
+
+lag480.o:	lag480.cpp harmonic.h numbertheory.h
+
+jacobi.o:	jacobi.cpp numbertheory.h
+
+lagarias.o:	lagarias.cpp harmonic.h numbertheory.h
+
+modInverse.o:	modInverse.cpp numbertheory.h
+
+NTTest.o:	NTTest.cpp numbertheory.h showSequence.h
+
+phivalues.o:	phivalues.cpp numbertheory.h
+
+ProjectEuler668.o:	ProjectEuler668.cpp numbertheory.h
+
+clean:
+	$(RM) *.o core $(BINARIES)
+	$(RM) divtbl100.txt divtbl1000.txt divtbl10000.txt divtbl1000000.txt
+	$(RM) phivalues5.txt phivalues6.txt phivalues7.txt
+
+.SUFFIXES:
+.SUFFIXES: .c .cpp .h .o

@@ -1,0 +1,392 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\pagestyle{empty}
+
+\frenchspacing
+
+%\textwidth15cm
+\textheight23cm\topmargin-10mm
+%\evensidemargin-10mm
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+
+\hyphenation{theory}
+
+\begin{document}
+\title{Notes to a Math Puzzle Book}
+%\author{Martin Titz}
+\date{\today}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+I once have bought the book \cite{Clessa} by J.J.Clessa "Math and Logic Puzzles for PC Enthusiasts" in the reprinted Dover edition and now found time to solve the majority of the so called micropuzzles. These are my collected notes.
+
+Many puzzles can be best solved writing a computer program. In most cases I used the programming language Java, while I used the computer algebra system Mathematica for micropuzzles 25 and 55 to solve the minimization problem respective the polynomial equation of degree 4.
+
+\section{Errata}
+
+\begin{itemize}
+\item Micropuzzle 41: First example: Replace $321 = 19+2.1^2$ with $21 = 19 + 2\cdot1^2$
+\item Micropuzzle 55: Replace in drawing '20m' with '25m'
+\item Solution to micropuzzle 1: Replace 'perimeter of 144' with 'perimeter of 576'
+\item Solution to micropuzzle 5: Replace $A0-2$ with $A0=2$
+\item Solution to micropuzzle 26: Replace 'school' with 'local'
+\item Solution to micropuzzle 35: Replace $80+D=281$ with $80+D=28M$
+\item Solution to micropuzzle 54: Replace equation (1) with $x^2+y^2=225$
+\item Solution to micropuzzle 54: The square is missing in $(x+y)^2-2xy=225$
+\item Solution to micropuzzle 54: Rounding error in result, better $3.781555$
+\item Solution to micropuzzle 55: Replace equation (2) with $\frac{1}{a} + \frac{1}{b} = \frac{1}{h}$
+\item Solution to micropuzzle 55: In the last sentence it should be 'distance between the walls'
+\end{itemize}
+
+\section{Individual Puzzles}
+
+\subsection{Micropuzzle 5 -- Digital dexterity}
+From the book \cite{Clessa}: A certain number ends in the digit 'a'. When the 'a' is taken from the end of the number and placed at the beginning, a new number is formed which is 'a' times the original number.
+
+The problem can be solved more general for an arbitrary base $B$ for the number system instead of only base 10.
+
+A positive integer $N$ can be represented in a number system with base $B \ge 2$ with $n$ digits $ 0 \le d_i \le B-1 $ for $i=0,\ldots,n-1$
+
+\begin{equation}
+N = \sum_{i=0}^{n-1}d_i B^i
+\end{equation}
+
+Let $d_0 \in \left\{2, 3, \cdots, B-1\right\}$. The case of $d_0 = 1$ is trivial, already $N=1$ would be a solution.
+
+Taking away the last digit $d_0$ of the number $N$ can be expressed as first subtracting $d_0$ from $N$ and as then the number ends with a $0$ in base $B$, dividing by the base. Adding the digit $d_0$ then in front is just adding $d_0 B^{n-1}$ to the remaining number. As by condition of the puzzle this has to be equal $d_0$ times the original number $N$, the following equations results
+
+\begin{equation}
+d_0 \cdot N = d_0 B^{n-1} + \frac{N-d_0}{B}
+\end{equation}
+
+Multiplying both sides with $B$
+\begin{displaymath}
+B d_0 N = d_0 B^n + N-d_0
+\end{displaymath}
+and sorting all terms with $N$ to the left side and the other ones to the right side yields
+\begin{displaymath}
+\left(B d_0 -1\right) N = d_0 \left(B^n - 1\right)
+\end{displaymath}
+
+As $d_0$ is an integer $\ge 2$, the two integers $B d_0-1$ and $d_0$ cannot have a common divisor, therefore $B d_0-1$ must be a divisor of the other factor on the right side, therefore it must be
+\begin{equation} \label{divCond}
+\left(B d_0 -1\right) | \left(B^n - 1\right)
+\end{equation}
+and if this condition is fulfilled for a given $n$ then the original number $N$ can be calculated by
+\begin{equation} \label{Ndivision}
+N = \frac{d_0\cdot\left(B^n-1\right)}{B d_0-1}
+\end{equation}
+
+To find the smallest $n$ that condition (\ref{divCond}) is fulfilled you can check
+\begin{equation} \label{modCond}
+B^n \equiv 1 \pmod{B d_0 -1}
+\end{equation}
+as this can be effectively calculated, see for example \cite{Giblin}, section 4.2.
+
+With this, the solution of the puzzle can be done in the following two steps:
+
+\begin{enumerate}
+\item Find the smallest $n$ that fulfills (\ref{modCond}) using a powerMod algorithm.
+\item Calculate $N$ by the division (\ref{Ndivision}), using high precision integer arithmetic as the powers $B^n$ will soon become huge numbers well out of the range of normal integer arithmetic with int or long data types.
+\end{enumerate}
+
+\underline{Example 1:} $B=10$, $d_0=4$: Here is $Bd_0-1=39$ and as the smallest exponent to be found is $n=6$ for which $39|\left(10^6-1\right)$, hence
+\[
+N = \frac{4 \cdot \left(10^6-1\right)}{39} = \frac{4 \cdot 999999}{39} = 102564
+\]
+Therefore \[4\cdot102564=410256\]
+
+\underline{Example 2:} $B=4, d_0=2$: Here is $Bd_0-1=7$ and $7|\left(4^3-1\right)$, hence
+\[
+N = \frac{2 \cdot \left(4^3-1\right)}{7} = \frac{2 \cdot 63}{7} = 18
+\]
+Therefore \[2 \cdot\left(102\right)_4 = \left(210\right)_4 \]
+
+For verification it is
+\begin{eqnarray*}
+ \left(102\right)_4 &=& 1\cdot4^2+0\cdot4^1+2\cdot4^0 = 16+2 = 18\\
+ \left(210\right)_4 &=& 2\cdot4^2+1\cdot4^1+0\cdot4^0 = 32+4 = 36
+\end{eqnarray*}
+
+
+\subsection{Micropuzzle 13 -- A natural mistake}
+The British currency had many changes over time. The puzzles had been stated after the decimalization of the British coinage 1971, but at the time the puzzle had been first published, the halfpenny had still been legal tender. Therefore the variables $a$, $b$, $c$ and $d$ give the prices of the four items in halfpennies; a halfpenny is $1/200$ of a pound.
+
+We have to look for solutions in positive integers of the equations
+\begin{eqnarray*}
+\frac{a}{200}\cdot\frac{b}{200}\cdot\frac{c}{200}\cdot\frac{d}{200} &=& \frac{711}{100}\\
+\frac{a}{200} + \frac{b}{200} + \frac{c}{200} + \frac{d}{200} &=& \frac{711}{100}
+\end{eqnarray*}
+
+Multiplying the first equation with $200$ and the second one with $200^4$ gives
+\begin{eqnarray*}
+a + b + c + d &=& 1422\\
+a \cdot b \cdot c \cdot d &=& 1422 \cdot 200^3 = 11376000000
+\end{eqnarray*}
+
+Without loss of generality we can assume $a \ge b \ge c \ge d$.
+
+
+\subsection{Micropuzzle 14 -- Ten-digit perfect squares}
+The program Micropuzzle14.java is more general than the exercise, allowing to give the number of digits as command line parameter. As the Java type long is used for the calculation, a maximum of 18 digits is possible.
+
+Nice individual results:
+
+\begin{eqnarray*}
+ 212^2 &=&    44944 \\
+2538^2 &=&  6441444 \\
+6888^2 &=& 47444544
+\end{eqnarray*}
+
+In the first result both numbers are additionally palindromic numbers.
+
+\subsection{Micropuzzle 25 -- Fieldcraft}
+The fastest time is achieved when walking in straight lines across the different types of soil. Let $s_1, s_2, s_3$ be the distances on each kind of surface.
+
+Let $x_1$ the horizontal distance to the point where the farmer leaves from bog to ploughed soil and $x_2$ the horizontal distance to the point where the farmer passes over from ploughed soil to turf.
+
+Then by theorem of Pythagoras
+
+\begin{eqnarray*}
+s_1 &=& \sqrt{x_1^2+100^2}\\
+s_2 &=& \sqrt{(x_2-x_1)^2+200^2}\\
+s_3 &=& \sqrt{(600-x_2)^2+300^2}
+\end{eqnarray*}
+
+Using $v = s/t$ in the form $t = s/v$ the total walking time becomes with $v_1=5/2$, $v_2=5$ and $v_3=10$
+\begin{equation}
+t\left(x_1,x_2\right) = \sum_{k=1}^3\frac{s_k\left(x_1,x_2\right)}{v_k}
+\end{equation}
+
+Therefore the function
+\begin{equation}
+t\left(x_1,x_2\right) = \frac{2}{5}\sqrt{x_1^2+100^2} + \frac{1}{5}\sqrt{(x_2-x_1)^2+200^2} + \frac{1}{10}\sqrt{(600-x_2)^2+300^2}
+\end{equation}
+has to be minimized with the constraints $0 \le x_1 \le x_2 \le 600$.
+
+The minimum calculated by the Mathematica function NMinimize is
+\begin{eqnarray*}
+x_1 &\approx&  21.75005975313918566355364915123672639489\\
+x_2 &\approx& 115.6697035828699592291918422393758246010\\
+t\left(x_1,x_2\right) &\approx& 142.0976590441970400672455501877239343250
+\end{eqnarray*}
+
+The shortest time rounded to the nearest second is 2 minutes 22 seconds. The high precision is not needed for the puzzle answer, but could be useful as reference value for checking another implementation of this problem.
+
+\subsection{Micropuzzle 35 -- Tadpoles, terrapins, tortoises, and turtles}
+To only use integers the prices are in pence for the calculation.
+Then using $a$, $b$, $c$ and $d$ for the numbers of each kind these two equations arise:
+\begin{eqnarray}
+59a+199b+287c+344d &=& 10000 \label{animals1}\\
+ a + b + c + d &=& 100 \label{animals2}
+\end{eqnarray}
+Multiplying (\ref{animals2}) with 59 and then subtracting this
+from the equation (\ref{animals1}) results in
+\[ (59-59)a + (199-59)b + (287-59)c + (344-59)d = 10000 - 59 \cdot 100\]
+and simplified
+\begin{equation} \label{animals3}
+140b + 228c + 285d = 4100
+\end{equation}
+
+The simple solution program Micropuzzle35.java varies the values of $b$ and $c$ in the expression given by the left side of (\ref{animals3}) in the range from 0 to 4100.
+If then $d$ would be an integer, $d$ is calculated from (\ref{animals3}) and finally $a = 100-b-c-d$ can be calculated and a solution is found.
+
+
+\subsection{Micropuzzle 54 -- The ladder and the wall}
+Let the distance from floor to top of the ladder be $x$ feet.\\
+Let the distance from wall to bottom of ladder be $y$ feet.
+
+Then by theorem of Pythagoras
+\begin{equation}\label{ladderp}
+x^2+y^2=15^2
+\end{equation}
+and by the two similar triangles above and right of the box (all angles are equal)
+\begin{equation}\label{laddersimilar}
+\frac{x-3}{3} = \frac{3}{y-3}
+\end{equation}
+Multiplying both sides of (\ref{laddersimilar}) with the denominators gives
+\[(x-3)(y-3) = 9\]
+\[xy-3x-3y+9 = 9\]
+\begin{equation}\label{ladders2}
+xy = 3(x+y)
+\end{equation}
+
+By the binomial theorem
+\[(x+y)^2 = x^2 + 2xy + y^2 \]
+it is
+\[ x^2 + y^2 = (x+y)^2 - 2xy \]
+Inserting this into (\ref{ladderp}) gives together with (\ref{ladders2}) an equation system
+\begin{equation}
+(x+y)^2 - 2xy = 15^2
+\end{equation}
+\begin{equation}
+xy = 3 (x+y)
+\end{equation}
+where the variables $x$ and $y$ only appear in the forms $x+y$ and $xy$. This suggests the substitutions
+\begin{equation}\label{ladderSubst}
+u = x+y,\qquad v = xy
+\end{equation}
+resulting in the equation system for $u$ and $v$
+\begin{eqnarray}
+u^2 - 2v &=& 15^2\\
+v &=& 3u \label{vu_relation}
+\end{eqnarray}
+Inserting the expression for $v$ from the second equation into the first one obtains the quadratic equation
+\[
+u^2 - 6u -15^2 = 0
+\]
+with the two solutions
+\[ u_{1,2} = 3 \pm \sqrt{3^2+15^2} = 3 \pm 3 \sqrt{1^2+5^2} = 3 \left( 1 \pm \sqrt{26}\right) \]
+Because $u = x+y > 0$ only the positive solution matters, so it must be
+\[ u = 3 \left(1+ \sqrt{26}\right) \]
+and by (\ref{vu_relation})
+\[ v = 3u = 9\left(1 + \sqrt{26}\right) \]
+
+Using as shortcut
+\[R = 1+\sqrt{26} \]
+and inserting the values of $u$ and $v$ into (\ref{ladderSubst}) the equations for $x$ and $y$ become
+\begin{eqnarray*}
+x+y &=& 3R\\
+xy &=& 9R
+\end{eqnarray*}
+By the second equation it is $y = 9R / x$, inserting this into the first equation obtains another quadratic equation, now for $x$
+\[ x + \frac{9R}{x} = 3R \]
+or
+\[ x^2 - 3R x + 9R = 0 \]
+with the solution
+\begin{eqnarray*}
+x_{1,2} &=& \frac{3}{2}R \pm \sqrt{\frac{9}{4}R^2-9R} \\
+        &=& \frac{3}{2}\left(R \pm \sqrt{R^2-4R}\right) \\
+        &=& \frac{3}{2}\left(R \pm \sqrt{R(R-4)}\right)
+\end{eqnarray*}
+
+This gives the two possible solutions
+\begin{eqnarray*}
+x_1 &\approx& 14.515503482069 \\
+x_2 &\approx& 3.781555058710
+\end{eqnarray*}
+
+The distance between top of the wall and top of the ladder then becomes $15-x_{1,2}$ giving the two solutions of 0.4844965 feet or 11.2184449 feet.
+
+
+
+\subsection{Micropuzzle 55 -- More ladders and walls}
+Let $a$ be the height at which the longer ladder of 30m rests against the right wall and $b$ the height where the 25m ladder leans at the other wall, $d$ the distance between the two walls we look for and for convenience let $h=\frac{504}{100}$ the height of the meeting point of the two ladders over the ground.
+
+By the theorem of Pythagoras we have
+
+\begin{eqnarray}
+a^2 + d^2 &=& 30^2 \label{ladderpyth1}\\
+b^2 + d^2 &=& 25^2 \label{ladderpyth2}
+\end{eqnarray}
+This gives  $d^2 = 30^2-a^2$ and $d^2=25^2-b^2$, hence
+\[ 30^2-a^2 = 25^2-b^2\]
+or by adding $a^2-25^2$ on both sides
+\begin{equation}\label{ladderpyth}
+a^2 - b^2 = 30^2 - 25^2
+\end{equation}
+
+Now let $d_1$ and $d_2$ be the distances from the left wall to the meeting point of the two ladders and the distance from there to the right wall, $d_1+d_2=d$.
+
+The two right triangles with legs $d_1$, $h$ and legs $d$, $a$ are similar, thus
+\begin{equation}\label{leftladder}
+\frac{d_1}{d} = \frac{h}{a}
+\end{equation}
+and also by the same argument for the other ladder
+\begin{equation}\label{rightladder}
+\frac{d_2}{d} = \frac{h}{b}
+\end{equation}
+Adding both sides of (\ref{leftladder}) and (\ref{rightladder}) gives
+\[ \frac{d_1+d_2}{d} =\frac{h}{a} + \frac{h}{b}\]
+or by using $d_1+d_2=d$, dividing by $h$ and exchanging sides it is
+\[ \frac{1}{a} + \frac{1}{b} = \frac{1}{h} \]
+Resolving for $b$ gives
+\begin{equation}\label{ladderb}
+b = \frac{ha}{a-h}
+\end{equation}
+Inserting (\ref{ladderb}) into equation (\ref{ladderpyth}) then gives
+\[ a^2 - \frac{(ha)^2}{(a-h)^2} = 275 \]
+and by the steps
+\[ a^2 (a-h)^2 - h^2 a^2 = 275 (a-h)^2 \]
+\[ a^2 (a^2-2ah+h^2) - h^2 a^2 = 275 (a^2-2ah+h^2) \]
+\[ a^4  -2ha^3 +h^2a^2 - h^2 a^2 = 275 (a^2-2ah+h^2) \]
+the quartic equation for $a$ (as $h$ is a known constant value)
+\begin{equation}
+a^4 -2ha^3 -275a^2 + 550ha - 275h^2 = 0
+\end{equation}
+Inserting the value of $h=\frac{504}{100}$ into this equation yields
+\begin{equation}\label{ladderquartic}
+a^4-\frac{252}{25}a^3-275 a^2+2772 a-\frac{174636}{25} = 0
+\end{equation}
+
+A quartic equation is still solvable in a closed form, see for example \cite{CRCTablesFormulae}, section 2.2 about polynomials, or \cite{AbrSteg}, section 3.8, but this is not a really practical way.
+
+Alternatively you could look into the equations (\ref{ladderpyth1}) and (\ref{ladderpyth2}) and search for integer solutions. After some guessing you might deduce from $3^2+4^2=5^2$ that $(6 \cdot 3)^2+(6 \cdot 4)^2=(6 \cdot 5)^2$ and therefore $18^2 + 24^2 = 30^2$ and inserting 18 into (\ref{ladderquartic}) you see that you found a solution, then by extracting the linear factor $(a-18)$
+\begin{displaymath}
+\frac{1}{25} (a-18) (25 a^3 +198 a^2 -3311a +9702) = 0
+\end{displaymath}
+
+Or the equation (\ref{ladderquartic}) can be solved with computer help, either numerical or symbolic,
+resulting in the only positive real solution $a=18$, a negative real and two conjugate complex solutions.
+
+Only the positive real solution geometrically makes sense, and then
+\begin{displaymath}
+d = \sqrt{30^2-18^2} = \sqrt{900-324}=\sqrt{576}=24
+\end{displaymath}
+The walls are 24m apart.
+
+
+%\subsection{Micropuzzle 60 -- A series of primes}
+
+
+%\pagebreak[3]
+%\newpage
+
+\begin{thebibliography}{99}
+
+\bibitem{AbrSteg}
+M.~Abramowitz, I.~A.~Stegun, editors, {\it Handbook of Mathematical Functions.}
+United States Government Printing Office, 1964.
+
+%\bibitem{BookOfNumbers}
+%John H.~Conway, Richard K.~Guy, {\it The Book of Numbers}.
+%Copernicus, 1995.
+
+\bibitem{Clessa}
+J.~J.~Clessa, {\it Math and Logic Puzzles for PC Enthusiasts}.
+Dover, 1996.
+
+\bibitem{Giblin}
+Peter Giblin, {\it Primes and Programming -- An Introduction to Number Theory with Computing}.
+Cambridge University Press, 1993.
+
+%\bibitem{GraRy}
+%I.~S.~Gradshteyn, I.~M.~Ryzhik, {\it Table of Integrals, Series and Products}, 7th Edition.
+%Academic Press, 2007.
+
+%\bibitem{ConcreteMath}
+%Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd Edition.
+%Addison-Wesley, 1994.
+
+%\bibitem{HardyWright}
+%G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th Edition.
+%Oxford University Press, 1979.
+
+%\bibitem{Nathanson}
+%Melvyn B.~Nathanson, {\it Elementary Methods in Number Theory}.
+%Springer, 2000.
+
+%\bibitem{NISTHandbook}
+%Frank W.~J.~Olver et al, {\it NIST Handbook of Mathematical Formulas}.
+%Cambridge University Press, 2010.
+
+\bibitem{CRCTablesFormulae}
+D.~Zwillinger, Editor-in-Chief, {\it CRC Standard Mathematical Tables and Formulae}, 30th Edition.
+CRC Press, 1996.
+
+\end{thebibliography}
+\end{document}

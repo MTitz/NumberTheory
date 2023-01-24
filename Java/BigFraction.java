@@ -137,6 +137,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         }
     }
 
+    /** Returns a BigFraction number whose value is an integer power of the given <code>BigFraction</code> number. */
     public BigFraction pow(int exponent)
     {
         // assuming already cancelled fraction

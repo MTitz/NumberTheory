@@ -14,8 +14,6 @@ int main(void)
 {
     for (int n = 1; n < 32; ++n) {
         int square = n * n;
-        if (digit_sum(square, 10) != 16)
-            continue;
-        printf("%2d^2 = %3d\n", n, square);
+        printf("%2d^2 = %3d    %2d\n", n, square, digit_sum(square, 10));
     }
 }

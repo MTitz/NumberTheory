@@ -1,5 +1,6 @@
 /* Program Micropuzzle22.java to solve micropuzzle 22 from
    J. J. Clessa "Math and Logic Puzzles for PC Enthusiasts"
+   Generating a specific value
 */
 
 public class Micropuzzle22
@@ -24,8 +25,8 @@ public class Micropuzzle22
 
         Permutation permutation = new Permutation(6);
         while (permutation.hasNext()) {
-            /* go through different separators for the two numbers
-               index indicates beginning of second number */
+            /* go through different separators for the two numbers,
+               variable d indicates beginning of second number */
             int[] p = permutation.getPermutation();
             for (int d = 1; d < 6; ++d) {
                 long x = 0;
@@ -36,7 +37,6 @@ public class Micropuzzle22
                 for (int i = d; i < 6; ++i) {
                     y = 10 * y + p[i];
                 }
-                //System.out.println("d = " + d + ", x = " + x + ", y = " + y);
                 long e = expression(x, y);
                 if (e > eMax) {
                     xMax = x;

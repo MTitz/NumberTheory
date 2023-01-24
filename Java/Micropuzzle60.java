@@ -107,13 +107,17 @@ public class Micropuzzle60
             int m = approximateBinarySearch(primes, number / n) - n;
             if (m < 0)
                 m = 0;
+            int sum = 0;
             for (int k = 0; k <= 2 * n; ++k) {
-                int sum = 0;
-                for (int j = 0; j < n; ++j) {
-                    sum += primes[m+k + j];
+                if (k == 0) {
+                    for (int j = 0; j < n; ++j) {
+                        sum += primes[m+k + j];
+                    }
+                } else {
+                    sum += primes[m+k+n-1] - primes[m+k-1];
                 }
                 if (sum > number) {
-                    // If already sum of first n primes is greater than number,
+                    // If already sum of these n primes is greater than number,
                     // no representation with >= n summands is possible.
                     if (k == 0) {
                         System.out.println("Number " + number + " is not sum of consecutive primes.");

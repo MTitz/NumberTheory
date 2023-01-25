@@ -108,16 +108,16 @@ public class Micropuzzle60
             if (m < 0)
                 m = 0;
             int sum = 0;
-            for (int k = 0; k <= 2 * n; ++k) {
-                if (k == 0) {
+            for (int k = m; k <= 2 * n + m; ++k) {
+                if (k == m) {
                     for (int j = 0; j < n; ++j) {
-                        sum += primes[m+k + j];
+                        sum += primes[k + j];
                     }
                 } else {
-                    sum += primes[m+k+n-1] - primes[m+k-1];
+                    sum += primes[k+n-1] - primes[k-1];
                 }
                 if (sum > number) {
-                    // If already sum of these n primes is greater than number,
+                    // If already sum of first n primes is greater than number,
                     // no representation with >= n summands is possible.
                     if (k == 0) {
                         System.out.println("Number " + number + " is not sum of consecutive primes.");
@@ -129,7 +129,7 @@ public class Micropuzzle60
                 } else if (sum == number) {
                     System.out.print("Number " + number + " is sum of " + n + " consecutive primes: ");
                     for (int j = 0; j < n; ++j) {
-                        System.out.print(" " + primes[m+k + j]);
+                        System.out.print(" " + primes[k + j]);
                     }
                     System.out.println();
                     return;

@@ -13,7 +13,6 @@ LFLAGS	=
 
 BINARIES= divrules fibonacci GenPartitions pythagorean_triples quaddrei
 OBJECTS	=
-LIBS	= -lm
 
 RM	= rm -f
 
@@ -24,10 +23,10 @@ RM	= rm -f
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<
 
-all:	$(BINARIES) divrules.txt quaddrei.txt
+all:	$(BINARIES) divrules.txt pythagorean_triples.txt quaddrei.txt
 
 divrules: divrules.o
-	$(CC) $< -o $@ $(LFLAGS) $(LIBS)
+	$(CC) $< -o $@ $(LFLAGS) -lm
 	strip $@
 
 fibonacci: fibonacci.o
@@ -35,7 +34,7 @@ fibonacci: fibonacci.o
 	strip $@
 
 GenPartitions: GenPartitions.o
-	$(CXX) GenPartitions.o -o $@ $(LFLAGS) $(LIBS)
+	$(CXX) GenPartitions.o -o $@ $(LFLAGS)
 	strip $@
 
 pythagorean_triples: pythagorean_triples.o
@@ -43,11 +42,17 @@ pythagorean_triples: pythagorean_triples.o
 	strip $@
 
 quaddrei: quaddrei.o
-	$(CXX) quaddrei.o -o $@ $(LFLAGS) $(LIBS)
+	$(CXX) quaddrei.o -o $@ $(LFLAGS)
 	strip $@
 
 divrules.txt: divrules
 	./$< 10000 > $@
+
+pythagorean_triples.txt: pythagorean_triples
+	./$< -p 1000 > $@
+	echo >> $@
+	echo >> $@
+	./$< -a 1000 >> $@
 
 quaddrei.txt: quaddrei
 	./$< 12 > $@
@@ -57,12 +62,14 @@ divrules.o: divrules.c
 
 GenPartitions.o: GenPartitions.cpp
 
+pythagorean_triples.o: pythagorean_triples.cpp
+
 quaddrei.o: quaddrei.cpp
 
 
 clean:
 	$(RM) *.o core $(BINARIES)
-	$(RM) divrules.txt quaddrei.txt
+	$(RM) divrules.txt pythagorean_triples.txt quaddrei.txt
 
 .SUFFIXES:
 .SUFFIXES: .c .cpp .h .o

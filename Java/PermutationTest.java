@@ -42,10 +42,10 @@ public class PermutationTest
         }
 
         System.out.println();
-        Permutation p0_2 = new Permutation(2, 0);
-        while (p0_2.hasNext()) {
-             System.out.println(" " + p0_2);
-             p0_2.next();
+        Permutation p0_1 = new Permutation(2, 0);
+        while (p0_1.hasNext()) {
+             System.out.println(" " + p0_1);
+             p0_1.next();
         }
     }
 }

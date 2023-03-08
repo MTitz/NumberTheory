@@ -109,7 +109,7 @@ public class Micropuzzle01
             System.err.println("limit should be positive, aborting...");
             return;
         }
-        if (limit > 1000000000) {
+        if (limit > 1_000_000_000) {
             System.err.println("limit too big for integer calculation, aborting...");
             return;
         }

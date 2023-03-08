@@ -119,18 +119,18 @@ int main(int argc, char *argv[])
         --argc;
         ++argv;
     }
+    if (argc != 2) {
+        usage();
+        return 1;
+    }
 
     int limit = std::atoi(argv[1]);
     if (limit <= 0) {
         std::cerr << "limit should be positive, aborting..." << endl;
         return 1;
     }
-    if (argc != 2) {
-        usage();
-        return 1;
-    }
 
-    int width = 9;
+    const int width = 9;
 
     cout << "All";
     if (primitive_triples_only)

@@ -111,7 +111,7 @@ public class PythagoreanTriples
                     System.err.println("limit should be positive, aborting...");
                     return;
                 }
-                if (limit > 2_000_000_000) {
+                if (limit > 1_000_000_000) {
                     System.err.println("limit too big for integer calculation, aborting...");
                     return;
                 }

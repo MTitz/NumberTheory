@@ -78,7 +78,7 @@ public class Micropuzzle01
                             }
                             ++lambda;
                         }
-                    } else  {
+                    } else {
                         break;
                     }
                 }

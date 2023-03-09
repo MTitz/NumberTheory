@@ -2,20 +2,19 @@
    triples a*a + b*b = c*c for integers up to a given limit.
 */
 
-import static java.lang.Math.*;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class PythagoreanTriples
 {
-    public static final int gcd(int x, int y)
+    public static final int gcd(int m, int n)
     {
-        while (y != 0) {
-            int tmp = y;
-            y = x % y;
-            x = tmp;
+        while (n != 0) {
+            int tmp = n;
+            n = m % n;
+            m = tmp;
         }
-        return Math.abs(x);
+        return m;
     }
 
     private static class PythagoreanTriple implements Comparable<PythagoreanTriple>
@@ -66,13 +65,13 @@ public class PythagoreanTriples
                         if (primitiveOnly) {
                             triples.add(new PythagoreanTriple(a, b, c));
                         } else {
-                            int lambda = 1;
-                            while (lambda * c <= limit) {
-                                triples.add(new PythagoreanTriple(a * lambda, b * lambda, c * lambda));
-                                ++lambda;
+                            int k = 1;
+                            while (k * c <= limit) {
+                                triples.add(new PythagoreanTriple(a * k, b * k, c * k));
+                                ++k;
                             }
                         }
-                    } else  {
+                    } else {
                         break;
                     }
                 }
@@ -86,7 +85,7 @@ public class PythagoreanTriples
         System.out.println("usage: java PythagoreanTriples [-a|--all] [-p|--primitive] limit");
         System.out.println("  calculates the Pythagorean triples with hypotenuse <= limit");
         System.out.println("    -a  or  --all         calculate all triples");
-        System.out.println("    -p  or  --primitive   calculate only primitive triples");
+        System.out.println("    -p  or  --primitive   calculate only primitive triples (default)");
         System.out.println("    limit                 a positive integer");
     }
 
@@ -112,7 +111,7 @@ public class PythagoreanTriples
                     System.err.println("limit should be positive, aborting...");
                     return;
                 }
-                if (limit > 1_000_000_000) {
+                if (limit > 2_000_000_000) {
                     System.err.println("limit too big for integer calculation, aborting...");
                     return;
                 }
@@ -127,10 +126,7 @@ public class PythagoreanTriples
                 SortedSet<PythagoreanTriple> triples = generateTriples(limit, primitiveTuplesOnly);
 
                 for (PythagoreanTriple triple : triples) {
-                    int a = triple.a();
-                    int b = triple.b();
-                    int c = triple.c();
-                    System.out.printf("%9d%9d%9d%n", a, b, c);
+                    System.out.printf("%9d%9d%9d%n", triple.a(), triple.b(), triple.c());
                 }
             }
         }

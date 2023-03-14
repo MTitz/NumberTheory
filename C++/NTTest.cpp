@@ -109,6 +109,20 @@ static void powTestcases()
     }
 }
 
+template<typename T> void squareTestTest(const T& n)
+{
+    cout << "squareTest(" << n << ") = " << squareTest(n) << endl;
+}
+
+static void squareTestTestcases()
+{
+    for (int i = -4; i <= 100; ++i) {
+        squareTestTest(i);
+    }
+    squareTestTest(193);
+    squareTestTest(585);
+}
+
 template<typename T> void isSquareTest(const T& n)
 {
     cout << "  Is " << n << " a square: " << isSquare(n) << endl;
@@ -121,6 +135,8 @@ static void isSquareTestcases()
     for (int i = -4; i <= 9; ++i) {
         isSquareTest(i);
     }
+    isSquareTest(      193L);
+    isSquareTest(      585L);
     isSquareTest( 99999999L);
     isSquareTest(100000000L);
     isSquareTest(100000001L);
@@ -391,6 +407,10 @@ const SimpleLinearCongruence<long> micropuzzle39[] =
      SimpleLinearCongruence<long>( 2, 11),
      SimpleLinearCongruence<long>(12, 17)};
 
+const LinearCongruence<int> unsolvable_test[] =
+   { LinearCongruence<int>(0, 1, 2),
+     LinearCongruence<int>(1, 1, 1)};
+
 template<typename T> void linearCongruence(T a, T b, T m)
 {
     cout << "The congruence " << a << " * x = " << b << " mod " << m;
@@ -472,6 +492,7 @@ static void linearCongruenceTestcases()
         sizeof(exercise11) / sizeof(SimpleLinearCongruence<long long int>));
     simpleLinearCongruence(micropuzzle39,
         sizeof(micropuzzle39) / sizeof(SimpleLinearCongruence<long>));
+    linearCongruence(unsolvable_test, 2);
 }
 
 
@@ -550,6 +571,11 @@ static void jacobiSymbolTestcases()
     cout << "jacobi(-1009, -2307) = " << jacobi(-1009, -2307) << endl;
     cout << "jacobi(4, 4) = " << jacobi(4, 4) << endl;
     cout << "jacobi(127, 256) = " << jacobi(127, 256) << endl;
+}
+
+template<typename T> void isPrimeTest(T n)
+{
+    cout << "Is a prime " << n << ": " << isPrime(n) << endl;
 }
 
 template<typename T> void factorTest(T n)
@@ -707,6 +733,12 @@ static void primitiveRootTestcases()
         primitiveRootPrimeTest(primes[i]);
     }
     primitiveRootPrimeTest(191);
+    try {
+        (void)primitiveRootPrime(2);
+    }
+    catch (std::runtime_error&) {
+        cout << "Got expected exception for primitiveRootPrime(2)" << endl;
+    }
 
     cout << endl;
     cout << "10 is a primitive root of these prime numbers:" << endl;
@@ -876,6 +908,9 @@ int main(void)
     powTestcases();
 
     cout << endl;
+    squareTestTestcases();
+
+    cout << endl;
     isSquareTestcases();
 
     cout << endl;
@@ -965,6 +1000,9 @@ int main(void)
     for (int i = -2; i <= 5; ++i) {
         cout << "Is a prime " << setw(2) << i << ": " << isPrime(i) << endl;
     }
+    isPrimeTest(2147483647L);
+    isPrimeTest(1000000000039ULL);
+    isPrimeTest(1000003ULL * 1000003ULL);
     int count = printPrimeTable(100000);
     cout << endl << "(total " << count << " numbers in the table)" << endl;
 

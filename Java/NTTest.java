@@ -116,6 +116,20 @@ public class NTTest
     }
 
 
+    private static void squareTestTest(int n)
+    {
+        System.out.println("squareTest(" + n + ") = " + NumberTheory.squareTest(n));
+    }
+
+    private static void squareTestTestcases()
+    {
+        for (int i = -4; i <= 100; ++i) {
+            squareTestTest(i);
+        }
+        squareTestTest(193);
+        squareTestTest(585);
+    }
+
     private static void isSquareTest(long n)
     {
         System.out.println("  Is " + n + " a square: " + (NumberTheory.squareTest(n) >= 0));
@@ -127,6 +141,8 @@ public class NTTest
         for (int i = -4; i <= 9; ++i) {
             isSquareTest(i);
         }
+        isSquareTest(      193L);
+        isSquareTest(      585L);
         isSquareTest( 99999999L);
         isSquareTest(100000000L);
         isSquareTest(100000001L);
@@ -392,6 +408,10 @@ public class NTTest
          new NumberTheory.SimpleLinearCongruence( 2, 11),
          new NumberTheory.SimpleLinearCongruence(12, 17)};
 
+    static NumberTheory.LinearCongruence[] unsolvableTest =
+        { new NumberTheory.LinearCongruence(0, 1, 2),
+          new NumberTheory.LinearCongruence(1, 1, 1)};
+
     static void linearCongruence(long a, long b, long m)
     {
         System.out.print("The congruence " + a + " * x = " + b + " mod " + m);
@@ -466,6 +486,7 @@ public class NTTest
         simpleLinearCongruence(exercise10);
         simpleLinearCongruence(exercise11);
         simpleLinearCongruence(micropuzzle39);
+        linearCongruence(unsolvableTest);
     }
 
     private static void pell4Tests()
@@ -549,6 +570,11 @@ public class NTTest
         System.out.println("jacobi(-1009, -2307) = " + NumberTheory.jacobi(-1009, -2307));
         System.out.println("jacobi(4, 4) = " + NumberTheory.jacobi(4, 4));
         System.out.println("jacobi(127, 256) = " + NumberTheory.jacobi(127, 256));
+    }
+
+    private static void isPrimeTest(long n)
+    {
+        System.out.println("Is a prime " + n + ": " + NumberTheory.isPrime(n));
     }
 
     private static void factorTest(long n)
@@ -680,6 +706,12 @@ public class NTTest
             primitiveRootPrimeTest(NumberTheory.primes[i]);
         }
         primitiveRootPrimeTest(191);
+        try {
+            NumberTheory.primitiveRootPrime(2);
+        }
+        catch (RuntimeException re) {
+            System.out.println("Got expected exception for primitiveRootPrime(2)");
+        }
 
         System.out.println();
         System.out.println("10 is a primitive root of these prime numbers:");
@@ -827,6 +859,9 @@ public class NTTest
         powTestcases();
 
         System.out.println();
+        squareTestTestcases();
+
+        System.out.println();
         isSquareTestcases();
 
         System.out.println();
@@ -906,6 +941,10 @@ public class NTTest
         for (int i = -2; i <= 5; ++i) {
             System.out.printf("Is a prime %2d: %s%n", i, NumberTheory.isPrime(i));
         }
+        isPrimeTest(2147483647L);
+        isPrimeTest(1000000000039L);
+        isPrimeTest(1000003L * 1000003L);
+
         int count = printPrimeTable(100000);
         System.out.println();
         System.out.println("(total " + count + " numbers in the table)");

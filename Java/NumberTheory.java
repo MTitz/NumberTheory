@@ -679,7 +679,7 @@ public class NumberTheory
         }
     }
 
-    public static final BigInteger integerSqrt(BigInteger n)
+    public static final BigInteger integerSqrt(final BigInteger n)
     {
         if (n.signum() <= 0)
             return BigInteger.ZERO;
@@ -785,12 +785,11 @@ public class NumberTheory
         int t = n & 63;
         if (!q64[t])
             return -1;
-        int r = n % 45045;
-        if (!q63[r % 63])
+        if (!q63[n % 63])
             return -1;
-        if (!q65[r % 65])
+        if (!q65[n % 65])
             return -1;
-        if (!q11[r % 11])
+        if (!q11[n % 11])
             return -1;
         int q = integerSqrt(n);
         return q * q == n ? q : -1;
@@ -814,6 +813,25 @@ public class NumberTheory
         return q * q == n ? q : -1;
     }
 
+    public static final BigInteger squareTest(final BigInteger n)
+    {
+        final BigInteger MinusOne = BigInteger.valueOf(-1);
+        if (n.signum() < 0)
+            return MinusOne;
+        int t = n.and(BigInteger.valueOf(63)).intValueExact();
+        if (!q64[t])
+            return MinusOne;
+        int r = n.mod(BigInteger.valueOf(45045)).intValueExact();
+        if (!q63[r % 63])
+            return MinusOne;
+        if (!q65[r % 65])
+            return MinusOne;
+        if (!q11[r % 11])
+            return MinusOne;
+        BigInteger q = integerSqrt(n);
+        return q.multiply(q).equals(n) ? q : MinusOne;
+    }
+
     public static final boolean isSquare(int n)
     {
         return squareTest(n) >= 0;
@@ -822,6 +840,11 @@ public class NumberTheory
     public static final boolean isSquare(long n)
     {
         return squareTest(n) >= 0;
+    }
+
+    public static final boolean isSquare(final BigInteger n)
+    {
+        return squareTest(n).signum() >= 0;
     }
 
     public static boolean[] eratosthenes(int n)
@@ -1000,7 +1023,7 @@ public class NumberTheory
                     ++x;
             }
         }
-        throw new RuntimeException("argument cannot be a prime number");
+        throw new RuntimeException("argument must be an odd prime number");
     }
 
     // find first primitive root of n

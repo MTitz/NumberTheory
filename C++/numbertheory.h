@@ -1191,7 +1191,7 @@ T primitiveRootPrime(const T& p)
                 ++x;
         }
     }
-    throw std::runtime_error("argument cannot be a prime number");
+    throw std::runtime_error("argument must be an odd prime number");
 }
 
 // find first primitive root of n

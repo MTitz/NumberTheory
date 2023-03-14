@@ -100,7 +100,7 @@ triple_set search_solutions(int limit)
                         }
                         ++lambda;
                     }
-                } else  {
+                } else {
                     break;
                 }
             }

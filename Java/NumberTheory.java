@@ -123,6 +123,11 @@ public class NumberTheory
         return result;
     }
 
+    public static final BigInteger power(BigInteger base, int exponent)
+    {
+        return base.pow(exponent);
+    }
+
     public static final int powerMod(int a, int n, int m)
     {
         if (n == 0) {
@@ -147,6 +152,11 @@ public class NumberTheory
             long t = powerMod(a, n-1, m);
             return (a * t) % m;
         }
+    }
+
+    public static final BigInteger powerMod(BigInteger a, BigInteger n, BigInteger m)
+    {
+        return a.modPow(n, m);
     }
 
     // From Project Euler Problem 188

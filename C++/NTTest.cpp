@@ -471,6 +471,9 @@ static void linearCongruenceTestcases()
     linearCongruence(1193L, 367L, 31500L);
     linearCongruence(154L, 11L, 803L);
     linearCongruence(154L, 22L, 803L);
+    linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
+    linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
+    linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
     simpleLinearCongruence(exercise1, 2);
     simpleLinearCongruence(exercise2, 3);
     simpleLinearCongruence(exercise3, 3);

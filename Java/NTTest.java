@@ -468,6 +468,9 @@ public class NTTest
         linearCongruence(1193, 367, 31500);
         linearCongruence(154, 11, 803);
         linearCongruence(154, 22, 803);
+        linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
+        linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
+        linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
         simpleLinearCongruence(exercise1);
         simpleLinearCongruence(exercise2);
         simpleLinearCongruence(exercise3);

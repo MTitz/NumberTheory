@@ -1,6 +1,6 @@
 // Literature
 //  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
-//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory"
+//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
 
@@ -478,7 +478,7 @@ static void linearCongruenceTestcases()
     linearCongruence(20, 15, 135);
     linearCongruence(2, 10, 11);
     linearCongruence(10, 10, 11);
-    linearCongruence(3L, 11L, 2275L);
+    linearCongruence(3L, 11L, 2275L);  // [Andrews], section 5-3, example 5-6
     linearCongruence(1193L, 367L, 31500L);
     linearCongruence(154L, 11L, 803L);
     linearCongruence(154L, 22L, 803L);

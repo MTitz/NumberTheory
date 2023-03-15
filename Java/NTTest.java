@@ -1,6 +1,6 @@
 // Literature
 //  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
-//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory"
+//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
 
@@ -480,7 +480,7 @@ public class NTTest
         linearCongruence(20, 15, 135);
         linearCongruence(2, 10, 11);
         linearCongruence(10, 10, 11);
-        linearCongruence(3, 11, 2275);
+        linearCongruence(3, 11, 2275);  // [Andrews], section 5-3, example 5-6
         linearCongruence(1193, 367, 31500);
         linearCongruence(154, 11, 803);
         linearCongruence(154, 22, 803);
@@ -488,7 +488,7 @@ public class NTTest
         linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
         linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
 
-        // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61) 
+        // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61)
         linearCongruence(99, 100, 101);
         linearCongruence(400898, 22, 400900);
         linearCongruence(27, 1, 51);

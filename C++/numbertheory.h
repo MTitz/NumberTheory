@@ -241,7 +241,7 @@ T modInverse(T a, T m)
     extendedEuclidResult<T> result = extendedEuclid(a, m);
     if (result.d != 1)
         throw std::runtime_error("inverse does not exist");
-    return result.u;
+    return result.u >= 0 ? result.u : result.u + m;
 }
 
 

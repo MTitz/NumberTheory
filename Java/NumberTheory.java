@@ -274,7 +274,7 @@ public class NumberTheory
         ExtendedEuclidResult result = extendedEuclid(a, m);
         if (result.d != 1)
             throw new IllegalArgumentException("inverse does not exist");
-        return result.u;
+        return result.u >= 0 ? result.u : result.u + m;
     }
 
 

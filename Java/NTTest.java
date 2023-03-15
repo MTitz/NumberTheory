@@ -3,6 +3,8 @@
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
+
 
 import java.util.Collections;
 import java.util.List;
@@ -269,12 +271,14 @@ public class NTTest
         modInverseTable(12);
         modInverseTable(13);
         modInverseTable(14);
+        modInverseTable(21);  // [Yan] example 1.6.12 (pages 120, 121)
 
         System.out.println();
         // [Andrews] section 5-1, exercise 3 (page 61)
         modInverseTest(2, 5);
         modInverseTest(7, 9);
         modInverseTest(12, 17);
+        modInverseTest(154, 801);  // [Yan] example 1.6.14 (1) (pages 121, 122)
     }
 
     static NumberTheory.SimpleLinearCongruence[] exercise1 =
@@ -286,6 +290,7 @@ public class NTTest
           new NumberTheory.SimpleLinearCongruence(3, 5),
           new NumberTheory.SimpleLinearCongruence(2, 7)};
 
+    // [Yan] exercise 1.6.1 (page 132)
     static NumberTheory.SimpleLinearCongruence[] exercise3 =
         { new NumberTheory.SimpleLinearCongruence(2, 7),
           new NumberTheory.SimpleLinearCongruence(7, 9),
@@ -477,13 +482,13 @@ public class NTTest
         linearCongruence(0, 1, 2);
         linearCongruence(0, 0, 2);
         linearCongruence(3, 10, 12);
-        linearCongruence(20, 15, 135);
+        linearCongruence(20, 15, 135);  // [Yan] example 1.6.18 (page 129, 130)
         linearCongruence(2, 10, 11);
         linearCongruence(10, 10, 11);
         linearCongruence(3, 11, 2275);  // [Andrews], section 5-3, example 5-6
         linearCongruence(1193, 367, 31500);
         linearCongruence(154, 11, 803);
-        linearCongruence(154, 22, 803);
+        linearCongruence(154, 22, 803);  // check [Yan] example 1.6.15 (page 124)
         linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
         linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
         linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)

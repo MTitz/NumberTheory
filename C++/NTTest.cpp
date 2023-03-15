@@ -3,6 +3,7 @@
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
 
 
 #include <algorithm>
@@ -262,12 +263,14 @@ static void modInverseTestcases()
     modInverseTable(12);
     modInverseTable(13);
     modInverseTable(14);
+    modInverseTable(21);  // [Yan] example 1.6.12 (pages 120, 121)
 
     cout << endl;
     // [Andrews] section 5-1, exercise 3 (page 61)
     modInverseTest(2, 5);
     modInverseTest(7, 9);
     modInverseTest(12, 17);
+    modInverseTest(154, 801);  // [Yan] example 1.6.14 (1) (pages 121, 122)
 }
 
 
@@ -280,6 +283,7 @@ const SimpleLinearCongruence<int> exercise2[] =
      SimpleLinearCongruence<int>(3, 5),
      SimpleLinearCongruence<int>(2, 7)};
 
+// [Yan] exercise 1.6.1 (page 132)
 const SimpleLinearCongruence<int> exercise3[] =
    { SimpleLinearCongruence<int>(2, 7),
      SimpleLinearCongruence<int>(7, 9),
@@ -475,13 +479,13 @@ static void linearCongruenceTestcases()
     linearCongruence(0, 1, 2);
     linearCongruence(0, 0, 2);
     linearCongruence(3, 10, 12);
-    linearCongruence(20, 15, 135);
+    linearCongruence(20, 15, 135);  // [Yan] example 1.6.18 (page 129, 130)
     linearCongruence(2, 10, 11);
     linearCongruence(10, 10, 11);
     linearCongruence(3L, 11L, 2275L);  // [Andrews], section 5-3, example 5-6
     linearCongruence(1193L, 367L, 31500L);
     linearCongruence(154L, 11L, 803L);
-    linearCongruence(154L, 22L, 803L);
+    linearCongruence(154L, 22L, 803L);  // check [Yan] example 1.6.15 (page 124)
     linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
     linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
     linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)

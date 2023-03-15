@@ -1,7 +1,8 @@
 // Literature
+//  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory"
-//  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts"
-//  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory"
+//  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
+//  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
 
 
 #include <algorithm>
@@ -236,13 +237,17 @@ template<typename T> void modInverseTable(T m)
     for (T i = 1; i < m; ++i) {
         try {
             int inv = modInverse(i, m);
-            if (inv < 0)
-                inv += m;
             cout << '\t' << i << '\t' << inv << endl;
         }
         catch (std::exception&) {
         }
     }
+}
+
+template<typename T> void modInverseTest(T a, T m)
+{
+    T inv = modInverse(a, m);
+    cout << "The inverse of " << a << " mod " << m << " is " << inv << endl;
 }
 
 static void modInverseTestcases()
@@ -257,6 +262,12 @@ static void modInverseTestcases()
     modInverseTable(12);
     modInverseTable(13);
     modInverseTable(14);
+
+    cout << endl;
+    // [Andrews] section 5-1, exercise 3 (page 61)
+    modInverseTest(2, 5);
+    modInverseTest(7, 9);
+    modInverseTest(12, 17);
 }
 
 
@@ -474,6 +485,15 @@ static void linearCongruenceTestcases()
     linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
     linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
     linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
+
+    // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61)
+    linearCongruence(99, 100, 101);
+    linearCongruence(400898, 22, 400900);
+    linearCongruence(27, 1, 51);
+    linearCongruence(99, 100, 102);
+    linearCongruence(30, 42, 49);
+    linearCongruence(81, 57, 117);
+
     simpleLinearCongruence(exercise1, 2);
     simpleLinearCongruence(exercise2, 3);
     simpleLinearCongruence(exercise3, 3);

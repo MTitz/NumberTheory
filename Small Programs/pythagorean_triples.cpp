@@ -15,9 +15,9 @@ template<typename T>
 T gcd(T m, T n)
 {
     while (n != 0) {
-        T tmp = n;
+        T r = n;
         n = m % n;
-        m = tmp;
+        m = r;
     }
     return m;
 }

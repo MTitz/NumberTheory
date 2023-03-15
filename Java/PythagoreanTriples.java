@@ -14,9 +14,9 @@ public class PythagoreanTriples
     public static final int gcd(int m, int n)
     {
         while (n != 0) {
-            int tmp = n;
+            int r = n;
             n = m % n;
-            m = tmp;
+            m = r;
         }
         return m;
     }

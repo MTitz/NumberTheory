@@ -4,6 +4,7 @@
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
 
 
@@ -283,6 +284,7 @@ const SimpleLinearCongruence<int> exercise1[] =
    { SimpleLinearCongruence<int>(3, 5),
      SimpleLinearCongruence<int>(2, 6)};
 
+// Sun-Tsu (cited in [Scheid])
 const SimpleLinearCongruence<int> exercise2[] =
    { SimpleLinearCongruence<int>(2, 3),
      SimpleLinearCongruence<int>(3, 5),
@@ -304,12 +306,14 @@ const LinearCongruence<int> exercise5[] =
      LinearCongruence<int>(3,  5,  7),
      LinearCongruence<int>(2,  4, 11)};
 
+// [Scheid] Kapitel 4.1 (Seite 199)
 const SimpleLinearCongruence<int> exercise6[] =
    { SimpleLinearCongruence<int>(-1, 3),
      SimpleLinearCongruence<int>(-1, 4),
      SimpleLinearCongruence<int>(-1, 5),
      SimpleLinearCongruence<int>(-1, 6)};
 
+// [Scheid] Kapitel 4.1 (Seite 199)
 const LinearCongruence<int> exercise6b[] =
    { LinearCongruence<int>(1, -1, 3),
      LinearCongruence<int>(1, -1, 4),
@@ -324,6 +328,7 @@ const SimpleLinearCongruence<int> exercise7[] =
      SimpleLinearCongruence<int>(1, 6),
      SimpleLinearCongruence<int>(0, 7)};
 
+// from [Scheid] Kapitel IV.12, Aufgabe 6b (Seite 264)
 const LinearCongruence<int> exercise7a[] =
    { LinearCongruence<int>(5, 2, 12),
      LinearCongruence<int>(7, 0, 15)};
@@ -488,14 +493,14 @@ static void linearCongruenceTestcases()
     linearCongruence(2, 10, 11);
     linearCongruence(10, 10, 11);
     linearCongruence(3L, 11L, 2275L);  // [Andrews], section 5-3, example 5-6
-    linearCongruence(1193L, 367L, 31500L);
+    linearCongruence(1193L, 367L, 31500L);  // [Scheid], Kapitel IV.1, Beispiel 3 (Seite 98)
     linearCongruence(154L, 11L, 803L);
     linearCongruence(154L, 22L, 803L);  // check [Yan] example 1.6.15 (page 124)
     linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
     linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
     linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
-    linearCongruence(10, 3, 27);  // [Giblin], chapter 3.2, exercise 2.2 (a)
-    linearCongruence(35, 14, 182);  // [Giblin], chapter 3.2, exercise 2.2 (a)
+    linearCongruence(10, 3, 27);  // [Giblin}, chapter 3.2, exercise 2.2 (a)
+    linearCongruence(35, 14, 182);  // [Giblin}, chapter 3.2, exercise 2.2 (a)
 
     // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61)
     linearCongruence(99, 100, 101);

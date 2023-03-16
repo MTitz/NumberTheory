@@ -71,12 +71,12 @@ public class PythagoreanTriples
                         } else {
                             int k = 1;
                             while (k * c <= limit) {
-                                triples.add(new PythagoreanTriple(a * k, b * k, c * k));
+                                triples.add(new PythagoreanTriple(k * a, k * b, k * c));
                                 ++k;
                             }
                         }
                     } else {
-                        break;
+                        break;  // abort inner for loop
                     }
                 }
             }
@@ -134,7 +134,7 @@ public class PythagoreanTriples
                 if (primitiveTuplesOnly) {
                     System.out.print("primitive ");
                 }
-                System.out.println("Pythagoran triples with hypotenuse <= " + limit);
+                System.out.println("Pythagorean triples with hypotenuse <= " + limit);
                 System.out.println();
 
                 for (PythagoreanTriple triple : triples) {

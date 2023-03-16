@@ -2,6 +2,7 @@
 //  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
+//  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
 
@@ -187,6 +188,8 @@ public class NTTest
         System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2L, 1000L, 1000000L));
         System.out.println();
 
+        // [Giblin], chapter 4.2
+        System.out.println("powerMod(7, 50, 11) = " + NumberTheory.powerMod(7, 50, 11));
         // [Nathanson], chapter 2.5, exercise 1 (page 71)
         System.out.println("powerMod(3, 512, 1024) = " + NumberTheory.powerMod(3, 512, 1024));
         // [Nathanson], chapter 2.5, exercise 2 (page 71)
@@ -278,7 +281,9 @@ public class NTTest
         modInverseTest(2, 5);
         modInverseTest(7, 9);
         modInverseTest(12, 17);
-        modInverseTest(154, 801);  // [Yan] example 1.6.14 (1) (pages 121, 122)
+
+        // [Yan] example 1.6.14 (1) (pages 121, 122)
+        modInverseTest(154, 801);
     }
 
     static NumberTheory.SimpleLinearCongruence[] exercise1 =
@@ -492,6 +497,8 @@ public class NTTest
         linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
         linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
         linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
+        linearCongruence(10, 3, 27);  // [Giblin], chapter 3.2, exercise 2.2 (a)
+        linearCongruence(35, 14, 182);  // [Giblin], chapter 3.2, exercise 2.2 (a)
 
         // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61)
         linearCongruence(99, 100, 101);

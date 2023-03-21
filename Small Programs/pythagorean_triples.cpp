@@ -140,7 +140,9 @@ int main(int argc, char *argv[])
     triple_set triples = generate_triples(limit, primitive_triples_only);
 
     for (auto triple : triples) {
-        cout << std::setw(width) << triple.a() << std::setw(width) << triple.b() << std::setw(width) << triple.c() << endl;
+        cout << std::setw(width) << triple.a()
+             << std::setw(width) << triple.b()
+             << std::setw(width) << triple.c() << endl;
     }
 
     return 0;

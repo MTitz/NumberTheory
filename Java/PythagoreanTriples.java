@@ -95,7 +95,7 @@ public class PythagoreanTriples
 
     public static void main(String[] args)
     {
-        boolean primitiveTuplesOnly = true;
+        boolean primitiveTriplesOnly = true;
 
         if (args.length < 1) {
             usage();
@@ -106,9 +106,9 @@ public class PythagoreanTriples
                 usage();
                 return;
             } else if (args[i].equals("--primitive") || args[i].equals("-p")) {
-                primitiveTuplesOnly = true;
+                primitiveTriplesOnly = true;
             } else if (args[i].equals("--all") || args[i].equals("-a")) {
-                primitiveTuplesOnly = false;
+                primitiveTriplesOnly = false;
             } else {
                 int limit;
                 try {
@@ -127,11 +127,11 @@ public class PythagoreanTriples
                     return;
                 }
 
-                SortedSet<PythagoreanTriple> triples = generateTriples(limit, primitiveTuplesOnly);
+                SortedSet<PythagoreanTriple> triples = generateTriples(limit, primitiveTriplesOnly);
 
                 System.out.println();
                 System.out.print("All ");
-                if (primitiveTuplesOnly) {
+                if (primitiveTriplesOnly) {
                     System.out.print("primitive ");
                 }
                 System.out.println("Pythagorean triples with hypotenuse <= " + limit);

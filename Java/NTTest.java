@@ -109,19 +109,19 @@ public class NTTest
     private static void powTestcases()
     {
         for (int i = 0; i <= 4; ++i) {
-            System.out.println("0^" + i + " = " + NumberTheory.power(0,i));
+            System.out.println("0^" + i + " = " + NumberTheory.power(0, i));
         }
         System.out.println();
         for (int i = 0; i <= 4; ++i) {
-            System.out.println("1^" + i + " = " + NumberTheory.power(1,i));
+            System.out.println("1^" + i + " = " + NumberTheory.power(1, i));
         }
         System.out.println();
         for (int i = 0; i <= 24; ++i) {
-            System.out.println("2^" + i + " = " + NumberTheory.power(2,i));
+            System.out.println("2^" + i + " = " + NumberTheory.power(2, i));
         }
         System.out.println();
         for (int i = 0; i <= 6; ++i) {
-            System.out.println("5^" + i + " = " + NumberTheory.power(5,i));
+            System.out.println("5^" + i + " = " + NumberTheory.power(5, i));
         }
     }
 
@@ -648,6 +648,10 @@ public class NTTest
         factorTest(8616460799L);
 
         factorTest(195545750400L);
+
+        // Project Euler, Problem 3
+        factorTest(600851475143L);
+
         factorTest(144403552893600L);
 
         // Two twin primes as factors:

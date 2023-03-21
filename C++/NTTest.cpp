@@ -97,19 +97,19 @@ static void oddEvenTestcases()
 static void powTestcases()
 {
     for (unsigned int i = 0; i <= 4; ++i) {
-        cout << "0^" << i << " = " << math::pow(0,i) << endl;
+        cout << "0^" << i << " = " << math::pow(0, i) << endl;
     }
     cout << endl;
     for (unsigned int i = 0; i <= 4; ++i) {
-        cout << "1^" << i << " = " << math::pow(1,i) << endl;
+        cout << "1^" << i << " = " << math::pow(1, i) << endl;
     }
     cout << endl;
     for (unsigned int i = 0; i <= 24; ++i) {
-        cout << "2^" << i << " = " << math::pow(2,i) << endl;
+        cout << "2^" << i << " = " << math::pow(2, i) << endl;
     }
     cout << endl;
     for (unsigned int i = 0; i <= 6; ++i) {
-        cout << "5^" << i << " = " << math::pow(5,i) << endl;
+        cout << "5^" << i << " = " << math::pow(5, i) << endl;
     }
 }
 
@@ -644,6 +644,9 @@ static void factorTestcases()
     factorTest<long long>(8616460799LL);
 
     factorTest(195545750400L);
+
+    // Project Euler, Problem 3
+    factorTest(600851475143LL);
 
     // Testing signed and unsigned variant:
     factorTest<long long>(144403552893600LL);

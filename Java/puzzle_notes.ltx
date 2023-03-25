@@ -28,6 +28,7 @@ I once have bought the book \cite{Clessa} by J.J.Clessa "Math and Logic Puzzles 
 Many puzzles can be best solved writing a computer program. In most cases I used the programming language Java, while I used the computer algebra system Mathematica for micropuzzles 25 and 55 to solve the minimization problem respective the polynomial equation of degree 4.
 
 \section{Errata}
+The following list is only what I have noticed myself, and is no official list.
 
 \begin{itemize}
 \item Micropuzzle 41: First example: Replace $321 = 19+2.1^2$ with $21 = 19 + 2\cdot1^2$
@@ -44,6 +45,9 @@ Many puzzles can be best solved writing a computer program. In most cases I used
 \end{itemize}
 
 \section{Overview}
+Some of the Java programs require additional Java source files, either using Permutation.java for iterating through all permutations of a given size or using some number-theorecial algorithms like fast square detection, using an algorithm given in \cite{Cohen}. It is also mentioned when the internal Java class BigInteger is used.
+
+In many cases the Java program solves a slightly more general problem, either by calculating a solution for a more general case than the special value given in the problem or by not only finding the first solution. In several cases the special puzzle problem is the default and other values can be given by command line parameters.
 
 \begin{longtable}[t]{|rl|l|l|} \hline
 &Puzzle & Used & Remarks\\ \hline
@@ -294,6 +298,12 @@ The simple solution program Micropuzzle35.java varies the values of $b$ and $c$ 
 If then $d$ would be an integer, $d$ is calculated from (\ref{animals3}) and finally $a = 100-b-c-d$ can be calculated and a solution is found.
 
 
+\subsection{Micropuzzle 45 -- Palindromic cycles}
+The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond this range.
+
+It is still an open problem if these cycles ever terminate for the number 196 and likewise for many numbers above 196, while the record of 24 cycles for 89 and 98 for known terminating cycles is only first exceeded beyond 10000, as the number 10548 reaches after 30 cycles the palindrome 17858768886785871. Therefore the solution program Micropuzzle45.java follows cycles only until a given limit of 1000 cycles and lists these exceptional cases at the end of its output.
+
+
 \subsection{Micropuzzle 54 -- The ladder and the wall}
 Let the distance from floor to top of the ladder be $x$ feet.\\
 Let the distance from wall to bottom of ladder be $y$ feet.
@@ -450,13 +460,17 @@ The walls are 24m apart.
 M.~Abramowitz, I.~A.~Stegun, editors, {\it Handbook of Mathematical Functions.}
 United States Government Printing Office, 1964.
 
-\bibitem{BookOfNumbers}
-John H.~Conway, Richard K.~Guy, {\it The Book of Numbers}.
-Copernicus, 1995.
-
 \bibitem{Clessa}
 J.~J.~Clessa, {\it Math and Logic Puzzles for PC Enthusiasts}.
 Dover, 1996.
+
+\bibitem{Cohen}
+Henri Cohen, {\it A Course in Computational Algebraic Number Theory}.
+Springer, 1996.
+
+\bibitem{BookOfNumbers}
+John H.~Conway, Richard K.~Guy, {\it The Book of Numbers}.
+Copernicus, 1995.
 
 \bibitem{Giblin}
 Peter Giblin, {\it Primes and Programming -- An Introduction to Number Theory with Computing}.

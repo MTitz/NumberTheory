@@ -5,8 +5,7 @@
 
 public class Micropuzzle60
 {
-    static final int NUMBER = 106620;  // number from the puzzle
-
+    static final int PUZZLE_NUMBER = 106620;
     static final int PRIME_LIMIT = 10001000;
 
     public static boolean[] eratosthenes(int n)
@@ -141,8 +140,9 @@ public class Micropuzzle60
     public static void main(String[] args)
     {
        if (args.length == 0) {
-            System.out.println("Searching prime sum for " + NUMBER + " (for other numbers use command line parameters):");
-            searchPrimeSum(NUMBER);
+            System.out.println("Searching prime sum for " + PUZZLE_NUMBER +
+                               " (for other numbers use command line parameters):");
+            searchPrimeSum(PUZZLE_NUMBER);
             return;
         }
         for (int i = 0; i < args.length; ++i)

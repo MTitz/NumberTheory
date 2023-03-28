@@ -166,6 +166,21 @@ public class NumberTheory
         }
     }
 
+    public static final int primefactorInFactorial(final int number, final int p)
+    {
+        if (number < 0)
+            throw new IllegalArgumentException("first argument of primefactorInFactorial is negative");
+        if (p < 2)
+            throw new IllegalArgumentException("second argument of primefactorInFactorial is too small");
+        int n = number;
+        int sum = 0;
+        while (n >= p) {
+            n /= p;
+            sum += n;
+        }
+        return sum;
+    }
+
     public static final int gcd(int x, int y)
     {
         while (y != 0) {

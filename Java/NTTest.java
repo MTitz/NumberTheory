@@ -210,6 +210,45 @@ public class NTTest
         System.out.println("hyperExpMod(1777, 1855, 10^8) = " + NumberTheory.hyperExpMod(1777, 1855, 100000000));
     }
 
+    private static void primeInFactorialTest(int n, int p)
+    {
+        System.out.println("In " + n + "! has the prime factor " + p +
+                " the exponent " + NumberTheory.primefactorInFactorial(n, p));
+    }
+
+    private static void primeInFactorialTestcases()
+    {
+        primeInFactorialTest(4, 2);
+        primeInFactorialTest(4, 3);
+        primeInFactorialTest(4, 5);
+        primeInFactorialTest(1000, 2);
+        primeInFactorialTest(1000, 3);
+        primeInFactorialTest(1000, 5);
+        primeInFactorialTest(1000, 997);
+        System.out.println();
+        try {
+            NumberTheory.primefactorInFactorial(-1, 2);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Got expected exception for primeInFactorialTest(-1, 2)");
+        }
+        try {
+            NumberTheory.primefactorInFactorial(4, 1);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Got expected exception for primeInFactorialTest(4, 1)");
+        }
+        System.out.println();
+        for (int n = 0; n <= 30; ++n) {
+            System.out.printf("%3d! ends with %1d zeros.%n",
+                    n, NumberTheory.primefactorInFactorial(n, 5));
+        }
+        for (int n : new int[] {40, 50, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}) {
+            System.out.printf(" %d! ends with %d zeros.%n",
+                    n, NumberTheory.primefactorInFactorial(n, 5));
+        }
+    }
+
     private static void lcmTest(long a, long b)
     {
         System.out.println("lcm(" + a + ", " + b + ") = " + NumberTheory.lcm(a, b));
@@ -918,6 +957,9 @@ public class NTTest
 
         System.out.println();
         hyperExpModTestcases();
+
+        System.out.println();
+        primeInFactorialTestcases();
 
         System.out.println();
         lcmTestcases();

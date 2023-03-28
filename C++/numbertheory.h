@@ -100,6 +100,24 @@ T powerMod(T a, T n, T m)
 //    https://projecteuler.net/problem=188
 unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m);
 
+
+template<typename T>
+T primefactor_in_factorial(const T& number, const T& p)
+{
+    if (number < 0)
+        throw std::invalid_argument("first argument of primefactor_in_factorial is negative");
+    if (p < 2)
+        throw std::invalid_argument("second argument of primefactor_in_factorial is too small");
+    T n = number;
+    T sum = 0;
+    while (n >= p) {
+        n /= p;
+        sum += n;
+    }
+    return sum;
+}
+
+
 template<typename T>
 T gcd(T x, T y)
 {

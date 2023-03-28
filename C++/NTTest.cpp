@@ -201,6 +201,43 @@ static void hyperExpModTestcases()
     cout << "hyperExpMod(1777, 1855, 10^8) = " << hyperExpMod(1777, 1855, 100000000) << endl;
 }
 
+template<typename T> void primeInFactorialTest(const T& n, const T& p)
+{
+    cout << "In " << n << "! has the prime factor " << p
+         << " the exponent " << primefactor_in_factorial(n, p) << endl;
+}
+
+static void primeInFactorialTestcases()
+{
+    primeInFactorialTest(4, 2);
+    primeInFactorialTest(4, 3);
+    primeInFactorialTest(4, 5);
+    primeInFactorialTest(1000, 2);
+    primeInFactorialTest(1000, 3);
+    primeInFactorialTest(1000, 5);
+    primeInFactorialTest(1000, 997);
+    cout << endl;
+    try {
+        (void)primefactor_in_factorial(-1, 2);
+    }
+    catch (std::invalid_argument&) {
+        cout << "Got expected exception for primeInFactorialTest(-1, 2)" << endl;
+    }
+    try {
+        (void)primefactor_in_factorial(4, 1);
+    }
+    catch (std::invalid_argument&) {
+        cout << "Got expected exception for primeInFactorialTest(4, 1)" << endl;
+    }
+    cout << endl;
+    for (int n = 0; n <= 30; ++n) {
+        cout << setw(3) << n << "! ends with " << setw(1) << primefactor_in_factorial(n, 5) << " zeros." << endl;
+    }
+    for (int n : {40, 50, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000}) {
+        cout << " " << n << "! ends with " << primefactor_in_factorial(n, 5) << " zeros." << endl;
+    }
+}
+
 template<typename T> void lcmTest(const T& a, const T& b)
 {
     cout << "lcm(" << a << ", " << b << ") = " << lcm(a, b) << endl;
@@ -963,6 +1000,9 @@ int main(void)
 
     cout << endl;
     hyperExpModTestcases();
+
+    cout << endl;
+    primeInFactorialTestcases();
 
     cout << endl;
     lcmTestcases();

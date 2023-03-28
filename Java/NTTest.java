@@ -221,6 +221,15 @@ public class NTTest
         primeInFactorialTest(4, 2);
         primeInFactorialTest(4, 3);
         primeInFactorialTest(4, 5);
+        // Example for 10! compare [Nathanson], page 29
+        primeInFactorialTest(10, 2);
+        primeInFactorialTest(10, 3);
+        primeInFactorialTest(10, 5);
+        primeInFactorialTest(10, 7);
+        // Example for 100! compare [Giblin], page 27
+        primeInFactorialTest(100, 2);
+        primeInFactorialTest(100, 3);
+        primeInFactorialTest(100, 5);
         primeInFactorialTest(1000, 2);
         primeInFactorialTest(1000, 3);
         primeInFactorialTest(1000, 5);

@@ -7,13 +7,6 @@ import java.util.function.ToLongBiFunction;
 
 public class NumberTheory
 {
-    /*
-    public static int bitlength(long n)
-    {
-        return (int)Math.floor(Math.log(n) / Math.log(2.0) + 1.0);
-    }
-    */
-
     public static final int bitlength(int n)
     {
         if (n < 0) n = -n;

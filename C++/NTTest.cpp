@@ -25,7 +25,7 @@ using std::setw;
 
 using namespace math;
 
-// Maximal exponents for factorization of a^n-1, a^n+1 for n = 2 and n = 10
+// Maximal exponents for factorization of a^n-1, a^n+1 for a = 2 and a = 10
 const int MaxExponent2  = 63;
 const int MaxExponent10 = 12;
 

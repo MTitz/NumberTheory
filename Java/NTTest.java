@@ -14,7 +14,7 @@ import java.util.Vector;
 
 public class NTTest
 {
-    // Maximal exponents for factorization of a^n-1, a^n+1 for n = 2 and n = 10
+    // Maximal exponents for factorization of a^n-1, a^n+1 for a = 2 and a = 10
     static final int MaxExponent2  = 48;
     static final int MaxExponent10 = 12;
 

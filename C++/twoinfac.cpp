@@ -3,7 +3,6 @@
 #include <cstring>
 #include <exception>
 #include <iostream>
-#include <limits>
 #include <stdexcept>
 
 #include "numbertheory.h"

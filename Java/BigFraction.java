@@ -179,7 +179,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         if (!(o instanceof BigFraction))
             return false;
         BigFraction fraction = (BigFraction)o;
-        return this.numerator.equals(fraction.numerator) && this.denominator.equals(fraction.denominator);
+        return this.numerator.multiply(fraction.denominator).equals(this.denominator.multiply(fraction.numerator));
     }
 
     @Override public String toString()

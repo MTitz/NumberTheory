@@ -17,7 +17,7 @@ public class Micropuzzle13
     public static void main(String[] args)
     {
         final long TOTAL = 2 * 711;
-        for (long a = TOTAL/4; a <=  TOTAL; ++a) {
+        for (long a = TOTAL/4; a <= TOTAL; ++a) {
             for (long b = 1; b <= a; ++b) {
                 long sum = a + b;
                 if (sum >= TOTAL-2)

@@ -216,21 +216,52 @@ For verification it is
 
 
 \subsection{Micropuzzle 13 -- A natural mistake}
-The British currency had many changes over time. The puzzles had been stated after the decimalization of the British coinage 1971, but at the time the puzzle had been first published, the halfpenny had still been legal tender. Therefore the variables $a$, $b$, $c$ and $d$ give the prices of the four items in halfpennies; a halfpenny is $1/200$ of a pound.
+The woman is buying 4 items with prices $p_1, p_2, p_3, p_4$ that must fulfill the two conditions
+\begin{eqnarray*}
+ p_1 + p_2 + p_3 + p_4 = 7.11 \\
+ p_1 \cdot p_2 \cdot p_3 \cdot p_4 = 7.11 \\
+\end{eqnarray*}
+It will be easier to transform these equations so further calculations will be done only within integers.
+
+The British currency had many changes over time. The puzzles had been stated after the decimalization of the British coinage 1971, but at the time the puzzle had been first published, the halfpenny had still been legal tender. Therefore the variables $a$, $b$, $c$ and $d$ give the prices of the four items in halfpennies; a halfpenny had been at that time $1/200$ of a pound.
 
 We have to look for solutions in positive integers of the equations
 \begin{eqnarray*}
-\frac{a}{200}\cdot\frac{b}{200}\cdot\frac{c}{200}\cdot\frac{d}{200} &=& \frac{711}{100}\\
-\frac{a}{200} + \frac{b}{200} + \frac{c}{200} + \frac{d}{200} &=& \frac{711}{100}
+\frac{a}{200} + \frac{b}{200} + \frac{c}{200} + \frac{d}{200} &=& \frac{711}{100} \\
+\frac{a}{200}\cdot\frac{b}{200}\cdot\frac{c}{200}\cdot\frac{d}{200} &=& \frac{711}{100}
 \end{eqnarray*}
 
 Multiplying the first equation with $200$ and the second one with $200^4$ gives
 \begin{eqnarray*}
 a + b + c + d &=& 1422\\
-a \cdot b \cdot c \cdot d &=& 1422 \cdot 200^3 = 11376000000
+a \cdot b \cdot c \cdot d &=& 1422 \cdot 200^3 = 11\,376\,000\,000
 \end{eqnarray*}
 
 Without loss of generality we can assume $a \ge b \ge c \ge d$.
+
+I then got the three possible solutions with a small Java program with three nested loops, as the value of the fourth variable is then determined by the first equation. If you want to try to solve the the problem without programming, you could use that the variables need to be divisors of $1422 \cdot 200^3$.
+
+The solutions are
+\begin{table}[htbp]
+\begin{tabular}{|c|c|c|c|} \hline
+ a & b & c & d \\ \hline
+ 625 & 316 & 256 & 225 \\
+ 625 & 320 & 240 & 237 \\
+ 632 & 300 & 250 & 240 \\ \hline
+\end{tabular}
+\end{table}
+
+and so the possible prices are in pounds
+\begin{table}[htbp]
+\begin{tabular}{|c|c|c|c|} \hline
+ $p_1$ & $p_2$ & $p_3$ & $p_4$ \\ \hline
+ 3.125 & 1.580 & 1.280 & 1.125 \\
+ 3.125 & 1.600 & 1.200 & 1.185 \\
+ 3.160 & 1.500 & 1.250 & 1.200 \\ \hline
+\end{tabular}
+\end{table}
+
+The last solution is the only one that does not require usage of halfpenny coinage.
 
 
 \subsection{Micropuzzle 14 -- Ten-digit perfect squares}
@@ -245,6 +276,25 @@ Nice individual results:
 \end{eqnarray*}
 
 In the first result both numbers are additionally palindromic numbers.
+
+The result of my program for the puzzle with 10 digits is
+\begin{verbatim}
+Record table for 10 digits, range from 1000000000 to 9999999999
+
+ 0   8      40000         1600000000
+ 1   6      33183         1101111489
+ 2   6      35415         1254222225
+ 3   6      57735         3333330225
+ 4   7      66592         4434494464
+ 5   6      67495         4555575025
+ 6   6      68313         4666665969
+ 7   6      88924         7907477776
+ 8   6      61878         3828886884
+ 9   6      53937         2909199969
+\end{verbatim}
+
+The first column gives the digit that is looked for, the second column how often it occurs in the number, the third the number to be squared to get the number in the fourth column.
+
 
 \subsection{Micropuzzle 25 -- Fieldcraft}
 The fastest time is achieved when walking in straight lines across the different types of soil. Let $s_1, s_2, s_3$ be the distances on each kind of surface.

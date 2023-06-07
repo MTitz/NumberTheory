@@ -347,11 +347,57 @@ and simplified
 The simple solution program Micropuzzle35.java varies the values of $b$ and $c$ in the expression given by the left side of (\ref{animals3}) in the range from 0 to 4100.
 If then $d$ would be an integer, $d$ is calculated from (\ref{animals3}) and finally $a = 100-b-c-d$ can be calculated and a solution is found.
 
+Also the solution can be found without writing a computer program. One good analytical approach for such problems is demonstrated in the solution of the book \cite{Clessa}.
+
+Another way to solve it is the following:
+
+Looking into equation (\ref{animals3}) you can see that all the numbers 140, 228 and 4100 are divisible by 4, thus are also $140b$ and $228c$ divisible by 4. Therefore $285d$ must be divisible by 4 too, and therefore $4|d$, so it exists a nonnegative integer $d'$ with
+\[ d = 4 d' \]
+and putting this into (\ref{animals3}) it becomes
+\[ 140b + 228c + 285 \cdot 4d' = 4100 \]
+and dividing both sides by 4 we get
+\begin{equation} \label{animals4}
+ 35b + 57c + 285d' = 1025
+\end{equation}
+
+As now the numbers 35, 285 and 1025 all contain the common factor of 5, also $57c$ most be a multiple of 5, and therefore it exists a nonnegative integer $c'$ so that
+\[ c = 5 c' \]
+and the equation (\ref{animals4}) becomes
+\[ 35b + 57 \cdot 5c' + 285d' = 1025 \]
+and dividing both sides by 5 it simplifies to
+\begin{equation} \label{animals5}
+ 7b + 57c' + 57d' = 205
+\end{equation}
+As it is $7b = 205 - 57(c'+d')$ we can now check
+\begin{eqnarray*}
+205 - 0 \cdot 57 &=& 7\cdot 29 + 2 \\
+205 - 1 \cdot 57 &=& 7\cdot 21 + 1 \\
+205 - 2 \cdot 57 &=& 7\cdot 13 \\
+205 - 3 \cdot 57 &=& 7\cdot 4 + 6 \\
+205 - 4 \cdot 57 &<& 0
+\end{eqnarray*}
+Therefore it must be for any possible solution
+\[ b = 13 \]
+and
+\[ c'+d' = 2. \]
+So the cases $c'=0, d'=2$, $c'=1, d'=1$ and $c'=2, d'=0$ have to be checked, and each gives indeed a solution of the problem, with only the middle one having all four animals present.
+
+Therefore we have these three solutions of the problem
+\begin{table}[htbp]
+\begin{tabular}{|r|r|r|r|} \hline
+ $a$ & $b$ & $c$ & $d$ \\ \hline
+ 79  & 13  &  0  & 8 \\
+ 78  & 13  &  5  & 4 \\
+ 77  & 13  & 10  & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+
 
 \subsection{Micropuzzle 45 -- Palindromic cycles}
 The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond this range.
 
-It is still an open problem if these cycles ever terminate for the number 196 and likewise for many numbers above 196, while the record of 24 cycles for 89 and 98 for known terminating cycles is only first exceeded beyond 10000, as the number 10548 reaches after 30 cycles the palindrome 17858768886785871. Therefore the solution program Micropuzzle45.java follows cycles only until a given limit of 1000 cycles and lists these exceptional cases at the end of its output.
+It is still an open problem if these cycles ever terminate for the number 196 and likewise for many numbers above 196, while the record of 24 cycles for 89 and 98 for known terminating cycles is only first exceeded beyond $10\,000$, as the number $10\,548$ reaches after 30 cycles the palindrome $17\,858\,768\,886\,785\,871$. Therefore the solution program Micropuzzle45.java follows cycles only until a given limit of 1000 cycles and lists these exceptional cases at the end of its output.
 
 
 \subsection{Micropuzzle 54 -- The ladder and the wall}

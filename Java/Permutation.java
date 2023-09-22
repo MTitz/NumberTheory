@@ -49,10 +49,10 @@ public class Permutation
         // Revert in place array perm[i+1],..., perm[n-1],
         // together (n-1)-(i+1)+1 = n-i-1 elements
         int m = (n-i-1) / 2;
-        for (int h = 0; h < m; ++h) {
-            int tmp = perm[i+1 + h];
-            perm[i+1 + h] = perm[n-1 - h];
-            perm[n-1 - h] = tmp;
+        for (int h = 1; h <= m; ++h) {
+            int tmp = perm[i + h];
+            perm[i + h] = perm[n - h];
+            perm[n - h] = tmp;
         }
     }
 

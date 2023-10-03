@@ -10,7 +10,7 @@ public class BernoulliNumbers
         if (n < 1)
             throw new IllegalArgumentException();
         BigFraction[] B = new BigFraction[n+1];
-        B[0] = new BigFraction(1, 1);
+        B[0] = BigFraction.ONE;
         B[1] = new BigFraction(-1, 2);
         for (int m = 2; m <= n; ++m) {
             BigFraction sum = B[0].multiply(new BigFraction(1, m+1)).add(B[1]).negate();

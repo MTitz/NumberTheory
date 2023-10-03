@@ -31,7 +31,8 @@ public class BernoulliNumbers
         if (B == null)
             return;
         for (int i = 0; i < B.length; ++i) {
-            System.out.printf("B[%2s] = %s%n", i, B[i]);
+            if (B[i].compareTo(BigFraction.ZERO) != 0)
+                System.out.printf("B[%2s] = %s%n", i, B[i]);
         }
     }
 

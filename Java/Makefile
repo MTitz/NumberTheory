@@ -11,7 +11,7 @@ JFLAGS	= -O
 	pdflatex $<
 
 RIDDLE	= Micropuzzle01.class Micropuzzle03.class Micropuzzle04.class Micropuzzle05.class Micropuzzle06.class Micropuzzle07.class Micropuzzle10.class Micropuzzle11.class Micropuzzle12.class Micropuzzle13.class Micropuzzle14.class Micropuzzle17.class Micropuzzle18.class Micropuzzle19.class Micropuzzle21.class Micropuzzle22.class Micropuzzle30.class Micropuzzle31.class Micropuzzle32.class Micropuzzle33.class Micropuzzle34.class Micropuzzle35.class Micropuzzle36.class Micropuzzle37.class Micropuzzle41.class Micropuzzle42.class Micropuzzle43.class Micropuzzle45.class Micropuzzle49.class Micropuzzle50.class Micropuzzle51.class Micropuzzle54.class Micropuzzle57.class Micropuzzle60.class Micropuzzle61.class Micropuzzle62.class Micropuzzle63.class Micropuzzle64.class
-CLASSFILES = AllDigits.class BigFraction.class BigFractionTest.class Complex.class DigitsSum.class DivRules.class Fibonacci.class GenPartitions.class HarmonicSum.class NumberTheory.class Pair.class Permutation.class PermutationTest.class PrimeFactors.class PythagoreanTriples.class NTTest.class SquareTest.class $(RIDDLE)
+CLASSFILES = AllDigits.class BernoulliNumbers.class BigFraction.class BigFractionTest.class Complex.class DigitsSum.class DivRules.class Fibonacci.class GenPartitions.class HarmonicSum.class NumberTheory.class Pair.class Permutation.class PermutationTest.class PrimeFactors.class PythagoreanTriples.class NTTest.class SquareTest.class $(RIDDLE)
 LISTINGS = Complex.pdf NumberTheory.pdf Pair.pdf Permutation.pdf PrimeFactors.pdf
 DOCU = JavaNumberTheory_A4.pdf JavaNumberTheory_US.pdf puzzle_notes.pdf
 
@@ -22,11 +22,17 @@ docu:	$(DOCU)
 clean:
 	rm -f *.class NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
 
+Micropuzzle01.txt: Micropuzzle01.class NumberTheory.class
+	java Micropuzzle01 1000000000 > Micropuzzle01.txt
+
 NTTest.txt: NTTest.class NumberTheory.class Pair.class
 	java -Xmx1024m NTTest > NTTest.txt
 
 PermutationTest.txt: Permutation.class PermutationTest.class
 	java PermutationTest > PermutationTest.txt
+
+PythagoreanTriples.txt: PythagoreanTriples.class
+	java -Xmx2048m PythagoreanTriples 200000000 > PythagoreanTriples.txt
 
 JavaNumberTheory_A4.pdf: $(CLASSFILES)
 	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" *.java|ps2pdf -> $@)

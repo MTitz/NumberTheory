@@ -7,7 +7,7 @@ public class BernoulliNumbers
 {
     public static BigFraction[] calculateBernoulliNumbers(int n)
     {
-        if (n <= 2)
+        if (n < 1)
             throw new IllegalArgumentException();
         BigFraction[] B = new BigFraction[n+1];
         B[0] = new BigFraction(1, 1);

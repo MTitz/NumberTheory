@@ -32,7 +32,7 @@ public class BernoulliNumbers
             return;
         for (int i = 0; i < B.length; ++i) {
             if (B[i].compareTo(BigFraction.ZERO) != 0)
-                System.out.printf("B[%2s] = %s%n", i, B[i]);
+                System.out.printf("B[%2d] = %s%n", i, B[i]);
         }
     }
 

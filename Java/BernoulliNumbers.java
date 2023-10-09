@@ -12,7 +12,10 @@ public class BernoulliNumbers
         BigFraction[] B = new BigFraction[n+1];
         B[0] = BigFraction.ONE;
         B[1] = new BigFraction(-1, 2);
-        for (int m = 2; m <= n; ++m) {
+        for (int m = 3; m <= n; m += 2) {
+            B[m] = BigFraction.ZERO;
+        }
+        for (int m = 2; m <= n; m += 2) {
             BigFraction sum = B[0].multiply(new BigFraction(1, m+1)).add(B[1]).negate();
             for (int k = 2; k < m; ++k) {
                 BigFraction r = BigFraction.ONE;
@@ -32,7 +35,7 @@ public class BernoulliNumbers
             return;
         for (int i = 0; i < B.length; ++i) {
             if (B[i].compareTo(BigFraction.ZERO) != 0)
-                System.out.printf("B[%2d] = %s%n", i, B[i]);
+                System.out.printf("B[%3d] = %s%n", i, B[i]);
         }
     }
 

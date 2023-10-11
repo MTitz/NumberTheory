@@ -15,15 +15,21 @@ CLASSFILES = AllDigits.class BernoulliNumbers.class BigFraction.class BigFractio
 LISTINGS = Complex.pdf NumberTheory.pdf Pair.pdf Permutation.pdf PrimeFactors.pdf
 DOCU = JavaNumberTheory_A4.pdf JavaNumberTheory_US.pdf puzzle_notes.pdf
 
-all:	$(CLASSFILES) NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+all:	$(CLASSFILES) bern60.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
 
 docu:	$(DOCU)
 
 clean:
-	rm -f *.class NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+	rm -f *.class bern60.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
 
 Micropuzzle01.txt: Micropuzzle01.class NumberTheory.class
 	java Micropuzzle01 1000000000 > Micropuzzle01.txt
+
+bern60.txt: BernoulliNumbers.class BigFraction.class
+	java BernoulliNumbers 60 > bern60.txt
+
+bern1000.txt: BernoulliNumbers.class BigFraction.class
+	java BernoulliNumbers 1000 > bern1000.txt
 
 NTTest.txt: NTTest.class NumberTheory.class Pair.class
 	java -Xmx1024m NTTest > NTTest.txt

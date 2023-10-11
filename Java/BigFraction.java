@@ -8,6 +8,8 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
     public static final BigFraction ZERO = new BigFraction();
     /** The BigFraction constant one. */
     public static final BigFraction ONE  = new BigFraction(BigInteger.ONE, BigInteger.ONE);
+    /** The default rounding mode for the BigFraction class. */
+    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_EVEN;
 
     public BigFraction()
     {
@@ -67,27 +69,32 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return new BigDecimal(numerator).divide(new BigDecimal(denominator), scale, roundingMode);
     }
 
+    public BigDecimal bigDecimalValue(int scale)
+    {
+        return bigDecimalValue(scale, DEFAULT_ROUNDING_MODE);
+    }
+
 
     // Implementation of the interface Number
 
     @Override public double doubleValue()
     {
-        return bigDecimalValue(20, RoundingMode.HALF_EVEN).doubleValue();
+        return bigDecimalValue(20).doubleValue();
     }
 
     @Override public float floatValue()
     {
-        return bigDecimalValue(12, RoundingMode.HALF_EVEN).floatValue();
+        return bigDecimalValue(12).floatValue();
     }
 
     @Override public int intValue()
     {
-        return bigDecimalValue(12, RoundingMode.HALF_EVEN).intValue();
+        return bigDecimalValue(12).intValue();
     }
 
     @Override public long longValue()
     {
-        return bigDecimalValue(20, RoundingMode.HALF_EVEN).longValue();
+        return bigDecimalValue(20).longValue();
     }
 
 

@@ -3,6 +3,8 @@
    formulas (1.1.4) and (1.1.5) and FORTRAN-77 subroutine BERNOA.
 */
 
+import java.text.DecimalFormat;
+
 public class BernoulliNumbers
 {
     public static BigFraction[] calculateBernoulliNumbers(int n)
@@ -36,6 +38,17 @@ public class BernoulliNumbers
         for (int i = 0; i < B.length; ++i) {
             if (B[i].compareTo(BigFraction.ZERO) != 0)
                 System.out.printf("B[%3d] = %s%n", i, B[i]);
+        }
+        System.out.println();
+        DecimalFormat df1 = new DecimalFormat("###,###,###,###,###,##0.0000000000000000000000000000000000000000");
+        DecimalFormat df2 = new DecimalFormat("0.000000000000000000000000000000000000000000000000000000000000000E000");
+        DecimalFormat df3 = new DecimalFormat("0.00000000000000000000000000000000000000000000000000000000000000E0000");
+        DecimalFormat df = df1;
+        for (int i = 0; i < B.length; ++i) {
+            if (i == 48)
+                df = B.length <= 636 ? df2 : df3;
+            if (B[i].compareTo(BigFraction.ZERO) != 0)
+                System.out.printf("B[%3d] = %70s%n", i, df.format(B[i].bigDecimalValue(40)));
         }
     }
 

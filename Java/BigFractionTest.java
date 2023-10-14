@@ -34,6 +34,7 @@ public class BigFractionTest
         System.out.println("Power      f2^2    = " + f2.pow(2));
         System.out.println("Power      f2^-2   = " + f2.pow(-2));
         System.out.println("Power      f1^128  = " + f1.pow(128));
+        System.out.println("cancel(f5)         = " + f5.cancel());
         System.out.println("2 * f1 == 1          " + (BigFraction.ONE == f1.multiply(BigInteger.TWO)));
         System.out.println("equals(2 * f1, 1)    " + BigFraction.ONE.equals(f1.multiply(BigInteger.TWO)));
         System.out.println("equals(2 * f1, 1)    " + f1.multiply(BigInteger.TWO).equals(BigInteger.ONE) + "  (comparison with BigInteger)");

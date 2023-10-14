@@ -75,7 +75,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
     }
 
 
-    // Implementation of the interface Number
+    // Implementation of the methods from the abstract base class Number
 
     @Override public double doubleValue()
     {
@@ -194,6 +194,12 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return denominator.equals(BigInteger.ONE)
                 ? numerator.toString()
                 : numerator.toString() + " / " + denominator.toString();
+    }
+
+    /** Returns a BigFraction number that has been canceled. */
+    public BigFraction cancel()
+    {
+        return cancel(numerator, denominator);
     }
 
     private static BigFraction cancel(BigInteger numerator, BigInteger denominator)

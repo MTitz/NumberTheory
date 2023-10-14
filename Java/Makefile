@@ -15,30 +15,33 @@ CLASSFILES = AllDigits.class BernoulliNumbers.class BigFraction.class BigFractio
 LISTINGS = Complex.pdf NumberTheory.pdf Pair.pdf Permutation.pdf PrimeFactors.pdf
 DOCU = JavaNumberTheory_A4.pdf JavaNumberTheory_US.pdf puzzle_notes.pdf
 
-all:	$(CLASSFILES) bern60.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+all:	$(CLASSFILES) bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
 
 docu:	$(DOCU)
 
 clean:
-	rm -f *.class bern60.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+	rm -f *.class bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
 
 Micropuzzle01.txt: Micropuzzle01.class NumberTheory.class
-	java Micropuzzle01 1000000000 > Micropuzzle01.txt
+	java Micropuzzle01 1000000000 > $@
 
 bern60.txt: BernoulliNumbers.class BigFraction.class
-	java BernoulliNumbers 60 > bern60.txt
+	java BernoulliNumbers 60 > $@
 
 bern1000.txt: BernoulliNumbers.class BigFraction.class
-	java BernoulliNumbers 1000 > bern1000.txt
+	java BernoulliNumbers 1000 > $@
+
+BigFractionTest.txt: BigFraction.class BigFractionTest.class
+	java BigFractionTest > $@
 
 NTTest.txt: NTTest.class NumberTheory.class Pair.class
-	java -Xmx1024m NTTest > NTTest.txt
+	java -Xmx1024m NTTest > $@
 
 PermutationTest.txt: Permutation.class PermutationTest.class
-	java PermutationTest > PermutationTest.txt
+	java PermutationTest > $@
 
 PythagoreanTriples.txt: PythagoreanTriples.class
-	java -Xmx2048m PythagoreanTriples 200000000 > PythagoreanTriples.txt
+	java -Xmx2048m PythagoreanTriples 200000000 > $@
 
 JavaNumberTheory_A4.pdf: $(CLASSFILES)
 	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" *.java|ps2pdf -> $@)

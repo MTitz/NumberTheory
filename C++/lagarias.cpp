@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#ifdef DEBUG_PARTITON
+#ifdef DEBUG_PARTITION
 static void print_partition(const int *a, int m)
 {
     for (int i = 0; i < m; ++i)
@@ -66,7 +66,7 @@ static double *log_primes;
 
 static void testfct(const int *a, int m)
 {
-#ifdef DEBUG_PARTITON
+#ifdef DEBUG_PARTITION
     print_partition(a, m);
 #endif
     unsigned long long number = 1ULL;

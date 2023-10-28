@@ -470,7 +470,7 @@ const SimpleLinearCongruence<long long int> exercise11[] =
      SimpleLinearCongruence<long long int>(0, 30),
      SimpleLinearCongruence<long long int>(1, 31)};
 
-// [Clessa], Mioropuzzle 39
+// [Clessa], Micropuzzle 39
 const SimpleLinearCongruence<long> micropuzzle39[] =
    { SimpleLinearCongruence<long>( 3,  4),
      SimpleLinearCongruence<long>( 1,  5),

@@ -479,7 +479,7 @@ public class NTTest
          new NumberTheory.SimpleLinearCongruence(0, 30),
          new NumberTheory.SimpleLinearCongruence(1, 31)};
 
-    // [Clessa], Mioropuzzle 39
+    // [Clessa], Micropuzzle 39
     static NumberTheory.SimpleLinearCongruence[] micropuzzle39 =
        { new NumberTheory.SimpleLinearCongruence( 3,  4),
          new NumberTheory.SimpleLinearCongruence( 1,  5),

@@ -139,14 +139,13 @@ public class Micropuzzle60
 
     public static void main(String[] args)
     {
-       if (args.length == 0) {
+        if (args.length == 0) {
             System.out.println("Searching prime sum for " + PUZZLE_NUMBER +
                                " (for other numbers use command line parameters):");
             searchPrimeSum(PUZZLE_NUMBER);
             return;
         }
-        for (int i = 0; i < args.length; ++i)
-        {
+        for (int i = 0; i < args.length; ++i) {
             int n = Integer.parseInt(args[i]);
             if (n >= 1) {
                 searchPrimeSum(n);

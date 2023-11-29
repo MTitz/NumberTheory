@@ -305,8 +305,8 @@ public class NumberTheory
             return this.m;
         }
 
-        private long b;
-        private long m;
+        private final long b;
+        private final long m;
     }
 
     public static class LinearCongruence
@@ -340,9 +340,9 @@ public class NumberTheory
             return this.m;
         }
 
-        private long a;
-        private long b;
-        private long m;
+        private final long a;
+        private final long b;
+        private final long m;
     }
 
     public static final SimpleLinearCongruence solve(LinearCongruence congruence)

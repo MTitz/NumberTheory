@@ -12,18 +12,22 @@ JFLAGS	= -O
 
 RIDDLE	= Micropuzzle01.class Micropuzzle03.class Micropuzzle04.class Micropuzzle05.class Micropuzzle06.class Micropuzzle07.class Micropuzzle10.class Micropuzzle11.class Micropuzzle12.class Micropuzzle13.class Micropuzzle14.class Micropuzzle17.class Micropuzzle18.class Micropuzzle19.class Micropuzzle21.class Micropuzzle22.class Micropuzzle30.class Micropuzzle31.class Micropuzzle32.class Micropuzzle33.class Micropuzzle34.class Micropuzzle35.class Micropuzzle36.class Micropuzzle37.class Micropuzzle41.class Micropuzzle42.class Micropuzzle43.class Micropuzzle45.class Micropuzzle49.class Micropuzzle50.class Micropuzzle51.class Micropuzzle54.class Micropuzzle57.class Micropuzzle60.class Micropuzzle61.class Micropuzzle62.class Micropuzzle63.class Micropuzzle64.class
 CLASSFILES = AllDigits.class BernoulliNumbers.class BigFraction.class BigFractionTest.class Complex.class DigitsSum.class DivRules.class Fibonacci.class GenPartitions.class HarmonicSum.class NumberTheory.class Pair.class Permutation.class PermutationTest.class PrimeFactors.class PythagoreanTriples.class NTTest.class SquareTest.class $(RIDDLE)
+RESULTS = bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt Micropuzzle07.txt
 LISTINGS = BigFraction.pdf Complex.pdf NumberTheory.pdf Pair.pdf Permutation.pdf PrimeFactors.pdf
 DOCU = JavaNumberTheory_A4.pdf JavaNumberTheory_US.pdf puzzle_notes.pdf
 
-all:	$(CLASSFILES) bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+all:	$(CLASSFILES) $(RESULTS) $(LISTINGS) $(DOCU)
 
 docu:	$(DOCU)
 
 clean:
-	rm -f *.class bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt $(LISTINGS) $(DOCU)
+	rm -f *.class $(RESULTS) $(LISTINGS) $(DOCU)
 
 Micropuzzle01.txt: Micropuzzle01.class NumberTheory.class
 	java Micropuzzle01 1000000000 > $@
+
+Micropuzzle07.txt: Micropuzzle07.class
+	java Micropuzzle07 7200 > $@
 
 bern60.txt: BernoulliNumbers.class BigFraction.class
 	java BernoulliNumbers 60 > $@

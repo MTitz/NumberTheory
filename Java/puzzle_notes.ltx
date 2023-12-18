@@ -57,7 +57,7 @@ In many cases the Java program solves a slightly more general problem, either by
  4 & A palindromic puzzle & Java & \\
  5 & Digital dexterity & Java & BigInteger \\
  6 & A palindromic square & Java &\\
- 7 & More perfect squares & Java & NumberTheory.java\\
+ 7 & More perfect squares & Java & (also older version)\\
  8 & A question of logic & (list cases) &\\
  9 & The whole truth and nothing but the truth & (list cases) &\\
 10 & Talking turkey & Java &\\
@@ -146,8 +146,15 @@ See also \cite{BookOfNumbers}, pages 83-84 for a more general treatment. There t
 \end {eqnarray*}
 It is derived in \cite{BookOfNumbers} from a difference pattern, but not proofed for general $n$.
 
+
+
+%\subsection{Micropuzzle 1 -- Pythagoras for beginners}
+% \cite{HardyWright} \cite{CRCTablesFormulae}
+
+
+
 \subsection{Micropuzzle 5 -- Digital dexterity}
-From the book \cite{Clessa}: A certain number ends in the digit 'a'. When the 'a' is taken from the end of the number and placed at the beginning, a new number is formed which is 'a' times the original number.
+From the book \cite{Clessa}: ``A certain number ends in the digit 'a'. When the 'a' is taken from the end of the number and placed at the beginning, a new number is formed which is 'a' times the original number.''
 
 The problem can be solved more general for an arbitrary base $B$ for the number system instead of only base 10.
 
@@ -215,6 +222,114 @@ For verification it is
 \end{eqnarray*}
 
 
+
+\pagebreak
+\subsection{Micropuzzle 7 -- More perfect squares}
+From the book \cite{Clessa}:
+``Find the smallest perfect square that is also the average of two other perfect squares. In other words, find three perfect squares $A$, $B$, and $C$ such that
+\begin{equation} \label{m7_mean}
+B = (A+C) / 2.
+\end{equation}
+$A$, $B$, and $C$ may not be equal.''
+
+Without loss of generality it can be assumed $A < B < C$.
+
+As the numbers are perfect squares there exist nonnegative integers $a$, $b$ and $c$ so that $A = a^2$, $B = b^2$, $C = c^2$, and $0 \le a < b < c$.
+
+Inserting this into (\ref{m7_mean}) and multiplying both sides with 2 gives the condition
+\begin{equation} \label{m7_condition}
+2b^2 = a^2 + c^2
+\end{equation}
+
+A primitive solution is one where the numbers $a$, $b$ and $c$ do not have a common divisor. The general solutions can be obtained by multiplying all three numbers of a primitive solution by the same positive integer $d$.
+
+From now on it is looked only for primitive solutions, therefore $a$, $b$ and $c$ have to be numbers without a common prime factor.
+
+If $a$ and $c$ are both even, $a^2$ and $c^2$ are multiples of 4, therefore also their sum and by (\ref{m7_condition}) also $2b^2$ is a multiple of 4, hence $b^2$ is a multiple of 2 and therefore it is an even number. This is only possible with $b$ itself an even number, thus having a factor of 2. As all three numbers then would have a common factor of 2, this cannot be for a primitive solution.
+
+If one of $a$ and $c$ is even and one odd, it is also one of $a^2$ and $c^2$ odd and one even, thus $a^2+c^2$ is an odd number, which is not possible as the left side of (\ref{m7_condition}) is an even number. Therefore this case cannot happen.
+
+Therefore both $a$ and $c$ must be odd numbers for any primitive solution. As sum and difference of two odd numbers are even numbers, both $a+c$ and $c-a$ are even numbers.
+Hence the numbers
+\begin{equation} \label{n_and_m}
+n = \frac{c+a}{2},\qquad m = \frac{c-a}{2}
+\end{equation}
+are both positive integers. It is
+\begin{eqnarray*}
+n^2 + m^2 &=& \left(\frac{c+a}{2}\right)^2 + \left(\frac{c-a}{2}\right)^2 \\
+          &=& \frac{1}{4}\left( (c+a)^2 + (c-a)^2 \right) \\
+          &=& \frac{1}{4}\left( c^2+2ac+a^2 + c^2-2ac+a^2 \right) \\
+          &=& \frac{1}{4}\left( 2a^2 + 2c^2 \right) \\
+          &=& \frac{1}{2}\left(a^2 + c^2\right) \\
+          &=& b^2
+\end{eqnarray*}
+and so the triple $(n,m,b)$ must be a triple of Pythagorean numbers.
+
+Multiplying both sides of the equations in (\ref{n_and_m}) by 2 gives
+\[ 2n = c+a,\qquad 2m = c-a \]
+and
+\begin{equation} \label{a_and_b}
+a = n-m,\qquad c = n+m
+\end{equation}
+
+This way you can take any primitive Pythagorean triple $(m,n,b)$ with $m<n<b$ and generate from it using (\ref{a_and_b}) a solution triple $(a,b,c)$ for (\ref{m7_condition}).
+
+%If $n \equiv 0 \pmod{2}$ then $n^2 \equiv 0 \pmod{4}$ for any integer $n$.
+
+\underline{Example:} A well-known Pythagorean triple is $(3,4,5)$ because $3^2 + 4^2 = 5^2$.
+Here it is $m=3$, $n=4$ and $b=5$ and by (\ref{a_and_b}) it follows $a=4-3=1$ and $c=4+3=7$.
+Therefore it is $A=1^2=1$, $B=5^2=25$, $C=7^2=49$ a solution of the equation (\ref{m7_mean}).
+
+A table with the first primitive solutions ordered by increasing $B$:
+\begin{table}[htbp]
+\begin{tabular}{|c|c|c|} \hline
+$A=a^2$ & $B=b^2$ & $C=c^2$ \\
+\hline
+$    1 =    1^2 $ & $   25 =    5^2 $ & $    49 =    7^2 $ \\
+$   49 =    7^2 $ & $  169 =   13^2 $ & $   289 =   17^2 $ \\
+$   49 =    7^2 $ & $  289 =   17^2 $ & $   529 =   23^2 $ \\
+$  289 =   17^2 $ & $  625 =   25^2 $ & $   961 =   31^2 $ \\
+$    1 =    1^2 $ & $  841 =   29^2 $ & $  1681 =   41^2 $ \\
+$  529 =   23^2 $ & $ 1369 =   37^2 $ & $  2209 =   47^2 $ \\
+$  961 =   31^2 $ & $ 1681 =   41^2 $ & $  2401 =   49^2 $ \\
+$  289 =   17^2 $ & $ 2809 =   53^2 $ & $  5329 =   73^2 $ \\
+$ 2401 =   49^2 $ & $ 3721 =   61^2 $ & $  5041 =   71^2 $ \\
+$ 2209 =   47^2 $ & $ 4225 =   65^2 $ & $  6241 =   79^2 $ \\
+$  529 =   23^2 $ & $ 4225 =   65^2 $ & $  7921 =   89^2 $ \\
+$   49 =    7^2 $ & $ 5329 =   73^2 $ & $ 10609 =  103^2 $ \\
+$ 5041 =   71^2 $ & $ 7225 =   85^2 $ & $  9409 =   97^2 $ \\
+$ 1681 =   41^2 $ & $ 7225 =   85^2 $ & $ 12769 =  113^2 $ \\
+$ 1681 =   41^2 $ & $ 7921 =   89^2 $ & $ 14161 =  119^2 $ \\
+$   49 =    7^2 $ & $ 9409 =   97^2 $ & $ 18769 =  137^2 $ \\
+%$ 6241 =   79^2 $ & $10201 =  101^2 $ & $ 14161 =  119^2 $ \\
+%$  961 =   31^2 $ & $11881 =  109^2 $ & $ 22801 =  151^2 $ \\
+%$ 9409 =   97^2 $ & $12769 =  113^2 $ & $ 16129 =  127^2 $ \\
+%$ 5329 =   73^2 $ & $15625 =  125^2 $ & $ 25921 =  161^2 $ \\
+%$  289 =   17^2 $ & $18769 =  137^2 $ & $ 37249 =  193^2 $ \\
+\hline \end{tabular}
+\end{table}
+
+\subsection{Micropuzzle 11 -- The not-so-perfect square}
+From the book \cite{Clessa}: ``A certain perfect square has the property that, if 5 is added to it, a second perfect square is obtained, and if 5 is subtracted from it, a third perfect square is obtained.
+
+What is the original perfect square?''
+
+
+It is $3^2-2^2=9-4=5$, but there are no other perfect squares within the integers that have the same difference, therefore there does not exist any solution within the integers.
+
+Let $\left(\frac{a}{d}\right)^2$ be this certain perfect square as a fraction, then we need to find a sequence of three fractions with
+\[ \left(\frac{a}{d}\right)^2-5,\quad \left(\frac{a}{d}\right)^2,\quad \left(\frac{a}{d}\right)^2+5 \]
+where also the first and the third number are perfect squares.
+
+Multiplying all numbers by $d^2$ we get
+\[ a^2-5d^2,\quad a^2,\quad a^2+5d^2 \]
+where $a^2-5d^2$ and $a^2+5d^2$ must be perfect squares within the integers.
+
+
+
+
+\pagebreak
+
 \subsection{Micropuzzle 13 -- A natural mistake}
 The woman is buying 4 items with prices $p_1, p_2, p_3, p_4$ that must fulfill the two conditions
 \begin{eqnarray*}
@@ -264,17 +379,17 @@ and so the possible prices are in pounds
 The last solution is the only one that does not require usage of halfpenny coinage.
 
 
+
 \subsection{Micropuzzle 14 -- Ten-digit perfect squares}
 The program Micropuzzle14.java is more general than the exercise, allowing to give the number of digits as command line parameter. As the Java type long is used for the calculation, a maximum of 18 digits is possible.
 
-Nice individual results:
-
+Nice individual results for square numbers with the most fours within 5 to 8 digits:
 \begin{eqnarray*}
  212^2 &=&    44944 \\
+ 738^2 &=&   544644 \\
 2538^2 &=&  6441444 \\
 6888^2 &=& 47444544
 \end{eqnarray*}
-
 In the first result both numbers are additionally palindromic numbers.
 
 The result of my program for the puzzle with 10 digits is
@@ -294,6 +409,7 @@ Record table for 10 digits, range from 1000000000 to 9999999999
 \end{verbatim}
 
 The first column gives the digit that is looked for, the second column how often it occurs in the number, the third the number to be squared to get the number in the fourth column.
+
 
 
 \subsection{Micropuzzle 25 -- Fieldcraft}
@@ -580,9 +696,9 @@ Cambridge University Press, 1993.
 %Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd Edition.
 %Addison-Wesley, 1994.
 
-%\bibitem{HardyWright}
-%G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th Edition.
-%Oxford University Press, 1979.
+\bibitem{HardyWright}
+G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th Edition.
+Oxford University Press, 1979.
 
 %\bibitem{Nathanson}
 %Melvyn B.~Nathanson, {\it Elementary Methods in Number Theory}.

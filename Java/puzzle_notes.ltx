@@ -194,7 +194,7 @@ To find the smallest $n$ that condition (\ref{divCond}) is fulfilled you can che
 \begin{equation} \label{modCond}
 B^n \equiv 1 \pmod{B d_0 -1}
 \end{equation}
-as this can be effectively calculated, see for example \cite{Giblin}, section 4.2.
+as this can be efficiently calculated, see for example \cite{Giblin}, section 4.2.
 
 With this, the solution of the puzzle can be done in the following two steps:
 
@@ -230,6 +230,7 @@ From the book \cite{Clessa}:
 \begin{equation} \label{m7_mean}
 B = (A+C) / 2.
 \end{equation}
+Oh yes, one other stipulation to curtail all the smart-alecs:
 $A$, $B$, and $C$ may not be equal.''
 
 Without loss of generality it can be assumed $A < B < C$.
@@ -317,13 +318,15 @@ What is the original perfect square?''
 
 It is $3^2-2^2=9-4=5$, but there are no other perfect squares within the integers that have the same difference, therefore there does not exist any solution within the integers.
 
-Let $\left(\frac{a}{d}\right)^2$ be this certain perfect square as a fraction, then we need to find a sequence of three fractions with
+Let $\left(\frac{a}{d}\right)^2$ be this certain perfect square as a fraction, then we need to find a sequence of three fractions
 \[ \left(\frac{a}{d}\right)^2-5,\quad \left(\frac{a}{d}\right)^2,\quad \left(\frac{a}{d}\right)^2+5 \]
 where also the first and the third number are perfect squares.
 
 Multiplying all numbers by $d^2$ we get
 \[ a^2-5d^2,\quad a^2,\quad a^2+5d^2 \]
 where $a^2-5d^2$ and $a^2+5d^2$ must be perfect squares within the integers.
+
+As it has to be $a^2-5d^2 > 0$ it must be $d < a / \sqrt{5}$.
 
 
 
@@ -383,7 +386,7 @@ The last solution is the only one that does not require usage of halfpenny coina
 \subsection{Micropuzzle 14 -- Ten-digit perfect squares}
 The program Micropuzzle14.java is more general than the exercise, allowing to give the number of digits as command line parameter. As the Java type long is used for the calculation, a maximum of 18 digits is possible.
 
-Nice individual results for square numbers with the most fours within 5 to 8 digits:
+Nice individual results for square numbers with the most fours within 5 to 8 decimal digits:
 \begin{eqnarray*}
  212^2 &=&    44944 \\
  738^2 &=&   544644 \\

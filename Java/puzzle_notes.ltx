@@ -159,7 +159,6 @@ From the book \cite{Clessa}: ``A certain number ends in the digit 'a'. When the 
 The problem can be solved more general for an arbitrary base $B$ for the number system instead of only base 10.
 
 A positive integer $N$ can be represented in a number system with base $B \ge 2$ with $n$ digits $ 0 \le d_i \le B-1 $ for $i=0,\ldots,n-1$
-
 \begin{equation}
 N = \sum_{i=0}^{n-1}d_i B^i
 \end{equation}
@@ -167,7 +166,6 @@ N = \sum_{i=0}^{n-1}d_i B^i
 Let $d_0 \in \left\{2, 3, \cdots, B-1\right\}$. The case of $d_0 = 1$ is trivial, already $N=1$ would be a solution.
 
 Taking away the last digit $d_0$ of the number $N$ can be expressed as first subtracting $d_0$ from $N$ and as then the number ends with a $0$ in base $B$, dividing by the base. Adding the digit $d_0$ then in front is just adding $d_0 B^{n-1}$ to the remaining number. As by condition of the puzzle this has to be equal $d_0$ times the original number $N$, the following equations results
-
 \begin{equation}
 d_0 \cdot N = d_0 B^{n-1} + \frac{N-d_0}{B}
 \end{equation}
@@ -421,14 +419,13 @@ The fastest time is achieved when walking in straight lines across the different
 Let $x_1$ the horizontal distance to the point where the farmer leaves from bog to ploughed soil and $x_2$ the horizontal distance to the point where the farmer passes over from ploughed soil to turf.
 
 Then by theorem of Pythagoras
-
 \begin{eqnarray*}
 s_1 &=& \sqrt{x_1^2+100^2}\\
 s_2 &=& \sqrt{(x_2-x_1)^2+200^2}\\
 s_3 &=& \sqrt{(600-x_2)^2+300^2}
 \end{eqnarray*}
 
-Using $v = s/t$ in the form $t = s/v$ the total walking time becomes with $v_1=5/2$, $v_2=5$ and $v_3=10$
+Using $v = s/t$ in the form $t = s/v$ the total walking time in seconds becomes with $v_1=5/2$, $v_2=5$ and $v_3=10$
 \begin{equation}
 t\left(x_1,x_2\right) = \sum_{k=1}^3\frac{s_k\left(x_1,x_2\right)}{v_k}
 \end{equation}
@@ -601,7 +598,6 @@ The distance between top of the wall and top of the ladder then becomes $15-x_{1
 Let $a$ be the height at which the longer ladder of 30m rests against the right wall and $b$ the height where the 25m ladder leans at the other wall, $d$ the distance between the two walls we look for and for convenience let $h=\frac{504}{100}$ the height of the meeting point of the two ladders over the ground.
 
 By the theorem of Pythagoras we have
-
 \begin{eqnarray}
 a^2 + d^2 &=& 30^2 \label{ladderpyth1}\\
 b^2 + d^2 &=& 25^2 \label{ladderpyth2}

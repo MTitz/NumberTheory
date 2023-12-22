@@ -1,5 +1,6 @@
 /* Program Micropuzzle05.java to solve micropuzzle 5 from
    J. J. Clessa "Math and Logic Puzzles for PC Enthusiasts"
+   Digital dexterity
 */
 
 import java.math.BigInteger;
@@ -8,17 +9,17 @@ import java.util.Locale;
 
 public class Micropuzzle05
 {
-    public static final int powerMod(int a, int n, int m)
+    // multiplicative order of a modulo m
+    // a and m must have no common divisor
+    public static int ord(int a, int m)
     {
-        if (n == 0) {
-            return 1;
-        } else if (n % 2 == 0) {
-            long t = powerMod(a, n/2, m);
-            return (int)((t * t) % m);
-        } else {
-            long t = powerMod(a, n-1, m);
-            return (int)((a * t) % m);
+        int r = 1;
+        int power = a % m;
+        while (power != 1) {
+            ++r;
+            power = (power * a) % m;
         }
+        return r;
     }
 
     public static BigInteger leastSolution(int base, int d0)
@@ -28,10 +29,7 @@ public class Micropuzzle05
             return BigInteger.ZERO;
         }
         int m = base * d0 - 1;
-        int n = 1;
-        while (powerMod(base, n, m) != 1) {
-            ++n;
-        }
+        int n = ord(base, m);
         BigInteger bigFactor = BigInteger.valueOf(base).pow(n).subtract(BigInteger.ONE);
         return bigFactor.divide(BigInteger.valueOf(m)).multiply(BigInteger.valueOf(d0));
     }

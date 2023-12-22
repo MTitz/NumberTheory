@@ -1,5 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{longtable}
 %\pagestyle{empty}
@@ -12,6 +13,8 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 2pt minus 1pt}
+
+\DeclareMathOperator*{\ord}{ord}
 
 \hyphenation{theory}
 
@@ -188,16 +191,15 @@ and if this condition is fulfilled for a given $n$ then the original number $N$ 
 N = \frac{d_0\cdot\left(B^n-1\right)}{B d_0-1}
 \end{equation}
 
-To find the smallest $n$ that condition (\ref{divCond}) is fulfilled you can check
+To find the smallest $n$ which fulfills condition (\ref{divCond}) you need to find the smallest positive integer $n$ that
 \begin{equation} \label{modCond}
 B^n \equiv 1 \pmod{B d_0 -1}
 \end{equation}
-as this can be efficiently calculated, see for example \cite{Giblin}, section 4.2.
+This is just to the order $\ord_m(a)$ with in our case $a = B$ and $m = B d_0 -1$, see for example \cite{HardyWright}, section 6.8 or \cite{Giblin}, section 6.2.
 
 With this, the solution of the puzzle can be done in the following two steps:
-
 \begin{enumerate}
-\item Find the smallest $n$ that fulfills (\ref{modCond}) using a powerMod algorithm.
+\item Calculate $n = \ord_{Bd_0-1}(B)$. A naive implementation is sufficient, as $B$ is small.
 \item Calculate $N$ by the division (\ref{Ndivision}), using high precision integer arithmetic as the powers $B^n$ will soon become huge numbers well out of the range of normal integer arithmetic with int or long data types.
 \end{enumerate}
 

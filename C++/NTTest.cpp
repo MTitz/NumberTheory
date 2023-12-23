@@ -4,6 +4,7 @@
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Rosen] Kenneth H. Rosen (editor-in-chief), "Handbook of discrete and combinatorial mathematics", CRC Press, 2000
 //  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
 
@@ -983,6 +984,25 @@ static void findAmicableNumbers(std::size_t max)
     }
 }
 
+static void nSquaresSumTestcases()
+{
+    for (int n = -2; n <= 32; ++n) {
+        int nSquares = nSquaresSum(n);
+        if (nSquares == -1)
+            continue;
+        cout << n << " is sum of " << nSquares << (nSquares == 1 ? " square." : " squares.") << endl;
+    }
+
+    // Compare [Rosen] Section 4.8.5 Fact 5
+    const int nMax = 100;
+    cout << endl << "Positive integers less than " << nMax << " that are not the sum of three squares are" << endl;
+    for (int n = 1; n <= nMax; ++n) {
+        if (nSquaresSum(n) == 4)
+            cout << " " << n;
+    }
+    cout << endl;
+}
+
 int main(void)
 {
     bitlengthTestcases();
@@ -1123,12 +1143,7 @@ int main(void)
     }
 
     cout << endl;
-    for (int n = -2; n <= 32; ++n) {
-        int nSquares = nSquaresSum(n);
-        if (nSquares == -1)
-            continue;
-        cout << n << " is sum of " << nSquares << (nSquares == 1 ? " square." : " squares.") << endl;
-    }
+    nSquaresSumTestcases();
 
     return 0;
 }

@@ -15,6 +15,6 @@ public class Micropuzzle54
         double x2 = 3.0 / 2.0 * (R + sqrt(D));
         System.out.printf("x1 = %16.12f%n", x1);
         System.out.printf("x2 = %16.12f%n", x2);
-        System.out.printf("%nDistance from top of the wall is %9.6f feet or %9.6f feet%n", 15.0-x1, 15.0-x2);
+        System.out.printf("%nDistance from top of the wall is %.6f feet or %.6f feet.%n", 15.0-x1, 15.0-x2);
     }
 }

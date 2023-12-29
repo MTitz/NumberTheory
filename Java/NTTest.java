@@ -259,6 +259,28 @@ public class NTTest
         }
     }
 
+    private static void gcdTest(long a, long b)
+    {
+        System.out.println("gcd(" + a + ", " + b + ") = " + NumberTheory.gcd(a, b));
+    }
+
+    private static void gcdTest(long a, long b, long c)
+    {
+        System.out.println("gcd(" + a + ", " + b + ", " + c + ") = " + NumberTheory.gcd(new long[]{a, b, c}));
+    }
+
+    private static void gcdTestcases()
+    {
+        gcdTest(0, 0);
+        gcdTest(12, 0);
+        gcdTest(0, 20);
+        gcdTest(12, 20);
+        gcdTest(24, 36);
+        gcdTest(25, 36);
+        gcdTest(2520, 18480);
+        gcdTest(10, 12, 16);
+    }
+
     private static void lcmTest(long a, long b)
     {
         System.out.println("lcm(" + a + ", " + b + ") = " + NumberTheory.lcm(a, b));
@@ -276,6 +298,8 @@ public class NTTest
         lcmTest(0, 20);
         lcmTest(12, 20);
         lcmTest(24, 36);
+        lcmTest(25, 36);
+        lcmTest(2520, 18480);
         lcmTest(10, 12, 16);
     }
 
@@ -748,6 +772,8 @@ public class NTTest
     {
         divisorTest(1);
         divisorTest(2);
+        divisorTest(3);
+        divisorTest(4);
         divisorTest(30);
         divisorTest(48);
         divisorTest(81);
@@ -990,6 +1016,9 @@ public class NTTest
 
         System.out.println();
         primeInFactorialTestcases();
+
+        System.out.println();
+        gcdTestcases();
 
         System.out.println();
         lcmTestcases();

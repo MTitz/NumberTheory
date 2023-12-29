@@ -248,6 +248,29 @@ static void primeInFactorialTestcases()
     }
 }
 
+template<typename T> void gcdTest(const T& a, const T& b)
+{
+    cout << "gcd(" << a << ", " << b << ") = " << gcd(a, b) << endl;
+}
+
+template<typename T> void gcdTest(const T& a, const T& b, const T& c)
+{
+    long param[] = {a, b, c};
+    cout << "gcd(" << a << ", " << b << ", " << c << ") = " << gcd(3, param) << endl;
+}
+
+static void gcdTestcases()
+{
+    gcdTest(0, 0);
+    gcdTest(12, 0);
+    gcdTest(0, 20);
+    gcdTest(12, 20);
+    gcdTest(24U, 36U);
+    gcdTest(25U, 36U);
+    gcdTest(2520, 18480);
+    gcdTest(10, 12, 16);
+}
+
 template<typename T> void lcmTest(const T& a, const T& b)
 {
     cout << "lcm(" << a << ", " << b << ") = " << lcm(a, b) << endl;
@@ -266,6 +289,8 @@ static void lcmTestcases()
     lcmTest(0, 20);
     lcmTest(12, 20);
     lcmTest(24U, 36U);
+    lcmTest(25U, 36U);
+    lcmTest(2520, 18480);
     lcmTest(10, 12, 16);
 }
 
@@ -746,6 +771,8 @@ static void divisorTestcases()
 {
     divisorTest(1);
     divisorTest(2);
+    divisorTest(3);
+    divisorTest(4);
     divisorTest(30);
     divisorTest(48U);
     divisorTest(81);
@@ -1033,6 +1060,9 @@ int main(void)
 
     cout << endl;
     primeInFactorialTestcases();
+
+    cout << endl;
+    gcdTestcases();
 
     cout << endl;
     lcmTestcases();

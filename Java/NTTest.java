@@ -275,10 +275,15 @@ public class NTTest
         gcdTest(12, 0);
         gcdTest(0, 20);
         gcdTest(12, 20);
+        gcdTest(12, 21);
+        gcdTest(24, 25);
         gcdTest(24, 36);
         gcdTest(25, 36);
         gcdTest(2520, 18480);
         gcdTest(10, 12, 16);
+        gcdTest(39, 102, 75);    // [Andrews], chapter 2-4, exercise 11 (page 29)
+        gcdTest(935, 1122);      // [Nathanson], chapter 1.2, exercise 1 (page 14)
+        gcdTest(168, 252, 294);  // [Nathanson], chapter 1.2, exercise 2 (page 14)
     }
 
     private static void lcmTest(long a, long b)
@@ -297,10 +302,13 @@ public class NTTest
         lcmTest(12, 0);
         lcmTest(0, 20);
         lcmTest(12, 20);
+        lcmTest(12, 21);
+        lcmTest(24, 25);
         lcmTest(24, 36);
         lcmTest(25, 36);
         lcmTest(2520, 18480);
         lcmTest(10, 12, 16);
+        lcmTest(39, 102, 75);    // [Andrews], chapter 2-4, exercise 11 (page 29)
     }
 
     private static void extendedEuclidTest(long a, long b)

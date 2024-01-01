@@ -3,6 +3,7 @@
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
+//  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
 //  [Rosen] Kenneth H. Rosen (editor-in-chief), "Handbook of discrete and combinatorial mathematics", CRC Press, 2000
 //  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
@@ -271,10 +272,13 @@ public class NTTest
 
     private static void gcdTestcases()
     {
-        gcdTest(0, 0);
-        gcdTest(12, 0);
+        gcdTest(0, 0);           // compare [Knuth_2], chapter 4.5.2 (1)
+        gcdTest(12, 0);          // compare [Knuth_2], chapter 4.5.2 (4)
+        gcdTest(-4, 0);          // compare [Knuth_2], chapter 4.5.2 (4)
         gcdTest(0, 20);
         gcdTest(12, 20);
+        gcdTest(20, 12);         // compare [Knuth_2], chapter 4.5.2 (2)
+        gcdTest(-12,20);         // compare [Knuth_2], chapter 4.5.2 (3)
         gcdTest(12, 21);
         gcdTest(24, 25);
         gcdTest(24, 36);
@@ -284,6 +288,7 @@ public class NTTest
         gcdTest(39, 102, 75);    // [Andrews], chapter 2-4, exercise 11 (page 29)
         gcdTest(935, 1122);      // [Nathanson], chapter 1.2, exercise 1 (page 14)
         gcdTest(168, 252, 294);  // [Nathanson], chapter 1.2, exercise 2 (page 14)
+        gcdTest(40902, 24140);   // [Knuth_2], chapter 4.5.2, example
     }
 
     private static void lcmTest(long a, long b)

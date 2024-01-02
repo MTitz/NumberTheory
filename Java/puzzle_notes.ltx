@@ -199,7 +199,7 @@ This is just the multiplicative order of an integer $a$ modulo $m$ with symbol $
 
 With this, the solution of the puzzle can be done in the following two steps:
 \begin{enumerate}
-\item Calculate $n = \ord_{Bd_0-1}(B)$. A naive implementation is sufficient, as $B$ is small.
+\item Calculate $n = \ord_{Bd_0-1}(B)$. A naive implementation is sufficient, as $B$ is small in this case. For a better algorithm see \cite{Cohen}, algorithm 1.4.3.
 \item Calculate $N$ by the division (\ref{Ndivision}), using high precision integer arithmetic as the powers $B^n$ will soon become huge numbers well out of the range of normal integer arithmetic with int or long data types.
 \end{enumerate}
 

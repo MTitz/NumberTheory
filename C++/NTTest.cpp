@@ -716,7 +716,7 @@ static void factorTestcases()
     factorTest(1);
     factorTest(2);
     factorTest(480);
-    factorTest(51948);  // [Natanson] Section 1.4, exercise 1
+    factorTest(51948);  // [Nathanson] Section 1.4, exercise 1
     factorTest(-126619L);
     factorTest<long>(991*997);
     factorTest<long>(999983);

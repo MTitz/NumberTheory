@@ -722,7 +722,7 @@ public class NTTest
         factorTest(1);
         factorTest(2);
         factorTest(480);
-        factorTest(51948);  // [Natanson] Section 1.4, exercise 1
+        factorTest(51948);  // [Nathanson] Section 1.4, exercise 1
         factorTest(-126619);
         factorTest(991*997);
         factorTest(999983);

@@ -952,10 +952,8 @@ public class NumberTheory
     }
 
     // multiplicative order of a modulo n
-    public static long ord(long a, long n)
+    private static long ord1(long a, long n)
     {
-        if (gcd(a, n) > 1)
-            throw new RuntimeException("multiplicative order not defined");
         // implementation directly to definition, but slow
         long r = 1;
         long power = a % n;
@@ -966,7 +964,7 @@ public class NumberTheory
         return r;
     }
 
-    public static long ord2(long a, long p, int e)
+    private static long ord2(long a, long p, int e)
     {
         long m = power(p, e);
         long t = m / p * (p - 1);
@@ -979,10 +977,8 @@ public class NumberTheory
     }
 
     // multiplicative order of a modulo n
-    public static long ord2(long a, long n)
+    private static long ord2(long a, long n)
     {
-        if (gcd(a, n) > 1)
-            throw new RuntimeException("multiplicative order not defined");
         PrimeFactors pf = new PrimeFactors(n);
         long res = 1;
         int nFactors = pf.nFactors();
@@ -990,6 +986,14 @@ public class NumberTheory
             res = lcm(res, ord2(a, pf.factors(i).base(), pf.factors(i).exponent()));
         }
         return res;
+    }
+
+    // multiplicative order of a modulo n
+    public static long ord(long a, long n)
+    {
+        if (gcd(a, n) > 1)
+            throw new RuntimeException("multiplicative order not defined");
+        return n < 120 ? ord1(a, n) : ord2(a, n);
     }
 
     // check if n is primitive root modulo p

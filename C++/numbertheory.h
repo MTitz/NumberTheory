@@ -1120,7 +1120,7 @@ bool isSquareFree(T n)
 
 // multiplicative order of a modulo n
 template<typename T>
-T ord(const T& a, const T& n)
+T ord1(const T& a, const T& n)
 {
     if (gcd(a, n) > 1)
         throw std::runtime_error("multiplicative order not defined");
@@ -1157,9 +1157,16 @@ T ord2(const T& a, const T& n)
     T res = 1;
     auto nFactors = pf.nFactors();
     for (auto i = decltype(nFactors){0}; i < nFactors; ++i) {
-        res = lcm(res, ord(a, pf.factors(i).base(), pf.factors(i).exponent()));
+        res = lcm(res, ord2(a, pf.factors(i).base(), pf.factors(i).exponent()));
     }
     return res;
+}
+
+// multiplicative order of a modulo n
+template<typename T>
+T ord(const T& a, const T& n)
+{
+    return n < 120 ? ord1(a, n) : ord2(a, n);
 }
 
 // check if n is primitive root modulo p

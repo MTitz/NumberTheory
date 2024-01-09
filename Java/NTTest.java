@@ -176,6 +176,10 @@ public class NTTest
         }
         ordTest(37,   1000);  // expect 100
         ordTest(54, 100001);  // expect 9090
+        ordTest(997, 10000);
+        ordTest(10000, 997);
+        ordTest(5040, 5041);
+        ordTest(5041, 5040);
         try {
             NumberTheory.ord(6, 12);
         }

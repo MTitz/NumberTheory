@@ -15,11 +15,13 @@ public class Micropuzzle11
             long dMax = round(floor(a / sqrt(5.0)));
             for (long d = 1; d <= dMax; ++d) {
                 long dSquare = d * d;
-                if (NumberTheory.isSquare(aSquare - 5 * dSquare) &&
-                    NumberTheory.isSquare(aSquare + 5 * dSquare) &&
-                    NumberTheory.gcd(a, d) == 1) {
-                    long b = NumberTheory.integerSqrt(aSquare - 5 * dSquare);
-                    long c = NumberTheory.integerSqrt(aSquare + 5 * dSquare);
+                long b = NumberTheory.squareTest(aSquare - 5 * dSquare);
+                if (b == -1)
+                    continue;
+                long c = NumberTheory.squareTest(aSquare + 5 * dSquare);
+                if (c == -1)
+                    continue;
+                if (NumberTheory.gcd(a, d) == 1) {
                     System.out.println("Solution: (" + b + "/" + d + ")^2" +
                                                ", (" + a + "/" + d + ")^2" +
                                                ", (" + c + "/" + d + ")^2");

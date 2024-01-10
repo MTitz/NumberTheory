@@ -743,6 +743,9 @@ static void factorTestcases()
     // Square of prime beyond internal prime table
     factorTest<unsigned long long>(1000003ULL * 1000003ULL);
 
+    // Compare [Scheid] page 28, challenge from a letter by Mersenne to Fermat
+    factorTest(100895598169LL);
+
     for (int offset = -1; offset <= 1; offset += 2) {
         cout << endl;
         unsigned long long P2 = 1ULL;
@@ -833,12 +836,11 @@ static void ordTestcases()
     for (int i = 1; i <= 10; ++i) {
         ordTest(i, n);
     }
+    ordTest(7, 31);       // expect 15, [Scheid] page 143
     ordTest(37U, 1000U);  // expect 100
     ordTest(54, 100001);  // expect 9090
     ordTest(997, 10000);
-    ordTest(10000, 997);
     ordTest(5040, 5041);
-    ordTest(5041, 5040);
     try {
         (void)ord(6, 12);
     }

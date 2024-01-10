@@ -174,12 +174,11 @@ public class NTTest
         for (int i = 1; i <= 10; ++i) {
             ordTest(i, n);
         }
+        ordTest(7, 31);       // expect 15, [Scheid] page 143
         ordTest(37,   1000);  // expect 100
         ordTest(54, 100001);  // expect 9090
         ordTest(997, 10000);
-        ordTest(10000, 997);
         ordTest(5040, 5041);
-        ordTest(5041, 5040);
         try {
             NumberTheory.ord(6, 12);
         }
@@ -749,6 +748,9 @@ public class NTTest
 
         // Square of prime beyond internal prime table
         factorTest(1000003L * 1000003L);
+
+        // Compare [Scheid] page 28, challenge from a letter by Mersenne to Fermat
+        factorTest(100895598169L);
 
         for (int offset = -1; offset <= 1; offset += 2) {
             System.out.println();

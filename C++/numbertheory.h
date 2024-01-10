@@ -70,8 +70,7 @@ template<typename T>
 T pow(T base, unsigned int exponent)
 {
     T result = 1;
-    while (exponent)
-    {
+    while (exponent) {
         if (exponent & 1)
             result *= base;
         exponent >>= 1;

@@ -88,8 +88,7 @@ public class NumberTheory
     public static final int power(int base, int exponent)
     {
         int result = 1;
-        while (exponent != 0)
-        {
+        while (exponent != 0) {
             if ((exponent & 1) != 0)
                 result *= base;
             exponent >>= 1;
@@ -101,8 +100,7 @@ public class NumberTheory
     public static final long power(long base, int exponent)
     {
         long result = 1;
-        while (exponent != 0)
-        {
+        while (exponent != 0) {
             if ((exponent & 1) != 0)
                 result *= base;
             exponent >>= 1;

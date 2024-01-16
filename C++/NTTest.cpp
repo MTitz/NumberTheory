@@ -96,23 +96,24 @@ static void oddEvenTestcases()
     }
 }
 
+static void pow_test(unsigned int base, unsigned int maxExponent)
+{
+    for (unsigned int i = 0; i <= maxExponent; ++i) {
+        cout << base << "^" << i << " = " << math::pow(base, i) << endl;
+    }
+}
+
 static void powTestcases()
 {
-    for (unsigned int i = 0; i <= 4; ++i) {
-        cout << "0^" << i << " = " << math::pow(0, i) << endl;
-    }
+    pow_test(0, 4);
     cout << endl;
-    for (unsigned int i = 0; i <= 4; ++i) {
-        cout << "1^" << i << " = " << math::pow(1, i) << endl;
-    }
+    pow_test(1, 4);
     cout << endl;
-    for (unsigned int i = 0; i <= 24; ++i) {
-        cout << "2^" << i << " = " << math::pow(2, i) << endl;
-    }
+    pow_test(2, 24);
     cout << endl;
-    for (unsigned int i = 0; i <= 6; ++i) {
-        cout << "5^" << i << " = " << math::pow(5, i) << endl;
-    }
+    pow_test(3, 12);
+    cout << endl;
+    pow_test(5, 6);
 }
 
 template<typename T> void squareTestTest(const T& n)

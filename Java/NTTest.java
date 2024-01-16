@@ -108,23 +108,24 @@ public class NTTest
         }
     }
 
+    private static void powTest(int base, int maxExponent)
+    {
+        for (int i = 0; i <= maxExponent; ++i) {
+            System.out.println(base + "^" + i + " = " + NumberTheory.power(base, i));
+        }
+    }
+
     private static void powTestcases()
     {
-        for (int i = 0; i <= 4; ++i) {
-            System.out.println("0^" + i + " = " + NumberTheory.power(0, i));
-        }
+        powTest(0, 4);
         System.out.println();
-        for (int i = 0; i <= 4; ++i) {
-            System.out.println("1^" + i + " = " + NumberTheory.power(1, i));
-        }
+        powTest(1, 4);
         System.out.println();
-        for (int i = 0; i <= 24; ++i) {
-            System.out.println("2^" + i + " = " + NumberTheory.power(2, i));
-        }
+        powTest(2, 24);
         System.out.println();
-        for (int i = 0; i <= 6; ++i) {
-            System.out.println("5^" + i + " = " + NumberTheory.power(5, i));
-        }
+        powTest(3, 12);
+        System.out.println();
+        powTest(5, 6);
     }
 
 

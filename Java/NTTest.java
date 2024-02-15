@@ -125,6 +125,8 @@ public class NTTest
         System.out.println();
         powTest(3, 12);
         System.out.println();
+        powTest(4, 8);
+        System.out.println();
         powTest(5, 6);
     }
 
@@ -190,9 +192,9 @@ public class NTTest
 
     private static void powerModTestcases()
     {
-        System.out.println("powerMod(2,   10, 10000000) = " + NumberTheory.powerMod(2L,   10L, 1000000L));
-        System.out.println("powerMod(2,  100, 10000000) = " + NumberTheory.powerMod(2L,  100L, 1000000L));
-        System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2L, 1000L, 1000000L));
+        System.out.println("powerMod(2,   10, 10000000) = " + NumberTheory.powerMod(2,   10, 1000000));
+        System.out.println("powerMod(2,  100, 10000000) = " + NumberTheory.powerMod(2,  100, 1000000));
+        System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2, 1000, 1000000));
         System.out.println();
 
         // [Giblin], chapter 4.2

@@ -14,7 +14,7 @@ public class Micropuzzle05
     public static int ord(int a, int m)
     {
         int r = 1;
-        int power = a % m;
+        long power = a % m;
         while (power != 1) {
             ++r;
             power = (power * a) % m;

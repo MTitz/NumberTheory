@@ -127,6 +127,7 @@ public class NumberTheory
         }
     }
 
+    @Deprecated
     public static final long powerMod(long a, long n, long m)
     {
         if (n == 0) {

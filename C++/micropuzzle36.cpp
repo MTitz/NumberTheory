@@ -18,8 +18,8 @@ const double eps = 1.0e-8;
 template<typename T>
 bool is_cube(T n)
 {
-    double x = n;
-    T root = std::floor(std::cbrt(x) + eps);
+    double x = static_cast<double>(n);
+    T root = static_cast<T>(std::floor(std::cbrt(x) + eps));
     return root * root * root == n;
 }
 

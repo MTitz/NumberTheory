@@ -53,7 +53,7 @@ Some of the Java programs require additional Java source files, either using Per
 In many cases the Java program solves a slightly more general problem, either by calculating a solution for a more general case than the special value given in the problem or by not only finding the first solution. In several cases the special puzzle problem is the default and other values can be given by command line parameters.
 
 \begin{longtable}[t]{|rl|l|l|} \hline
-&Puzzle & Used & Remarks (uses) \\ \hline
+& \bf{Puzzle} & \bf{Used} & \bf{Remarks (uses)} \\ \hline
  1 & Pythagoras for beginners & C++, Java & NumberTheory.java \\
  2 & Flying the Glasgow shuttle & --- &\\
  3 & A chessboard dilemma & Java &\\
@@ -136,10 +136,11 @@ From the book \cite{Clessa}: Here's a simple multiplication problem in which eac
 
 The book gives only one solution, but as also 0 is a digit, I found three:
 \begin{eqnarray*}
-21 \cdot 60 &=& 1260\\
-41 \cdot 35 &=& 1435\\
-51 \cdot 30 &=& 1530
+21 \times 60 &=& 1260\\
+41 \times 35 &=& 1435\\
+51 \times 30 &=& 1530
 \end{eqnarray*}
+
 
 \subsection{Quickie 17}
 See also \cite{BookOfNumbers}, pages 83-84 for a more general treatment. There the general formula for the total number of triangles is given when the big triangle sides each consist of $n$ small triangles (sequence 0, 1, 5, 13, 27, 48, 78, 118, 170,\ldots, M3827 in \cite{Integer_sequences}).
@@ -150,9 +151,149 @@ See also \cite{BookOfNumbers}, pages 83-84 for a more general treatment. There t
 It is derived in \cite{BookOfNumbers} from a difference pattern, but not proofed for general $n$.
 
 
+\subsection{Quickie 59}
+From the book \cite{Clessa}: ``Find four consecutive prime numbers that add to 220.''
 
-%\subsection{Micropuzzle 1 -- Pythagoras for beginners}
-% \cite{HardyWright} \cite{CRCTablesFormulae}
+It is $220 / 4 = 55$ and 55 is not itself a prime number as $55 = 5 \times 11$.\\
+If you add up 4 numbers each less than 55 you get a sum below $4\times55=220$.\\
+If you add up 4 numbers each greater than 55 you get a sum greater than 220.\\
+Therefore at least one prime must be below 55 and one prime above 55 and as we look for consecutive primes both the primes 53 and 59 must be included. As $220-53-59=108 =2\times54$ one remaining prime must be just below the already found ones and one just above, therefore the unique solution is
+\[220 = 47+53+59+61\]
+
+
+\subsection{Micropuzzle 1 -- Pythagoras for beginners}
+From the book \cite{Clessa}: ``I'd like you to find the smallest-area Pythagorean triangle whose perimeter is a perfect square and whose area is a perfect cube.''
+
+Pythagorean triples are triples $(a,b,c)$ of positive integers with the additional property $a^2+b^2=c^2$ like for example $3^2+4^2=5^2$ or $5^2+12^2=13^2$.
+
+\subsubsection*{Generation of Pythagorean triples}
+Pythagorean triples and their construction are explained in many texts. To give just two examples in well-known books see \cite{CRCTablesFormulae} in section 2.3.4 on page 90 for the generation rule and a short table or \cite{HardyWright}, section 13.2 with a proof for the generation rule.
+
+\subsubsection*{Solution of the puzzle}
+My program Micropuzzle01.java generates all Pythagorean triples up to a given limit for the hypotenuse c and first checks by a fast square detection test implemented in my NumberTheory.java file according to \cite{Cohen}, whether the perimeter is a perfect square. If this is true, the program finally checks if the area is a perfect cube and in this case prints the found solution out.
+
+All solutions with hypotenuse $c \le 1\,000\,000\,000$ ordered by increasing $c$ are
+\begin{longtable}[t]{|rrr|r|r|} \hline
+          a   &        b  &       c    &    perimeter  &                  area  \\ \hline
+         144  &       192 &       240  &          576  &                  13824 \\
+         150  &       360 &       390  &          900  &                  27000 \\
+        9216  &     12288 &     15360  &        36864  &               56623104 \\
+        9600  &     23040 &     24960  &        57600  &              110592000 \\
+       12960  &     57600 &     59040  &       129600  &              373248000 \\
+      113400  &    119070 &    164430  &       396900  &             6751269000 \\
+      104976  &    139968 &    174960  &       419904  &             7346640384 \\
+       20808  &    176256 &    177480  &       374544  &             1833767424 \\
+      103680  &    194400 &    220320  &       518400  &            10077696000 \\
+      109350  &    262440 &    284310  &       656100  &            14348907000 \\
+      113256  &    301158 &    321750  &       736164  &            17053975224 \\
+      127008  &    435456 &    453600  &      1016064  &            27653197824 \\
+       37026  &    610368 &    611490  &      1258884  &            11299742784 \\
+      158400  &    784080 &    799920  &      1742400  &            62099136000 \\
+      589824  &    786432 &    983040  &      2359296  &           231928233984 \\
+      191646  &   1238328 &   1253070  &      2683044  &           118660303944 \\
+      345744  &   1361367 &   1404585  &      3111696  &           235342236024 \\
+      208568  &   1504926 &   1519310  &      3232804  &           156939702984 \\
+      614400  &   1474560 &   1597440  &      3686400  &           452984832000 \\
+      259920  &   2462400 &   2476080  &      5198400  &           320013504000 \\
+     2250000  &   3000000 &   3750000  &      9000000  &          3375000000000 \\
+      829440  &   3686400 &   3778560  &      8294400  &          1528823808000 \\
+      540225  &   4033680 &   4069695  &      8643600  &          1089547389000 \\
+     2205000  &   3543750 &   4173750  &      9922500  &          3906984375000 \\
+      363776  &   5086368 &   5099360  &     10549504  &           925149302784 \\
+     2343750  &   5625000 &   6093750  &     14062500  &          6591796875000 \\
+     2520000  &   7350000 &   7770000  &     17640000  &          9261000000000 \\
+      468198  &   8655336 &   8667990  &     17791524  &          2026205502264 \\
+     7257600  &   7620480 &  10523520  &     25401600  &         27653197824000 \\
+     6981824  &   8082882 &  10680770  &     25745476  &         28216629768384 \\
+     6885000  &   8323200 &  10801800  &     26010000  &         28652616000000 \\
+     6718464  &   8957952 &  11197440  &     26873856  &         30091839012864 \\
+     1331712  &  11280384 &  11358720  &     23970816  &          7511111368704 \\
+     6619392  &   9738144 &  11774880  &     28132416  &         32230296244224 \\
+     6586272  &  11176704 &  12972960  &     30735936  &         36806406303744 \\
+     6635520  &  12441600 &  14100480  &     33177600  &         41278242816000 \\
+     6742400  &  13978440 &  15519560  &     36240400  &         47124116928000 \\
+     6808050  &  14760000 &  16254450  &     37822500  &         50243409000000 \\
+     6998400  &  16796160 &  18195840  &     41990400  &         58773123072000 \\
+      677600  &  18627840 &  18640160  &     37945600  &          6311112192000 \\
+     3630000  &  19800000 &  20130000  &     43560000  &         35937000000000 \\
+     7248384  &  19274112 &  20592000  &     47114496  &         69853082517504 \\
+     7719624  &  23836032 &  25054920  &     56610576  &         92002602345984 \\
+    16941456  &  22588608 &  28235760  &     67765824  &        191341954266624 \\
+     4228200  &  28383750 &  28696950  &     61308900  &         60006085875000 \\
+     8128512  &  27869184 &  29030400  &     65028096  &        113267498287104 \\
+     8610560  &  32810400 &  33921440  &     75342400  &        141257958912000 \\
+     2369664  &  39063552 &  39135360  &     80568576  &         46283746443264 \\
+    17114328  &  36605646 &  40408830  &     94128804  &        313240516147944 \\
+    26730000  &  30628125 &  40651875  &     98010000  &        409344890625000 \\
+     9447840  &  41990400 &  43040160  &     94478400  &        198359290368000 \\
+    17647350  &  42353640 &  45883110  &    105884100  &        373714754427000 \\
+    10137600  &  50181120 &  51194880  &    111513600  &        254358061056000 \\
+    25666875  &  52650000 &  58573125  &    136890000  &        675680484375000 \\
+    37748736  &  50331648 &  62914560  &    150994944  &        949978046398464 \\
+     6063750  &  63525000 &  63813750  &    133402500  &        192599859375000 \\
+    11311650  &  65499840 &  66469410  &    143280900  &        370455632568000 \\
+     1306910  &  71220600 &  71232590  &    143760100  &         46539457173000 \\
+    12265344  &  79252992 &  80196480  &    171714816  &        486032604954624 \\
+    27915408  &  76097375 &  81056033  &    185068816  &       1062144635427000 \\
+    22127616  &  87127488 &  89893440  &    199148544  &        963961798754304 \\
+     7300800  &  94770000 &  95050800  &    197121600  &        345948408000000 \\
+    29600000  &  92407500 &  97032500  &    219040000  &       1367631000000000 \\
+    13348352  &  96315264 &  97235840  &    206899456  &        642825023422464 \\
+    39321600  &  94371840 & 102236160  &    235929600  &       1855425871872000 \\
+    82668600  &  86802030 & 119869470  &    289340100  &       3587901148629000 \\
+    76527504  & 102036672 & 127545840  &    306110016  &       3904305912313344 \\
+    15169032  & 128490624 & 129382920  &    273042576  &        974539193577984 \\
+     4461600  & 144967680 & 145036320  &    294465600  &        323393900544000 \\
+    16634880  & 157593600 & 158469120  &    332697600  &       1310775312384000 \\
+    75582720  & 141717600 & 160613280  &    377913600  &       5355700839936000 \\
+    39361977  & 199994000 & 203830727  &    443186704  &       3936079614069000 \\
+    79716150  & 191318760 & 207261990  &    478296900  &       7625597484987000 \\
+   153307200  & 166511250 & 226338450  &    546156900  &      12763686753000000 \\
+   152100000  & 168480000 & 226980000  &    547560000  &      12812904000000000 \\
+    82563624  & 219544182 & 234555750  &    536663556  &       9063181647017784 \\
+   144000000  & 192000000 & 240000000  &    576000000  &      13824000000000000 \\
+    53084160  & 235929600 & 241827840  &    530841600  &       6262062317568000 \\
+    43512500  & 254880000 & 258567500  &    556960000  &       5545233000000000 \\
+    34574400  & 258155520 & 260460480  &    553190400  &       4462786105344000 \\
+    21060000  & 262828800 & 263671200  &    547560000  &       2767587264000000 \\
+   141120000  & 226800000 & 267120000  &    635040000  &      16003008000000000 \\
+   205760898  & 222659136 & 303174270  &    731594304  &      22907271885632064 \\
+   142876800  & 277365000 & 312001800  &    732243600  &      19814511816000000 \\
+   143325000  & 283920000 & 318045000  &    745290000  &      20346417000000000 \\
+    23281664  & 325527552 & 326359040  &    675168256  &       3789411544203264 \\
+    92588832  & 317447424 & 330674400  &    740710656  &      14696043104784384 \\
+    13525200  & 344760000 & 345025200  &    703310400  &       2331473976000000 \\
+   189078750  & 311169600 & 364111650  &    864360000  &      29417779503000000 \\
+   150000000  & 360000000 & 390000000  &    900000000  &      27000000000000000 \\
+   255104784  & 340139712 & 425174640  &   1020419136  &      43385633879791104 \\
+    55080000  & 438918750 & 442361250  &    936360000  &      12087822375000000 \\
+    26991954  & 444958272 & 445776210  &    917726436  &       6005146604871744 \\
+   161280000  & 470400000 & 497280000  &   1128960000  &      37933056000000000 \\
+    16645128  & 528351750 & 528613878  &   1073610756  &       4397241253887000 \\
+    29964672  & 553941504 & 554751360  &   1138657536  &       8299337737273344 \\
+     8653320  & 558105600 & 558172680  &   1124931600  &       2414733175296000 \\
+   115473600  & 571594320 & 583141680  &   1270209600  &      33002026934976000 \\
+   177619200  & 631620000 & 656119200  &   1465358400  &      56093919552000000 \\
+   464486400  & 487710720 & 673505280  &   1625702400  &     113267498287104000 \\
+   179681250  & 652680000 & 676961250  &   1509322500  &      58637179125000000 \\
+   446836736  & 517304448 & 683569280  &   1647710464  &     115575315531300864 \\
+    54038376  & 687929718 & 690048870  &   1432016964  &      18587302381428984 \\
+   265734150  & 637761960 & 690908790  &   1594404900  &      84737566171467000 \\
+   440640000  & 532684800 & 691315200  &   1664640000  &     117361115136000000 \\
+   429981696  & 573308928 & 716636160  &   1719926784  &     123256172596690944 \\
+    85229568  & 721944576 & 726958080  &   1534132224  &      30765512166211584 \\
+   423641088  & 623241216 & 753592320  &   1800474624  &     132015293416341504 \\
+   422132256  & 648747008 & 773995040  &   1844874304  &     136928519030145024 \\
+   421521408  & 715309056 & 830269440  &   1967099904  &     150759040220135424 \\
+    60577230  & 877325400 & 879414270  &   1817316900  &      26572971270321000 \\
+   199764288  & 868877250 & 891545538  &   1960187076  &      86785322602824000 \\
+   424673280  & 796262400 & 902430720  &   2123366400  &     169075682574336000 \\
+   139709934  & 902741112 & 913488030  &   1955939076  &      63060950588303304 \\
+   202500000  & 900000000 & 922500000  &   2025000000  &      91125000000000000 \\
+    38896200  & 952560000 & 953353800  &   1944810000  &      18525482136000000 \\
+   296919480  & 942148350 & 987828270  &   2226896100  &     139871099082429000 \\
+   431513600  & 894620160 & 993251840  &   2319385600  &     193020382937088000 \\
+\hline \end{longtable}
 
 
 
@@ -203,7 +344,7 @@ With this, the solution of the puzzle can be done in the following two steps:
 \item Calculate $N$ by the division (\ref{Ndivision}), using high precision integer arithmetic as the powers $B^n$ will soon become huge numbers well out of the range of normal integer arithmetic with int or long data types.
 \end{enumerate}
 
-\underline{Example 1:} $B=10$, $d_0=4$: Here is $Bd_0-1=39$ and as the smallest exponent to be found is $n=6$ for which $39|\left(10^n-1\right)$, hence
+\underline{Example 1:} $B=10$, $d_0=4$: Here is $Bd_0-1=39$ and as the smallest exponent to be found is $n=6$ for which $39|\left(10^n-1\right)$, hence $\ord_{39}(10)=6$ and
 \[
 N = \frac{4 \cdot \left(10^6-1\right)}{39} = \frac{4 \cdot 999999}{39} = 102564
 \]
@@ -220,6 +361,67 @@ For verification it is
  \left(102\right)_4 &=& 1\cdot4^2+0\cdot4^1+2\cdot4^0 = 16+2 = 18\\
  \left(210\right)_4 &=& 2\cdot4^2+1\cdot4^1+0\cdot4^0 = 32+4 = 36
 \end{eqnarray*}
+
+\pagebreak
+The Java program Micropuzzle05.java (comments removed) solves the puzzle in this way for a given base $B \ge 2$ of the number system, using the BigInteger arbitrary precision library class:
+
+{ \small
+\begin{verbatim}
+import java.math.BigInteger;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class Micropuzzle05
+{
+    public static int ord(int a, int m)
+    {
+        int r = 1;
+        long power = a % m;
+        while (power != 1) {
+            ++r;
+            power = (power * a) % m;
+        }
+        return r;
+    }
+
+    public static BigInteger leastSolution(int base, int d0)
+    {
+        if (d0 < 2 || d0 >= base) {
+            System.err.println("Digit d0 must be in the range of 2.." + (base-1));
+            return BigInteger.ZERO;
+        }
+        int m = base * d0 - 1;
+        int n = ord(base, m);
+        BigInteger bigFactor = BigInteger.valueOf(base).pow(n).subtract(BigInteger.ONE);
+        return bigFactor.divide(BigInteger.valueOf(m)).multiply(BigInteger.valueOf(d0));
+    }
+
+    public static void main(String[] args)
+    {
+        int base = 10;
+        if (args.length > 0) {
+            base = Integer.parseInt(args[0]);
+            if (base < 2 || args.length >= 2) {
+                System.err.println("Command line error");
+                return;
+            }
+            System.out.println("Results for base " + base);
+            System.out.println();
+        }
+        for (int digit = 2; digit < base; ++digit) {
+            BigInteger originalNumber = leastSolution(base, digit);
+            System.out.println("digit " + digit + ": " +
+                    NumberFormat.getNumberInstance(Locale.US).format(originalNumber));
+        }
+    }
+}
+\end{verbatim}
+}
+
+\begin{itemize}
+\item The simple ord method uses a local variable of type long to avoid integer overflow at the multiplication for too large arguments.
+\item The number format is explicitly using US locale settings to make the result reproducible.
+\end{itemize}
 
 \pagebreak
 The results for the base $B = 10$ of the usual decimal system are the solution of the original puzzle:
@@ -253,8 +455,8 @@ N &=& \frac{d_0\cdot\left(B^n-1\right)}{B d_0-1} \\
 As $2\le d_0 < B$, both $d_0$ and $B$ are positive numbers, and it is
 \[
  B^n>Bd_0 \Rightarrow   \frac{1}{B^n}<  \frac{1}{Bd_0}
-          \Rightarrow  -\frac{1}{B^n}> -\frac{1}{Bd_0} 
-          \Rightarrow 1-\frac{1}{B^n}>1-\frac{1}{Bd_0} 
+          \Rightarrow  -\frac{1}{B^n}> -\frac{1}{Bd_0}
+          \Rightarrow 1-\frac{1}{B^n}>1-\frac{1}{Bd_0}
 \]
 This gives the bounds
 \[ 1-\frac{1}{Bd_0} < 1-\frac{1}{B^n} < 1 \]
@@ -269,8 +471,115 @@ With this the right side of (\ref{Nbounds}) can further be estimated by
 \]
 Conclusion: The number (\ref{Ndivision}) has the form of $B^{n-1}$ multiplied with a factor between $1$ and $6/5$. This explains why the first digit of the solution $N$ is always a 1 and the number $n$ is the number of digits of $N$, both of this within the number system with base $B$.
 
+\pagebreak
+The equation (\ref{Ndivision}) can be written as
+\begin{equation} \label{NdivisionSep}
+N = \frac{d_0\cdot\left(B^n-1\right)}{B d_0-1} = \frac{d_0 B^n}{B d_0-1} - \frac{d_0}{B d_0-1}
+\end{equation}
+and because of $d_0 \ge 2$ and $B \ge 3$ it is $B d_0-1 = d_0 + (B-1)d_0 -1 > d_0$ and so
+\begin{equation} \label{NfracCond}
+0 < \frac{d_0}{B d_0-1} < 1
+\end{equation}
+
+Two often useful functions are the floor and ceiling functions which are defined for all real values $x$ as
+\begin{eqnarray*}
+ \left\lfloor x \right\rfloor &=& \mbox{the greatest integer less than or equal to } x\\
+ \left\lceil  x \right\rceil  &=& \mbox{the least integer greater than or equal to } x
+\end{eqnarray*}
+so it is for example $\left\lfloor 3.14 \right\rfloor = 3$, $\left\lceil 3.14 \right\rceil = 4$, but $\left\lfloor -3.14 \right\rfloor = -4$, $\left\lceil -3.14 \right\rceil = -3$,
+see for this and many more details the book \cite{ConcreteMath}.
+
+Note that for positive integers $a$ and $b$ the calculation of $\left\lfloor\frac{a}{b}\right\rfloor$ is just the integer quotient of $a$ by $b$ with discarding of any possible remainder. This is just what the division operator / is doing in programming languages like C, C++ and Java for integer arguments (for positive $a$ and $b$).
+
+Using the floor function it follows from (\ref{NdivisionSep}) using (\ref{NfracCond})
+\begin{equation} \label{Nfloor}
+N = \left\lfloor\frac{d_0 B^n}{B d_0-1}\right\rfloor
+\end{equation}
+
+This can also written in the form
+\[
+N = \left\lfloor\frac{B d_0}{B d_0-1}B^{n-1}\right\rfloor = \left\lfloor\left(1 + \frac{1}{B d_0-1}\right)B^{n-1}\right\rfloor
+\]
+
+Using example 1 from above with $B=10$, $d_0=4$ and $n = \ord_{Bd_0-1}(B) = \ord_{39}(10)=6$ it is then
+\[
+N = \left\lfloor \frac{40}{39} \cdot 10^5 \right\rfloor
+\]
+In this case the calculation can be done by performing the division $40/39 = 1.025641025641025641\ldots$ to a sufficient number of decimal digits, then shifting the decimal point five places to the right aka multiplying with $10^5$, and finally discarding the digits after the decimal point, resulting in $N = 102564$.
+
+If for the calculation of (\ref{Nfloor}) a number system is internally used with a base of $B^2$ or $B^3$ the number $d_0 B^n$ can easily set in the program and as then $B d_0-1$ is lower than the base, the value of $N$ can be calculated with a short division algorithm, see for example \cite{Shoup}, page 59 or \cite{taocp_2}, section 4.3.1, exercise 16.
+
+The following C program uses a base of $B^3$ for the calculation of (\ref{Nfloor}) as then the output formatting in groups of three digits is very easy. For brevity of the program the divide function overwrites its input array a and returns the result in the same array.
+
+It solves the original puzzle problem for the base 10 of our common decimal system, but cannot be used for other bases. Its advantage is that it does not depend on any external arbitrary precision library.
 
 
+
+
+\pagebreak
+The C program micropuzzle5.c (only comments removed):
+
+{ \small
+\begin{verbatim}
+#include <stdio.h>
+#include <stdlib.h>
+
+int ord(int a, int m)
+{
+    int r = 1;
+    int power = a % m;
+    while (power != 1) {
+        ++r;
+        power = (power * a) % m;
+    }
+    return r;
+}
+
+void divide(int base, int a_high, int a[], int b)
+{
+    int hi = 0;
+    for (int i = a_high; i >= 0; --i) {
+        int tmp = hi * base + a[i];
+        div_t q = div(tmp, b);
+        a[i] = q.quot;
+        hi = q.rem;
+    }
+}
+
+void print_least_solution(int base, int d0)
+{
+    int m = base * d0 - 1;
+    int n = ord(base, m);
+    int multiplier[3] = {1, base, base*base};
+    int B = base * base * base;
+    div_t digits = div(n, 3);
+    int a_high = digits.quot;
+    int a[a_high+1];
+    for (int i = 0; i < a_high; ++i) {
+        a[i] = 0;
+    }
+    a[a_high] = d0 * multiplier[digits.rem];
+    divide(B, a_high, a, m);
+    if (a[a_high] == 0)
+        --a_high;
+    printf("digit %d: ", d0);
+    for (int i = a_high; i >= 0; --i) {
+        printf(i == a_high ? "%d" :"%03d", a[i]);
+        if (i > 0)
+            putchar(',');
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    int base = 10;
+    for (int digit = 2; digit < base; ++digit) {
+        print_least_solution(base, digit);
+    }
+}
+\end{verbatim}
+}
 
 
 \pagebreak
@@ -300,7 +609,7 @@ If $a$ and $c$ are both even, $a^2$ and $c^2$ are multiples of 4, therefore also
 
 If one of $a$ and $c$ is even and one odd, it is also one of $a^2$ and $c^2$ odd and one even, thus $a^2+c^2$ is an odd number, which is not possible as the left side of (\ref{m7_condition}) is an even number. Therefore this case cannot happen.
 
-Therefore both $a$ and $c$ must be odd numbers for any primitive solution. As sum and difference of two odd numbers are even numbers, both $a+c$ and $c-a$ are even numbers.
+Therefore both $a$ and $c$ must be odd numbers for any primitive solution. As sum and difference of two odd numbers are even numbers, both $c+a$ and $c-a$ are even numbers.
 Hence the numbers
 \begin{equation} \label{n_and_m}
 n = \frac{c+a}{2},\qquad m = \frac{c-a}{2}
@@ -743,13 +1052,21 @@ Cambridge University Press, 1993.
 %I.~S.~Gradshteyn, I.~M.~Ryzhik, {\it Table of Integrals, Series and Products}, 7th Edition.
 %Academic Press, 2007.
 
-%\bibitem{ConcreteMath}
-%Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd Edition.
-%Addison-Wesley, 1994.
+\bibitem{ConcreteMath}
+Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd Edition.
+Addison-Wesley, 1994.
 
 \bibitem{HardyWright}
 G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th Edition.
 Oxford University Press, 1979.
+
+%\bibitem{taocp_1}
+%Donald E. Knuth, {\it The Art of Computer Programming v. 1. Fundamental Algorithms}, 3rd Edition.
+%Addison-Wesley, 1997.
+
+\bibitem{taocp_2}
+Donald E. Knuth, {\it The Art of Computer Programming v. 2. Seminumerical Algorithms}, 3rd Edition.
+Addison-Wesley, 1997.
 
 %\bibitem{Nathanson}
 %Melvyn B.~Nathanson, {\it Elementary Methods in Number Theory}.
@@ -758,6 +1075,10 @@ Oxford University Press, 1979.
 %\bibitem{NISTHandbook}
 %Frank W.~J.~Olver et al, {\it NIST Handbook of Mathematical Formulas}.
 %Cambridge University Press, 2010.
+
+\bibitem{Shoup}
+Victor Shoup, {\it A Computational Introduction to Number Theory and Algebra}, 2nd Edition.
+Cambridge University Press, 2009.
 
 \bibitem{Integer_sequences}
 N.~J.~A.~Sloane, Simon Plouffe, {\it The Encyclopedia of Integer Sequences}, Academic Press, 1995.

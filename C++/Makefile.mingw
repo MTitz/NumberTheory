@@ -9,7 +9,7 @@ CFLAGS	= $(OPTFLAGS) $(WARNINGS)
 CXXFLAGS= $(OPTFLAGS) $(WARNINGS)
 LFLAGS	=
 
-BINARIES= gcd.exe lag480.exe jacobi.exe lagarias.exe micropuzzle36.exe modInverse.exe NTTest.exe phivalues.exe PrimeTable.exe bigunsigned_test.exe divsmall.exe divtbl.exe ProjectEuler668.exe
+BINARIES= a_congruence.exe gcd.exe lag480.exe jacobi.exe lagarias.exe micropuzzle36.exe modInverse.exe NTTest.exe phivalues.exe PrimeTable.exe bigunsigned_test.exe divsmall.exe divtbl.exe ProjectEuler668.exe
 OBJECTS	= harmonic.o numbertheory.o
 LIBS	=
 
@@ -23,6 +23,10 @@ RM	= del
 	$(CXX) $(CXXFLAGS) -c $<
 
 all:	$(BINARIES) divisor_tables phivalues_tables NTTest.txt
+
+a_congruence.exe: a_congruence.o numbertheory.o
+	$(CXX) a_congruence.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
+	strip $@
 
 bigunsigned_test.exe: bigunsigned_test.o bigunsigned.o numbertheory.o
 	$(CXX) bigunsigned_test.o bigunsigned.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
@@ -117,6 +121,7 @@ phivalues_tables: phivalues5.txt phivalues6.txt phivalues7.txt
 NTTest.txt: NTTest.exe
 	NTTest.exe > NTTest.txt
 
+a_congruence.o:	a_congruence.cpp numbertheory.h
 
 bigunsigned.o:	bigunsigned.cpp bigunsigned.h numbertheory.h
 

@@ -96,7 +96,7 @@ static void oddEvenTestcases()
     }
 }
 
-static void pow_test(unsigned int base, unsigned int maxExponent)
+static void pow_test(int base, unsigned int maxExponent)
 {
     for (unsigned int i = 0; i <= maxExponent; ++i) {
         cout << base << "^" << i << " = " << math::pow(base, i) << endl;
@@ -112,6 +112,8 @@ static void powTestcases()
     pow_test(2, 24);
     cout << endl;
     pow_test(3, 12);
+    cout << endl;
+    pow_test(4, 8);
     cout << endl;
     pow_test(5, 6);
 }

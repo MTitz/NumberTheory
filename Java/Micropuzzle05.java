@@ -48,7 +48,8 @@ public class Micropuzzle05
         }
         for (int digit = 2; digit < base; ++digit) {
             BigInteger originalNumber = leastSolution(base, digit);
-            System.out.println("digit " + digit + ": " + NumberFormat.getNumberInstance(Locale.US).format(originalNumber));
+            System.out.println("digit " + digit + ": " +
+                    NumberFormat.getNumberInstance(Locale.US).format(originalNumber));
         }
     }
 }

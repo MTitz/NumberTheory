@@ -16,9 +16,34 @@ std::size_t n_primes = sizeof(primes) / sizeof(int);
 
 
 const bool q11[] = { true, true, false, true, true, true, false, false, false, true, false };
-const bool q63[] = { true, true, false, false, true, false, false, true, false, true, false, false, false, false, false, false, true, false, true, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, true, false, false, true, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false };
-const bool q64[] = { true, true, false, false, true, false, false, false, false, true, false, false, false, false, false, false, true, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false };
-const bool q65[] = { true, true, false, false, true, false, false, false, false, true, true, false, false, false, true, false, true, false, false, false, false, false, false, false, false, true, true, false, false, true, true, false, false, false, false, true, true, false, false, true, true, false, false, false, false, false, false, false, false, true, false, true, false, false, false, true, true, false, false, false, false, true, false, false, true };
+const bool q63[] = {
+    true,  true,  false, false, true,  false, false, true,
+    false, true,  false, false, false, false, false, false,
+    true,  false, true,  false, false, false, true,  false,
+    false, true,  false, false, true,  false, false, false,
+    false, false, false, false, true,  true,  false, false,
+    false, false, false, true,  false, false,  true, false,
+    false, true,  false, false, false, false, false, false,
+    false, false, true,  false, false, false, false };
+const bool q64[] = {
+    true,  true,  false, false, true,  false, false, false,
+    false, true,  false, false, false, false, false, false,
+    true,  true,  false, false, false, false, false, false,
+    false, true,  false, false, false, false, false, false,
+    false, true,  false, false, true,  false, false, false,
+    false, true,  false, false, false, false, false, false,
+    false, true,  false, false, false, false, false, false,
+    false, true,  false, false, false, false, false, false };
+const bool q65[] = {
+    true,  true,  false, false, true,  false, false, false,
+    false, true,  true,  false, false, false, true,  false,
+    true,  false, false, false, false, false, false, false,
+    false, true,  true,  false, false, true,  true,  false,
+    false, false, false, true,  true,  false, false, true,
+    true,  false, false, false, false, false, false, false,
+    false, true,  false, true,  false, false, false, true,
+    true,  false, false, false, false, true,  false, false,
+    true };
 
 
 unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m)

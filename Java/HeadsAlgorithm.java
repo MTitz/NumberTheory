@@ -1,3 +1,6 @@
+// Head's algorithm for multiplication, see section 4.3 in:
+// [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
+
 import static java.lang.Math.*;
 
 public class HeadsAlgorithm {
@@ -25,7 +28,7 @@ public class HeadsAlgorithm {
         return (h * capT + k) % m;
     }
 
-    private long m;
-    private long capT;
-    private long t;
+    private final long m;
+    private final long capT;
+    private final long t;
 }

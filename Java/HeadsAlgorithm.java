@@ -1,4 +1,4 @@
-// Head's algorithm for multiplication, see section 4.3 in:
+// Head's algorithm for integer multiplication modulo m, see section 4.3 in:
 // [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 
 import static java.lang.Math.*;

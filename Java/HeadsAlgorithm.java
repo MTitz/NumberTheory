@@ -20,10 +20,10 @@ public class HeadsAlgorithm {
         long z = (a * d + b * c) % m;
         long e = (a * c) / capT;
         long f = a * c - e * capT;
-        long v = z + e * t;
+        long v = (z + e * t) % m;
         long g = v / capT;
         long h = v - g * capT;
-        long j = (f + g) % m;
+        long j = (f + g) * t % m;
         long k = (j + b * d) % m;
         return (h * capT + k) % m;
     }

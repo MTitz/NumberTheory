@@ -127,17 +127,26 @@ public class NumberTheory
         }
     }
 
-    @Deprecated
-    public static final long powerMod(long a, long n, long m)
+    private static final long powerMod(long a, long n, HeadsAlgorithm ha)
     {
         if (n == 0) {
             return 1;
         } else if (n % 2 == 0) {
-            long t = powerMod(a, n/2, m);
-            return (t * t) % m;
+            long t = powerMod(a, n/2, ha);
+            return ha.multiplyModM(t, t);
         } else {
-            long t = powerMod(a, n-1, m);
-            return (a * t) % m;
+            long t = powerMod(a, n-1, ha);
+            return ha.multiplyModM(a, t);
+        }
+    }
+
+    public static final long powerMod(long a, long n, long m)
+    {
+        if (n == 0) {
+            return 1;
+        } else {
+            HeadsAlgorithm ha = new HeadsAlgorithm(m);
+            return powerMod(a, n, ha);
         }
     }
 

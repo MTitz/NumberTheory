@@ -4,6 +4,7 @@
 // Literature
 // [Cohen]      Henri Cohen, "A Course in Computational Algebraic Number Theory", Springer, 1996
 // [Forster]    Otto Forster, "Algorithmische Zahlentheorie", vieweg, Braunschweig / Wiesbaden, 1996
+// [Giblin]     Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 // [Nathanson]  Melvyn B. Nathanson "Elementary Methods in Number Theory", Springer, 2000
 
 #ifndef NUMBERTHEORY_H
@@ -11,6 +12,7 @@
 
 #include <algorithm> // sort
 #include <array>
+#include <cmath>
 #include <cstdlib>
 #include <functional> // multiplies
 #include <iostream>
@@ -92,6 +94,59 @@ T powerMod(T a, T n, T m)
         return static_cast<T>((a * t) % m);
     }
 }
+
+template<typename T>
+class HeadsAlgorithm
+{
+    public:
+    HeadsAlgorithm(T m)
+    {
+        if constexpr (std::is_unsigned<T>::value) {
+            throw std::logic_error("Head's algorithm requires signed integers");
+        }
+        _m = m;
+        _T = (long)std::floor(std::sqrt(m) + 0.5);
+        _t = _T * _T - m;
+    }
+
+    T multiplyModM(T x, T y)
+    {
+        T a = x / _T;
+        T b = x - a * _T;
+        T c = y / _T;
+        T d = y - c * _T;
+        T z = (a * d + b * c) % _m;
+        T e = (a * c) / _T;
+        T f = a * c - e * _T;
+        T v = (z + e * _t) % _m;
+        T g = v / _T;
+        T h = v - g * _T;
+        T j = (f + g) * _t % _m;
+        T k = (j + b * d) % _m;
+        return (h * _T + k) % _m;
+    }
+
+    private:
+       T _m;
+       T _T;
+       T _t;
+};
+
+template<typename T>
+T powerMod(T a, T n, HeadsAlgorithm<T> *ha)
+{
+    if (n == 0) {
+        return 1;
+    } else if (n % 2 == 0) {
+        long t = powerMod(a, n/2, ha);
+        return ha->multiplyModM(t, t);
+    } else {
+        long t = powerMod(a, n-1, ha);
+        return ha->multiplyModM(a, t);
+    }
+}
+
+long long powerMod(long long a, long long n, long long m);
 
 
 // From Project Euler Problem 188

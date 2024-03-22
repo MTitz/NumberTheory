@@ -46,6 +46,18 @@ const bool q65[] = {
     true };
 
 
+long long powerMod(long long a, long long n, long long m)
+{
+    if (n == 0) {
+        return 1;
+    } else {
+        HeadsAlgorithm<long long> *ha = new HeadsAlgorithm<long long>(m);
+        auto result = powerMod<long long>(a, n, ha);
+        delete ha;
+        return result;
+    }
+}
+
 unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m)
 {
     return k == 1

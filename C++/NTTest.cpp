@@ -174,6 +174,11 @@ static void isPowerOfTestcases()
     cout << "Is   0 a power of  3: " << isPowerOf(  0,  3) << endl;
 }
 
+static void powerModFermatTest(long long p)
+{
+    cout << "powerMod(2, " << (p-1) << ", " << p << ") = " << powerMod(2LL, p-1, p) << endl;
+}
+
 static void powerModTestcases()
 {
     cout << "powerMod(2,   10, 10000000) = " << powerMod(2ULL,   10ULL, 1000000ULL) << endl;
@@ -197,6 +202,15 @@ static void powerModTestcases()
     cout << "powerMod(2, 850, 851) = " << powerMod(2, 850, 851) << endl;
     // [Nathanson], chapter 2.6, example on page 75
     cout << "powerMod(7, 340, 341) = " << powerMod(7, 340, 341) << endl;
+
+    // [Giblin], chapter 4.3
+    powerModFermatTest(1000000007LL);
+    powerModFermatTest(10000000019LL);
+    powerModFermatTest(100000000003LL);
+    powerModFermatTest(1000000000039LL);
+    powerModFermatTest(10000000000037LL);
+    powerModFermatTest(100000000000031LL);
+    powerModFermatTest(1000000000000037LL);
 }
 
 static void hyperExpModTestcases()

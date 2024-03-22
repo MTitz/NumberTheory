@@ -190,6 +190,11 @@ public class NTTest
         }
     }
 
+    private static void powerModFermatTest(long p)
+    {
+        System.out.println("powerMod(2, " + (p-1) + ", " + p + ") = " + NumberTheory.powerMod(2L, p-1, p));
+    }
+
     private static void powerModTestcases()
     {
         System.out.println("powerMod(2,   10, 10000000) = " + NumberTheory.powerMod(2,   10, 1000000));
@@ -209,6 +214,15 @@ public class NTTest
         System.out.println("powerMod(2, 850, 851) = " + NumberTheory.powerMod(2, 850, 851));
         // [Nathanson], chapter 2.6, example on page 75
         System.out.println("powerMod(7, 340, 341) = " + NumberTheory.powerMod(7, 340, 341));
+
+        // [Giblin], chapter 4.3
+        powerModFermatTest(1000000007L);
+        powerModFermatTest(10000000019L);
+        powerModFermatTest(100000000003L);
+        powerModFermatTest(1000000000039L);
+        powerModFermatTest(10000000000037L);
+        powerModFermatTest(100000000000031L);
+        powerModFermatTest(1000000000000037L);
     }
 
     private static void hyperExpModTestcases()

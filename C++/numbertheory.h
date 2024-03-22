@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <functional> // multiplies
 #include <iostream>
+#include <limits>
 #include <numeric> // accumulate
 #include <sstream>
 #include <stdexcept>
@@ -95,6 +96,8 @@ T powerMod(T a, T n, T m)
     }
 }
 
+// Head's algorithm for integer multiplication modulo m, see section 4.3 in
+// Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 template<typename T>
 class HeadsAlgorithm
 {
@@ -103,6 +106,9 @@ class HeadsAlgorithm
     {
         if constexpr (std::is_unsigned<T>::value) {
             throw std::logic_error("Head's algorithm requires signed integers");
+        }
+        if (std::abs(m) >= std::numeric_limits<T>::max()) {
+            throw std::invalid_argument("m too large for Head's algorithm");
         }
         _m = m;
         _T = (long)std::floor(std::sqrt(m) + 0.5);

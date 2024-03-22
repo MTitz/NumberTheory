@@ -107,7 +107,7 @@ class HeadsAlgorithm
         if constexpr (std::is_unsigned<T>::value) {
             throw std::logic_error("Head's algorithm requires signed integers");
         }
-        if (std::abs(m) >= std::numeric_limits<T>::max()) {
+        if (std::abs(m) >= std::numeric_limits<T>::max() / 4) {
             throw std::invalid_argument("m too large for Head's algorithm");
         }
         _m = m;

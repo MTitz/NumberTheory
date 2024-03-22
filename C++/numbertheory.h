@@ -101,7 +101,7 @@ T powerMod(T a, T n, T m)
 template<typename T>
 class HeadsAlgorithm
 {
-    public:
+  public:
     HeadsAlgorithm(T m)
     {
         if constexpr (std::is_unsigned<T>::value) {
@@ -125,17 +125,19 @@ class HeadsAlgorithm
         T e = (a * c) / _T;
         T f = a * c - e * _T;
         T v = (z + e * _t) % _m;
+        if (v < 0) v += _m;
         T g = v / _T;
         T h = v - g * _T;
         T j = (f + g) * _t % _m;
+        if (j < 0) j += _m;
         T k = (j + b * d) % _m;
         return (h * _T + k) % _m;
     }
 
-    private:
-       T _m;
-       T _T;
-       T _t;
+  private:
+    T _m;
+    T _T;
+    T _t;
 };
 
 template<typename T>

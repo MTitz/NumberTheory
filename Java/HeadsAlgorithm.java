@@ -23,9 +23,11 @@ public class HeadsAlgorithm {
         long e = (a * c) / T;
         long f = a * c - e * T;
         long v = (z + e * t) % m;
+        if (v < 0) v += m;
         long g = v / T;
         long h = v - g * T;
-        long j = (f + g) * t % m;
+        long j = ((f + g) * t) % m;
+        if (j < 0) j += m;
         long k = (j + b * d) % m;
         return (h * T + k) % m;
     }

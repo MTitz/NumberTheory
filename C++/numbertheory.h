@@ -146,10 +146,10 @@ T powerMod(T a, T n, HeadsAlgorithm<T> *ha)
     if (n == 0) {
         return 1;
     } else if (n % 2 == 0) {
-        long t = powerMod(a, n/2, ha);
+        T t = powerMod(a, n/2, ha);
         return ha->multiplyModM(t, t);
     } else {
-        long t = powerMod(a, n-1, ha);
+        T t = powerMod(a, n-1, ha);
         return ha->multiplyModM(a, t);
     }
 }

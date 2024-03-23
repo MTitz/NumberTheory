@@ -102,7 +102,7 @@ template<typename T>
 class HeadsAlgorithm
 {
   public:
-    HeadsAlgorithm(T m)
+    explicit HeadsAlgorithm(T m)
     {
         if constexpr (std::is_unsigned<T>::value) {
             throw std::logic_error("Head's algorithm requires signed integers");
@@ -118,7 +118,7 @@ class HeadsAlgorithm
         _t = _T * _T - m;
     }
 
-    T multiplyModM(T x, T y)
+    T multiplyModM(T x, T y) const
     {
         T a = x / _T;
         T b = x - a * _T;

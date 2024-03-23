@@ -6,7 +6,9 @@ import static java.lang.Math.*;
 public class HeadsAlgorithm {
     public HeadsAlgorithm(long m)
     {
-        if (abs(m) >= Long.MAX_VALUE / 4)
+        if (m <= 0)
+            throw new IllegalArgumentException("m must be positive for Head's algorithm");
+        if (m >= Long.MAX_VALUE / 4)
             throw new IllegalArgumentException("m too large for Head's algorithm");
         this.m = m;
         this.T = (long)floor(sqrt(m) + 0.5);

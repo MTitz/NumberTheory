@@ -201,6 +201,10 @@ public class NTTest
         System.out.println("powerMod(2,  100, 10000000) = " + NumberTheory.powerMod(2,  100, 1000000));
         System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2, 1000, 1000000));
         System.out.println();
+        System.out.println("powerMod(2,   10, 10000000) = " + NumberTheory.powerMod(2L,   10L, 1000000L));
+        System.out.println("powerMod(2,  100, 10000000) = " + NumberTheory.powerMod(2L,  100L, 1000000L));
+        System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2L, 1000L, 1000000L));
+        System.out.println();
 
         // [Giblin], chapter 4.2
         System.out.println("powerMod(7, 50, 11) = " + NumberTheory.powerMod(7, 50, 11));

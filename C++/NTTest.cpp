@@ -215,9 +215,10 @@ static void powerModTestcases()
 
 static void hyperExpModTestcases()
 {
-    cout << "hyperExpMod(3, 2, 10^8) = " << hyperExpMod(3, 2, 100000000) << endl;
-    cout << "hyperExpMod(9, 3, 10^8) = " << hyperExpMod(9, 3, 100000000) << endl;
-    cout << "hyperExpMod(1777, 1855, 10^8) = " << hyperExpMod(1777, 1855, 100000000) << endl;
+    cout << "hyperExpMod(3, 2, 10^8) = " << hyperExpMod(3UL, 2UL, 100000000UL) << endl;
+    cout << "hyperExpMod(9, 3, 10^8) = " << hyperExpMod(9UL, 3UL, 100000000UL) << endl;
+    cout << "hyperExpMod(1777, 1855, 10^8)  = " << setw(16) << hyperExpMod(1777UL, 1855UL, 100000000UL) << endl;
+    cout << "hyperExpMod(1777, 1855, 10^16) = " << setw(16) << hyperExpMod(1777LL, 1855LL, 10000000000000000LL) << endl;
 }
 
 template<typename T> void primeInFactorialTest(const T& n, const T& p)

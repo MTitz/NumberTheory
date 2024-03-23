@@ -167,6 +167,21 @@ public class NumberTheory
         }
     }
 
+    private static final long hyperExpMod(long a, long k, HeadsAlgorithm ha)
+    {
+        if (k == 1) {
+            return powerMod(a, 1, ha);
+        } else {
+           return powerMod(a, hyperExpMod(a, k-1, ha), ha);
+        }
+    }
+
+    public static final long hyperExpMod(long a, long k, long m)
+    {
+        HeadsAlgorithm ha = new HeadsAlgorithm(m);
+        return hyperExpMod(a, k, ha);
+    }
+
     public static final int primefactorInFactorial(final int number, final int p)
     {
         if (number < 0)

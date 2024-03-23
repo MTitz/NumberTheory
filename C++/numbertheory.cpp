@@ -65,4 +65,19 @@ unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m)
         : powerMod<unsigned long, unsigned long long>(a, hyperExpMod(a, k-1, m), m);
 }
 
+static long long hyperExpMod(long long a, long long k, HeadsAlgorithm<long long> *ha)
+{
+    return k == 1
+        ? powerMod<long long>(a, 1, ha)
+        : powerMod<long long>(a, hyperExpMod(a, k-1, ha), ha);
+}
+
+long long hyperExpMod(long long a, long long k, long long m)
+{
+    HeadsAlgorithm<long long> *ha = new HeadsAlgorithm<long long>(m);
+    auto result = hyperExpMod(a, k, ha);
+    delete ha;
+    return result;
+}
+
 } /* end of namespace math */

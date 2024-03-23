@@ -164,6 +164,7 @@ long long powerMod(long long a, long long n, long long m);
 //    The hyperexponentiation of a number
 //    https://projecteuler.net/problem=188
 unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m);
+long long hyperExpMod(long long a, long long k, long long m);
 
 
 template<typename T>

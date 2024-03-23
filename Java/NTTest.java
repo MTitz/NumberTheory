@@ -233,7 +233,8 @@ public class NTTest
     {
         System.out.println("hyperExpMod(3, 2, 10^8) = " + NumberTheory.hyperExpMod(3, 2, 100000000));
         System.out.println("hyperExpMod(9, 3, 10^8) = " + NumberTheory.hyperExpMod(9, 3, 100000000));
-        System.out.println("hyperExpMod(1777, 1855, 10^8) = " + NumberTheory.hyperExpMod(1777, 1855, 100000000));
+        System.out.printf("hyperExpMod(1777, 1855, 10^8)  = %16d%n", NumberTheory.hyperExpMod(1777, 1855, 100000000));
+        System.out.printf("hyperExpMod(1777, 1855, 10^16) = %16d%n", NumberTheory.hyperExpMod(1777L, 1855L, 10000000000000000L));
     }
 
     private static void primeInFactorialTest(int n, int p)

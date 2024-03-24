@@ -539,8 +539,7 @@ void divide(int base, int a_high, int a[], int b)
 {
     int hi = 0;
     for (int i = a_high; i >= 0; --i) {
-        int tmp = hi * base + a[i];
-        div_t q = div(tmp, b);
+        div_t q = div(hi * base + a[i], b);
         a[i] = q.quot;
         hi = q.rem;
     }
@@ -564,9 +563,7 @@ void print_least_solution(int base, int d0)
         --a_high;
     printf("digit %d: ", d0);
     for (int i = a_high; i >= 0; --i) {
-        printf(i == a_high ? "%d" :"%03d", a[i]);
-        if (i > 0)
-            putchar(',');
+        printf(i == a_high ? "%d" :",%03d", a[i]);
     }
     printf("\n");
 }

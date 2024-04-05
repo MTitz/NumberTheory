@@ -52,8 +52,8 @@ int sum_of_digits(T n, int base = 10)
 {
     int sum = 0;
     while (n != 0) {
-        sum += (int)(n % base);
-        n /= base;
+        sum += (int)(n % (T)base);
+        n /= (T)base;
     }
     return sum;
 }
@@ -1077,7 +1077,7 @@ T omega(const PrimeFactors<T>& primefactors)
 template<typename T>
 T factorCount(const PrimeFactors<T>& primefactors)
 {
-    return additiveFunction<T>([](T base, unsigned int exponent) -> T { return exponent; }, primefactors);
+    return additiveFunction<T>([](T base, unsigned int exponent) -> T { return static_cast<T>(exponent); }, primefactors);
 }
 
 template<typename T>

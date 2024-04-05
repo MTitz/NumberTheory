@@ -39,12 +39,12 @@ bigunsigned::bigunsigned(bigunsigned::digit_t n)
 
 std::string bigunsigned::toString() const {
     std::stringstream ss;
-    const auto n = digit.size();
+    const std::size_t n = digit.size();
     if (n == 0) {
         ss << 0;
     } else {
         ss << digit[n-1] << std::setfill('0');
-        for (long long i = n-2; i >= 0; --i) {
+        for (std::size_t i = n-2; i != (size_t)-1; --i) {
             ss << std::setw(blocksize) << digit[i];
         }
     }

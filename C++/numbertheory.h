@@ -13,6 +13,7 @@
 #include <algorithm> // sort
 #include <array>
 #include <cmath>
+#include <cstdint> // int32_t, int64_t, uint32_t, uint64_t
 #include <cstdlib>
 #include <functional> // multiplies
 #include <iostream>
@@ -95,6 +96,20 @@ T powerMod(T a, T n, T m)
         return static_cast<T>((a * t) % m);
     }
 }
+
+#if defined (INT32_MIN) && defined (INT64_MIN)
+inline std::int32_t powerMod(std::int32_t a, std::int32_t n, std::int32_t m)
+{
+    return powerMod<std::int32_t, std::int64_t>(a, n, m);
+}
+#endif
+
+#if defined (UINT32_MIN) && defined (UINT64_MIN)
+inline std::uint32_t powerMod(std::uint32_t a, std::uint32_t n, std::uint32_t m)
+{
+    return powerMod<std::uint32_t, std::uint64_t>(a, n, m);
+}
+#endif
 
 // Head's algorithm for integer multiplication modulo m, see section 4.3 in
 // Peter Giblin, "Primes and Programming", Cambridge University Press, 1993

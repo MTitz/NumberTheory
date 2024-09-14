@@ -126,13 +126,14 @@ In many cases the Java program solves a slightly more general problem, either by
 
 \subsection{Quickie 16}
 From the book \cite{Clessa}: Here's a simple multiplication problem in which each letter represents a different digit. Can you solve it?
-\begin{verbatim}
-    IFx
-    AT
-  -----
-  FIAT
-  -----
-\end{verbatim}
+
+{ \setlength{\tabcolsep}{0cm}
+\begin{tabular}{rl}
+    IF&$\times$\\
+    AT&\\ \cline{1-1}
+  FIAT&\\ \cline{1-1}
+\end{tabular} }
+\vspace{0.3cm}
 
 The book gives only one solution, but as also 0 is a digit, I found three:
 \begin{eqnarray*}
@@ -307,7 +308,7 @@ A positive integer $N$ can be represented in a number system with base $B \ge 2$
 N = \sum_{i=0}^{n-1}d_i B^i
 \end{equation}
 
-Let $d_0 \in \left\{2, 3, \cdots, B-1\right\}$. The case of $d_0 = 1$ is trivial, already $N=1$ would be a solution.
+Let $d_0 \in \left\{2, 3, \cdots, B-1\right\}$. The case of $d_0 = 1$ is trivial, already $N=1$ would be a solution (here $d_0$ is the same as $a$ above in formulation of the problem).
 
 Taking away the last digit $d_0$ of the number $N$ can be expressed as first subtracting $d_0$ from $N$ and as then the number ends with a $0$ in base $B$, dividing by the base. Adding the digit $d_0$ then in front is just adding $d_0 B^{n-1}$ to the remaining number. As by condition of the puzzle this has to be equal $d_0$ times the original number $N$, the following equations results
 \begin{equation}
@@ -767,7 +768,7 @@ Record table for 10 digits, range from 1000000000 to 9999999999
  9   6      53937         2909199969
 \end{verbatim}
 
-The first column gives the digit that is looked for, the second column how often it occurs in the number, the third the number to be squared to get the number in the fourth column.
+The first column gives the digit that is looked for, the second column how often it occurs in the number in the fourth column, the third the number to be squared to get the number in the fourth column.
 
 
 

@@ -1,12 +1,39 @@
+// Literature
+//  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
+//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", 2nd edition, MIT-Press, 1996
+//  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
+//  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
+//  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
+//  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Rosen] Kenneth H. Rosen (editor-in-chief), "Handbook of discrete and combinatorial mathematics", CRC Press, 2000
+//  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
+//  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
+
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.function.ToLongBiFunction;
 
 
 public class NumberTheory
 {
+    private static Random randomSource;
+    static {
+        randomSource = new Random();
+    }
+
+    public BigInteger randomBigInteger(BigInteger upperLimit)
+    {
+        BigInteger randomNumber;
+        do {
+            randomNumber = new BigInteger(upperLimit.bitLength(), randomSource);
+        } while (randomNumber.compareTo(upperLimit) >= 0);
+        return randomNumber;
+    }
+
     public static final int bitlength(int n)
     {
         if (n < 0) n = -n;
@@ -479,6 +506,36 @@ public class NumberTheory
             a = b % r;
             b = r;
         }
+    }
+
+    // see [BachShallit], pages 896-901.
+    public static final long pollardRho(long n, long maxIterations)
+    {
+        HeadsAlgorithm ha = new HeadsAlgorithm(n);
+        long x = randomSource.nextLong() % n;
+        if (x < 0) x += n;
+        long y = x;
+        long k = 2;
+        for (long i = 1; i <= maxIterations;) {
+            ++i;
+            x = powerMod(x, x, ha);
+            --x;
+            if (x < 0) ++n;
+            long d = gcd(y - x, n);
+            if (d != 1 && d != n)
+                return d;  // found nontrivial divisor
+            if (i == k) {
+                y = x;
+                k += k;
+            }
+        }
+        return -maxIterations;  // no divisor found
+    }
+
+    public static final long pollardRho(long n)
+    {
+        final long MAX_POLLARD_RHO_ITERATIONS = 32000;
+        return pollardRho(n, MAX_POLLARD_RHO_ITERATIONS);
     }
 
     public static long[] divisors(PrimeFactors primefactors)

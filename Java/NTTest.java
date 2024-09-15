@@ -1,6 +1,6 @@
 // Literature
 //  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
-//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", MIT-Press, 1996
+//  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", 2nd edition, MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
@@ -733,6 +733,48 @@ public class NTTest
         System.out.println("Is a prime " + n + ": " + NumberTheory.isPrime(n));
     }
 
+    private static void pollardRhoTest(long n, long maxIterations)
+    {
+        long d = NumberTheory.pollardRho(n, maxIterations);
+        if (d <= 0) {
+            System.out.printf("%20d: No factor found after %d iterations%n", n, maxIterations);
+        } else {
+            System.out.printf("%20d: factor %d found%n", n, d);
+        }
+    }
+
+    private static void pollardRhoTest(long n)
+    {
+        long d = NumberTheory.pollardRho(n);
+        if (d < 0) {
+            System.out.printf("%20d: No factor found after %d iterations%n", n, -d);
+        } else {
+            System.out.printf("%20d: factor %d found%n", n, d);
+        }
+    }
+
+    private static void pollardRhoTestcases()
+    {
+        System.out.println("Testing Pollard Rho method:");
+        pollardRhoTest(   1,   100);
+        pollardRhoTest( 997,   100);
+        pollardRhoTest(1387, 40000);
+        pollardRhoTest( 403, 40000);
+        pollardRhoTest(1000, 40000);
+        pollardRhoTest(4294967297L);
+
+        // Example from W. S. Jevons, 1874 cited in [BachShallit]:
+        pollardRhoTest(8616460799L, 1000000L);
+
+        // Project Euler, Problem 3
+        pollardRhoTest(600851475143L);
+
+        // Compare [Scheid] page 28, challenge from a letter by Mersenne to Fermat
+        pollardRhoTest(100895598169L, 1000000L);
+
+        pollardRhoTest(195545750400L);
+    }
+
     private static void factorTest(long n)
     {
         PrimeFactors primeFactors = new PrimeFactors(n);
@@ -1084,6 +1126,9 @@ public class NTTest
 
         System.out.println();
         jacobiSymbolTestcases();
+
+        System.out.println();
+        pollardRhoTestcases();
 
         System.out.println();
         factorTestcases();

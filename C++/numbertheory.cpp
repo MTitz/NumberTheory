@@ -58,6 +58,14 @@ long long powerMod(long long a, long long n, long long m)
     }
 }
 
+unsigned long long powerMod(unsigned long long a, unsigned long long n, unsigned long long m)
+{
+    constexpr unsigned long long limit = std::numeric_limits<long long>::max() / 4;
+    if (a > limit || n > limit || m > limit)
+        throw std::invalid_argument("argument too large for powerMod using Head's algorithm");
+    return static_cast<unsigned long long>(powerMod(static_cast<long long>(a), static_cast<long long>(n), static_cast<long long>(m)));
+}
+
 unsigned long hyperExpMod(unsigned long a, unsigned long k, unsigned long m)
 {
     return k == 1

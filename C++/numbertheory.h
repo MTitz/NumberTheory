@@ -173,6 +173,7 @@ T powerMod(T a, T n, HeadsAlgorithm<T> *ha)
 }
 
 long long powerMod(long long a, long long n, long long m);
+unsigned long long powerMod(unsigned long long a, unsigned long long n, unsigned long long m);
 
 
 // From Project Euler Problem 188

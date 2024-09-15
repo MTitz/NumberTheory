@@ -25,7 +25,7 @@ public class NumberTheory
         randomSource = new Random();
     }
 
-    public BigInteger randomBigInteger(BigInteger upperLimit)
+    public static final BigInteger randomBigInteger(BigInteger upperLimit)
     {
         BigInteger randomNumber;
         do {
@@ -520,7 +520,6 @@ public class NumberTheory
             ++i;
             x = powerMod(x, x, ha);
             --x;
-            if (x < 0) ++n;
             long d = gcd(y - x, n);
             if (d != 1 && d != n)
                 return d;  // found nontrivial divisor
@@ -533,6 +532,33 @@ public class NumberTheory
     }
 
     public static final long pollardRho(long n)
+    {
+        final long MAX_POLLARD_RHO_ITERATIONS = 32000;
+        return pollardRho(n, MAX_POLLARD_RHO_ITERATIONS);
+    }
+
+    // see [BachShallit], pages 896-901.
+    public static final BigInteger pollardRho(BigInteger n, long maxIterations)
+    {
+        BigInteger x = randomBigInteger(n);
+        BigInteger y = x;
+        long k = 2;
+        for (long i = 1; i <= maxIterations;) {
+            ++i;
+            x = x.modPow(x, n);
+            x = x.subtract(BigInteger.ONE);
+            BigInteger d = n.gcd(y.subtract(x));
+            if (d.compareTo(BigInteger.ONE) != 0 && d.compareTo(n) != 0)
+                return d;  // found nontrivial divisor
+            if (i == k) {
+                y = x;
+                k += k;
+            }
+        }
+        return BigInteger.valueOf(-maxIterations);  // no divisor found
+    }
+
+    public static final BigInteger pollardRho(BigInteger n)
     {
         final long MAX_POLLARD_RHO_ITERATIONS = 32000;
         return pollardRho(n, MAX_POLLARD_RHO_ITERATIONS);

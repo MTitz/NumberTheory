@@ -10,6 +10,7 @@
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
 
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -754,14 +755,30 @@ public class NTTest
         }
     }
 
+    private static void pollardRhoTest(BigInteger n, long maxIterations)
+    {
+        BigInteger d = NumberTheory.pollardRho(n, maxIterations);
+        if (d.signum() < 0) {
+            System.out.printf("%20d: No factor found after %d iterations%n", n, d.negate());
+        } else {
+            System.out.printf("%20d: factor %d found%n", n, d);
+        }
+    }
+
+    private static void pollardRhoTest(BigInteger n)
+    {
+        final long MAX_POLLARD_RHO_ITERATIONS = 32000;
+        pollardRhoTest(n, MAX_POLLARD_RHO_ITERATIONS);
+    }
+
     private static void pollardRhoTestcases()
     {
         System.out.println("Testing Pollard Rho method:");
         pollardRhoTest(   1,   100);
         pollardRhoTest( 997,   100);
         pollardRhoTest( 403, 40000);
-        pollardRhoTest(1387, 40000);
         pollardRhoTest(1000, 40000);
+        pollardRhoTest(1387, 40000);
         pollardRhoTest(4294967297L);
 
         // Example from W. S. Jevons, 1874 cited in [BachShallit]:
@@ -777,6 +794,17 @@ public class NTTest
         pollardRhoTest(100895598169L, 1000000L);
 
         pollardRhoTest(195545750400L);
+
+        System.out.println();
+        System.out.println("Testing Pollard Rho BigInteger method:");
+        pollardRhoTest(BigInteger.valueOf(   1),   100);
+        pollardRhoTest(BigInteger.valueOf( 997),   100);
+        pollardRhoTest(BigInteger.valueOf( 403), 40000);
+        pollardRhoTest(BigInteger.valueOf(1000), 40000);
+        pollardRhoTest(BigInteger.valueOf(1387), 40000);
+        pollardRhoTest(BigInteger.valueOf(4294967297L));
+        pollardRhoTest(BigInteger.valueOf(10030423103L));
+        pollardRhoTest(BigInteger.valueOf(195545750400L));
     }
 
     private static void factorTest(long n)

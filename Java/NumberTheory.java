@@ -20,7 +20,7 @@ import java.util.function.ToLongBiFunction;
 
 public class NumberTheory
 {
-    private static Random randomSource;
+    protected static Random randomSource;
     static {
         randomSource = new Random();
     }

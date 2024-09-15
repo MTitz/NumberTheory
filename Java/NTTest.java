@@ -12,6 +12,7 @@
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 public class NTTest
@@ -758,13 +759,16 @@ public class NTTest
         System.out.println("Testing Pollard Rho method:");
         pollardRhoTest(   1,   100);
         pollardRhoTest( 997,   100);
-        pollardRhoTest(1387, 40000);
         pollardRhoTest( 403, 40000);
+        pollardRhoTest(1387, 40000);
         pollardRhoTest(1000, 40000);
         pollardRhoTest(4294967297L);
 
         // Example from W. S. Jevons, 1874 cited in [BachShallit]:
         pollardRhoTest(8616460799L, 1000000L);
+
+        // Product of two twin primes
+        pollardRhoTest(10030423103L);
 
         // Project Euler, Problem 3
         pollardRhoTest(600851475143L);
@@ -1074,6 +1078,8 @@ public class NTTest
 
     public static void main(String[] args)
     {
+        NumberTheory.randomSource = new Random(27);
+
         bitlengthTestcases();
 
         System.out.println();

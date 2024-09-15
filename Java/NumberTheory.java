@@ -518,8 +518,7 @@ public class NumberTheory
         long k = 2;
         for (long i = 1; i <= maxIterations;) {
             ++i;
-            x = powerMod(x, x, ha);
-            --x;
+            x = powerMod(x, 2, ha) - 1;
             long d = gcd(y - x, n);
             if (d != 1 && d != n)
                 return d;  // found nontrivial divisor
@@ -545,8 +544,7 @@ public class NumberTheory
         long k = 2;
         for (long i = 1; i <= maxIterations;) {
             ++i;
-            x = x.modPow(x, n);
-            x = x.subtract(BigInteger.ONE);
+            x = x.multiply(x).subtract(BigInteger.ONE).mod(n);
             BigInteger d = n.gcd(y.subtract(x));
             if (d.compareTo(BigInteger.ONE) != 0 && d.compareTo(n) != 0)
                 return d;  // found nontrivial divisor

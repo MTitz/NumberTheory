@@ -739,9 +739,9 @@ public class NTTest
     {
         long d = NumberTheory.pollardRho(n, maxIterations);
         if (d <= 0) {
-            System.out.printf("%20d: No factor found after %d iterations%n", n, maxIterations);
+            System.out.printf("%24d: No factor found after %d iterations%n", n, maxIterations);
         } else {
-            System.out.printf("%20d: factor %d found%n", n, d);
+            System.out.printf("%24d: factor %d found%n", n, d);
         }
     }
 
@@ -749,9 +749,9 @@ public class NTTest
     {
         long d = NumberTheory.pollardRho(n);
         if (d < 0) {
-            System.out.printf("%20d: No factor found after %d iterations%n", n, -d);
+            System.out.printf("%24d: No factor found after %d iterations%n", n, -d);
         } else {
-            System.out.printf("%20d: factor %d found%n", n, d);
+            System.out.printf("%24d: factor %d found%n", n, d);
         }
     }
 
@@ -759,9 +759,9 @@ public class NTTest
     {
         BigInteger d = NumberTheory.pollardRho(n, maxIterations);
         if (d.signum() < 0) {
-            System.out.printf("%20d: No factor found after %d iterations%n", n, d.negate());
+            System.out.printf("%24d: No factor found after %d iterations%n", n, d.negate());
         } else {
-            System.out.printf("%20d: factor %d found%n", n, d);
+            System.out.printf("%24d: factor %d found%n", n, d);
         }
     }
 
@@ -803,8 +803,10 @@ public class NTTest
         pollardRhoTest(BigInteger.valueOf(1000), 40000);
         pollardRhoTest(BigInteger.valueOf(1387), 40000);
         pollardRhoTest(BigInteger.valueOf(4294967297L));
+        pollardRhoTest(BigInteger.valueOf(8616460799L));
         pollardRhoTest(BigInteger.valueOf(10030423103L));
         pollardRhoTest(BigInteger.valueOf(195545750400L));
+        pollardRhoTest(NumberTheory.power(BigInteger.TWO, 67).subtract(BigInteger.ONE), 100000000L);
     }
 
     private static void factorTest(long n)

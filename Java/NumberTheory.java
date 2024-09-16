@@ -518,7 +518,8 @@ public class NumberTheory
         long k = 2;
         for (long i = 1; i <= maxIterations;) {
             ++i;
-            x = powerMod(x, 2, ha) - 1;
+            x = ha.multiplyModM(x, x) - 1;
+            if (x < 0) x += n;
             long d = gcd(y - x, n);
             if (d != 1 && d != n)
                 return d;  // found nontrivial divisor

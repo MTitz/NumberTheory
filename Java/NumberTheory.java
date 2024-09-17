@@ -2,6 +2,7 @@
 //  [Andrews] George E. Andrews, "Number Theory", Dover, 1994
 //  [BachShallit] Bach, Shallit, "Algorithmic Number Theory", 2nd edition, MIT-Press, 1996
 //  [Clessa] J. J. Clessa, "Math and Logic Puzzles for PC Enthusiasts", Dover, 1996
+//  [Cohen] Henri Cohen, "A Course in Computational Algebraic Number Theory", Springer, 1996
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
@@ -13,8 +14,10 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.ToLongBiFunction;
 
 
@@ -102,6 +105,11 @@ public class NumberTheory
         return (n & 1) == 0;
     }
 
+    public static final boolean even(BigInteger n)
+    {
+        return !n.testBit(0);
+    }
+
     public static final boolean odd(int n)
     {
         return (n & 1) == 1;
@@ -110,6 +118,11 @@ public class NumberTheory
     public static final boolean odd(long n)
     {
         return (n & 1) == 1;
+    }
+
+    public static final boolean odd(BigInteger n)
+    {
+        return n.testBit(0);
     }
 
     public static final int power(int base, int exponent)
@@ -506,6 +519,40 @@ public class NumberTheory
             a = b % r;
             b = r;
         }
+    }
+
+    // see [Cohen], page 422.
+    // Additional check to avoid duplicate random numbers.
+    public static boolean MillerRabin(BigInteger n)
+    {
+        final int MAX_ITERATIONS = 20;
+        final BigInteger Nminus1 = n.subtract(BigInteger.ONE);
+        BigInteger q = Nminus1;
+        long t = 0;
+        while (even(q)) {
+            q = q.shiftRight(1);
+            ++t;
+        }
+        Set<BigInteger> usedRandoms = new HashSet<>();
+        for (int count = 0; count < MAX_ITERATIONS; ++count) {
+            BigInteger a;
+            do {
+                a = randomBigInteger(n);
+            } while (a.compareTo(BigInteger.ONE) <= 0 && !usedRandoms.contains(a));
+            usedRandoms.add(a);
+            BigInteger b = a.modPow(q, n);
+            if (b.compareTo(BigInteger.ONE) == 0)
+                continue;
+            long e = 0;
+            while (e <= t-2 && b.compareTo(BigInteger.ONE) != 0 && b.compareTo(Nminus1) != 0) {
+                b = b.modPow(BigInteger.TWO, n);
+                ++e;
+            }
+            if (b.compareTo(Nminus1) != 0) {
+                return false;  // composite
+            }
+        }
+        return true;  // probably prime
     }
 
     // see [BachShallit], pages 896-901.

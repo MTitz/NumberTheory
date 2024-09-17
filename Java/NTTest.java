@@ -735,6 +735,28 @@ public class NTTest
         System.out.println("Is a prime " + n + ": " + NumberTheory.isPrime(n));
     }
 
+    private static void MillerRabinTest(BigInteger n)
+    {
+        boolean result = NumberTheory.MillerRabin(n);
+        System.out.printf("%24d is %s%n", n, result ? "probably prime" : "composite");
+    }
+
+    private static void MillerRabinTest(long n)
+    {
+        MillerRabinTest(BigInteger.valueOf(n));
+    }
+
+    private static void MillerRabinTestcases()
+    {
+        System.out.println("Testing Miller-Rabin method:");
+        for (long n = 25; n <= 100; n += 2) {
+            MillerRabinTest(n);
+        }
+        MillerRabinTest(NumberTheory.power(BigInteger.TWO, 61).subtract(BigInteger.ONE));
+        MillerRabinTest(NumberTheory.power(BigInteger.TWO, 67).subtract(BigInteger.ONE));
+        MillerRabinTest(NumberTheory.power(BigInteger.TWO, 89).subtract(BigInteger.ONE));
+    }
+
     private static void pollardRhoTest(long n, long maxIterations)
     {
         long d = NumberTheory.pollardRho(n, maxIterations);
@@ -1162,6 +1184,9 @@ public class NTTest
 
         System.out.println();
         jacobiSymbolTestcases();
+
+        System.out.println();
+        MillerRabinTestcases();
 
         System.out.println();
         pollardRhoTestcases();

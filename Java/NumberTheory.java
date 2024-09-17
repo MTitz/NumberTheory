@@ -537,8 +537,8 @@ public class NumberTheory
         for (int count = 0; count < MAX_ITERATIONS; ++count) {
             BigInteger a;
             do {
-                a = randomBigInteger(n);
-            } while (a.compareTo(BigInteger.ONE) <= 0 && !usedRandoms.contains(a));
+                a = randomBigInteger(n.subtract(BigInteger.TWO)).add(BigInteger.TWO);
+            } while (usedRandoms.contains(a));
             usedRandoms.add(a);
             BigInteger b = a.modPow(q, n);
             if (b.compareTo(BigInteger.ONE) == 0)

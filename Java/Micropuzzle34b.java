@@ -11,9 +11,9 @@ public class Micropuzzle34b
         for (int a = 2; a < B; ++a) {
             for (int d0 = 1; d0 < B; ++d0) {
                 int dH0 = (d0 * a) % B;
-                int overflow = (d0 * a) / 10;
+                int carry = (d0 * a) / 10;
                 for (int d1 = 0; d1 < B; ++d1) {
-                    int dH1 = (d1 * a + overflow) % B;
+                    int dH1 = (d1 * a + carry) % B;
                     int dHigh = B * dH0 + dH1;
                     int dLow = B * d0 + d1;
                     String classification = "";

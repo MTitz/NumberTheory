@@ -125,7 +125,7 @@ In many cases the Java program solves a slightly more general problem, either by
 \section{Individual Puzzles}
 
 \subsection{Quickie 16}
-From the book \cite{Clessa}: Here's a simple multiplication problem in which each letter represents a different digit. Can you solve it?
+From the book \cite{Clessa}: ``Here's a simple multiplication problem in which each letter represents a different digit. Can you solve it?''
 
 { \setlength{\tabcolsep}{0cm}
 \begin{tabular}{rl}
@@ -904,7 +904,7 @@ or
 possible.
 In the first case only $208 \cdot 4 = 832$, $218 \cdot 4 = 872$ and $228 \cdot 4 = 912$ has to be calculated, as then the product is already too large. In the second case it is $109 \cdot 9 = 981$ and $119 \cdot 9 = 1071$ is already too large. Therefore there are no solutions for $n=3$.
 
-Now the same idea as in the previous program can be repeated with varying the factor $a$ and the last two digits $d_1$ and $d_0$ instead of only $a$ and $d_0$. This allows to calculate the last two digits of the product and hence the first two digits of the number. Then the same conditions can be checked, this time with the first two digits of the numbers $d$ and $p$. The following Java program performs this task:
+Now the same idea as in the previous program can be repeated with varying the factor $a$ and the last two digits $d_1$ and $d_0$ instead of only $a$ and $d_0$. This allows to calculate the last two digits of the product and hence the first two digits of the number. Then the same conditions can be checked, this time with the first two and the last two digits of the numbers $d$ and $p$. The following Java program performs this task:
 
 { \small
 \begin{verbatim}
@@ -1149,8 +1149,8 @@ A preliminary remark: There is a well-known formula for the sum of the first $n$
 \begin{equation}\label{SumIntegers}
 1 + 2 + 3 + \ldots + (n-1) + n = \frac{n(n+1)}{2}
 \end{equation}
-For example it is in case of $n=6$
-\[ 1 + 2 + 3 + 4 + 5 + 6 = \frac{6\cdot(6+1)}{2} = \frac{42}{2} = 21 \]
+For example it is in case of $n=5$
+\[ 1 + 2 + 3 + 4 + 5 = \frac{5\cdot(5+1)}{2} = \frac{30}{2} = 15 \]
 
 Let us assume that there were altogether $n$ runners in the race and the one mathematical interested runner had himself the number $m$, then $m$ and $n$ are positive integers with $1 \le m \le n$.
 

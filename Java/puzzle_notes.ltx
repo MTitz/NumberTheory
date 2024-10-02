@@ -804,6 +804,274 @@ t\left(x_1,x_2\right) &\approx& 142.0976590441970400672455501877239343250
 
 The shortest time rounded to the nearest second is 2 minutes 22 seconds. The high precision is not needed for the puzzle answer, but could be useful as reference value for checking another implementation of this problem.
 
+
+
+\subsection{Micropuzzle 34 -- An unusual number}
+From the book \cite{Clessa}:
+
+``A fairly straightforward problem, this time. Readily solvable by the chip-based number-cruncher.
+
+I want you to find a six-digit number which, when multiplied by an integer between 2 and 9 inclusive, gives the original six-digit number with its digits reversed.
+
+Thus, if the original number was 123456, and the chosen integer is 8, then $123456\times8$ should equal 654321, which, of course, it doesn't. However, it is possible to find more than one solution to this problem, but I'll accept any one that meets the required condition.''
+
+I found the only two solutions for the original problem with a program as
+\begin{eqnarray*}
+219978 \times 4 &=& 879912 \\
+109989 \times 9 &=& 989901 \\
+\end{eqnarray*}
+
+It is interesting to look at the problem in a more general way by looking for n-digit integers instead of only six-digit numbers. Therefore we search for solutions of
+\begin{equation}\label{puzzle34}
+d \cdot a = p
+\end{equation}
+with $d$ an n-digit integer, $a \in \left\{2,3,4,\ldots,9\right\}$ and $p$ the number $d$ with its digits reversed.
+
+{\em Remark 1:} If $a=1$ it must be $d = p$, therefore exactly all the n-digit palindromic numbers are solutions. This explains why in the puzzle it is $a \ge 2$.
+
+{\em Remark 2:} If $n=1$ and $a\ge2$ it is $d \cdot a > d$, and as $d$ and $p$ just have one digit, there exists no solution of the puzzle.
+
+Therefore we can now always assume $n \ge 2$, so the numbers $d$ and $p$ will have at least two digits.
+
+Let us write the decimal number $d$ in decimal notation with its $n$ digits $d_0, d_1,\ldots,d_{n-1}$ in the form
+\[
+\left(d_{n-1}, d_{n-2},\ldots,d_2,d_1,d_0\right)_{10}
+\]
+where the 10 indicates the base of the decimal system. For example the number $2178$ would be written in this way as $(2,1,7,8)_{10}$ with $d_0=8$, $d_1=7$, $d_2=1$ and $d_3=2$.
+
+It is then
+\[
+d = \sum_{k=0}^{n-1}d_k 10^k,\quad d_{n-1} \neq 0
+\]
+The puzzle equation (\ref{puzzle34}) takes the form
+\begin{equation}\label{puzzle34digits}
+\left(d_{n-1}, d_{n-2},\ldots,d_1,d_0\right)_{10} \cdot a = \left(d_0, d_1,\ldots,d_{n-2},d_{n-1}\right)_{10}
+\end{equation}
+as $p$ is just $d$ with reversed decimal digits.
+
+By performing the multiplication for the last digit it is
+\begin{equation}\label{puzzle34last}
+d_{n-1} = d_0 \cdot a \mod 10
+\end{equation}
+and therefore the first digit of $d$ is determined by its last digit and the factor $a$.
+
+Using (\ref{puzzle34last}) it is possible to get more information by looking at the first digits of $d$ and $p$ in equation (\ref{puzzle34digits}):
+\begin{itemize}
+\item As both $d$ and $p$ must be n-digit numbers it must be $d_{n-1} \neq 0$ therefore some combinations of $d_0$ and $a$ can be excluded, for example $d_0=4$ and $a=5$ with $d_{n-1} = 4 \cdot 5 \mod 10 = 20 \mod 10 = 0$.
+\item If $d_{n-1}\cdot a \ge d_0+1$ the first digit of the product $p$ would become too large, and no equality in (\ref{puzzle34digits}) possible.
+\item If $\left(d_{n-1}+1\right) \cdot a < d_0$ the first digit of the product $p$ would be too small, and no equality in (\ref{puzzle34digits}) possible.
+\end{itemize}
+These conditions can easily be checked by the following Java program for all possible combinations of $a$ and $d_0$. $d_0=0$ is not possible as it is the first digit of the product $p$ and this must have the same number of digits as $d$.
+
+{ \small
+\begin{verbatim}
+public class Micropuzzle34a
+{
+    public static void main(String[] args)
+    {
+        final int B = 10;
+        for (int a = 2; a < B; ++a) {
+            for (int d0 = 1; d0 < B; ++d0) {
+                int dHigh = d0 * a % B;
+                String classification = "";
+                if (dHigh == 0)
+                    classification = "First digit zero";
+                else if (dHigh * a >= d0 + 1)
+                    classification = "Product too large";
+                else if ((dHigh + 1) * a < d0)
+                    classification = "Product too small";
+                System.out.printf("a =%2d, d0 =%2d:  dH =%2d  %s%n", a, d0, dHigh, classification);
+            }
+        }
+    }
+}
+\end{verbatim}
+}
+
+The program excluded all possible combinations with the exception of just three.
+
+The case $a=2$ and $d_0=6$ with $d_{n-1}=2$ cannot happen, as even if all remaining digits of $d$ would be nines, the product of $d \cdot a$ would still be too small.
+The two remaining cases are
+\[ a = 4,\quad d_0 = 8:\qquad  d_{n-1} = 2  \]
+\[ a = 9,\quad d_0 = 9:\qquad  d_{n-1} = 1  \]
+
+As $28 \cdot 4 \ne 82$ and $19 \cdot 9 \ne 91$, we can conclude that there are no solutions for $n = 2$ possible.
+
+For the case of $n=3$, 3-digit numbers it has to be checked if there are solutions of
+\[ (2, d_1, 8)_{10} \cdot 4 = (8, d_1, 2)_{10} \]
+or
+\[ (1, d_1, 9)_{10} \cdot 9 = (9, d_1, 1)_{10} \]
+possible.
+In the first case only $208 \cdot 4 = 832$, $218 \cdot 4 = 872$ and $228 \cdot 4 = 912$ has to be calculated, as then the product is already too large. In the second case it is $109 \cdot 9 = 981$ and $119 \cdot 9 = 1071$ is already too large. Therefore there are no solutions for $n=3$.
+
+Now the same idea as in the previous program can be repeated with varying the factor $a$ and the last two digits $d_1$ and $d_0$ instead of only $a$ and $d_0$. This allows to calculate the last two digits of the product and hence the first two digits of the number. Then the same conditions can be checked, this time with the first two digits of the numbers $d$ and $p$. The following Java program performs this task:
+
+{ \small
+\begin{verbatim}
+public class Micropuzzle34b
+{
+    public static void main(String[] args)
+    {
+        final int B = 10;
+        for (int a = 2; a < B; ++a) {
+            for (int d0 = 1; d0 < B; ++d0) {
+                int dH0   = (d0 * a) % B;
+                int carry = (d0 * a) / B;
+                for (int d1 = 0; d1 < B; ++d1) {
+                    int dH1 = (d1 * a + carry) % B;
+                    int dHigh = B * dH0 + dH1;
+                    int dLow = B * d0 + d1;
+                    String classification = "";
+                    if (dH0 == 0)
+                        classification = "First digit zero";
+                    else if (dHigh * a >= dLow + 1)
+                        classification = "Product too large";
+                    else if ((dHigh + 1) * a < dLow)
+                        classification = "Product too small";
+                    System.out.printf("a = %d, dLow = %02d:  dHigh = %02d  %s%n",
+                            a, dLow, dHigh, classification);
+                }
+            }
+        }
+    }
+}
+\end{verbatim}
+}
+
+The result is that all possible solutions must be within one of the two cases
+\[ a = 4,\quad d = (2,1,\ldots,7,8)_{10} \]
+\[ a = 9,\quad d = (1,0,\ldots,8,9)_{10} \]
+
+The following program searches therefore for solutions only with these two cases varying the remaining $n-4$ digits in the middle of the number $d$ with $n\ge4$ overall decimal digits.
+
+{ \small
+\begin{verbatim}
+public class Micropuzzle34c
+{
+    public static long power(long base, int exponent)
+    {
+        long result = 1;
+        while (exponent > 0) {
+            if ((exponent & 1) != 0)
+                result *= base;
+            exponent >>= 1;
+            base *= base;
+        }
+        return result;
+    }
+
+    public static long number(final int[] digits)
+    {
+        final int base = 10;
+        if (digits == null)
+            return 0;
+        long n = 0;
+        for (int i = digits.length-1; i >= 0; --i) {
+            n *= base;
+            n += digits[i];
+        }
+        return n;
+    }
+
+    public static void search(final int nDigits)
+    {
+        if (nDigits <= 3)
+             return;
+        search(nDigits, 4, 78, 21);
+        search(nDigits, 9, 89, 10);
+    }
+
+    private static void search(final int nDigits, long a, long dLow, long dHigh)
+    {
+        final long nHigh = power(10, nDigits-4);
+        int[] digits = new int[nDigits];
+        for (long dMiddle = 0; dMiddle < nHigh; ++dMiddle) {
+            long d = 100 * (nHigh * dHigh + dMiddle) + dLow;
+            long p = d;
+            for (int i = 0; i < nDigits; ++i) {
+                digits[nDigits-1-i] = (int)(p % 10);
+                p /= 10;
+            }
+            p = number(digits);
+            if (d * a == p) {
+                System.out.println("Solution: " + d + " * " + a + " = " + p);
+            }
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        if (args.length == 0) {
+            search(6);  // the original problem as stated in the book
+        } else {
+            for (int i = 0; i < args.length; ++i) {
+                int nDigits = Integer.parseInt(args[i]);
+                if (nDigits >= 2 && nDigits <= 18) {
+                    search(nDigits);
+                }
+            }
+        }
+    }
+}
+\end{verbatim}
+}
+
+The first ones of these solutions are
+%{ \small
+\begin{eqnarray*}
+2178 \times 4 &=& 8712 \\
+1089 \times 9 &=& 9801 \\
+21978 \times 4 &=& 87912 \\
+10989 \times 9 &=& 98901 \\
+219978 \times 4 &=& 879912 \\
+109989 \times 9 &=& 989901 \\
+2199978 \times 4 &=& 8799912 \\
+1099989 \times 9 &=& 9899901 \\
+21782178 \times 4 &=& 87128712 \\
+21999978 \times 4 &=& 87999912 \\
+10891089 \times 9 &=& 98019801 \\
+10999989 \times 9 &=& 98999901 \\
+217802178 \times 4 &=& 871208712 \\
+219999978 \times 4 &=& 879999912 \\
+108901089 \times 9 &=& 980109801 \\
+109999989 \times 9 &=& 989999901 \\
+%2178002178 \times 4 &=& 8712008712 \\
+%2197821978 \times 4 &=& 8791287912 \\
+%2199999978 \times 4 &=& 8799999912 \\
+%1089001089 \times 9 &=& 9801009801 \\
+%1098910989 \times 9 &=& 9890198901 \\
+%1099999989 \times 9 &=& 9899999901 \\
+%21780002178 \times 4 &=& 87120008712 \\
+%21978021978 \times 4 &=& 87912087912 \\
+%21999999978 \times 4 &=& 87999999912 \\
+%10890001089 \times 9 &=& 98010009801 \\
+%10989010989 \times 9 &=& 98901098901 \\
+%10999999989 \times 9 &=& 98999999901 \\
+%217800002178 \times 4 &=& 871200008712 \\
+%217821782178 \times 4 &=& 871287128712 \\
+%219780021978 \times 4 &=& 879120087912 \\
+%219978219978 \times 4 &=& 879912879912 \\
+%219999999978 \times 4 &=& 879999999912 \\
+%108900001089 \times 9 &=& 980100009801 \\
+%108910891089 \times 9 &=& 980198019801 \\
+%109890010989 \times 9 &=& 989010098901 \\
+%109989109989 \times 9 &=& 989901989901 \\
+%109999999989 \times 9 &=& 989999999901 \\
+%2178000002178 \times 4 &=& 8712000008712 \\
+%2178219782178 \times 4 &=& 8712879128712 \\
+%2197800021978 \times 4 &=& 8791200087912 \\
+%2199780219978 \times 4 &=& 8799120879912 \\
+%2199999999978 \times 4 &=& 8799999999912 \\
+%1089000001089 \times 9 &=& 9801000009801 \\
+%1089109891089 \times 9 &=& 9801989019801 \\
+%1098900010989 \times 9 &=& 9890100098901 \\
+%1099890109989 \times 9 &=& 9899010989901 \\
+%1099999999989 \times 9 &=& 9899999999901 \\
+\end{eqnarray*}
+%}
+
+
+
 \subsection{Micropuzzle 35 -- Tadpoles, terrapins, tortoises, and turtles}
 To only use integers the prices are in pence for the calculation.
 Then using $a$, $b$, $c$ and $d$ for the numbers of each kind these two equations arise:
@@ -869,6 +1137,142 @@ Therefore we have these three solutions of the problem
 
 
 
+\subsection{Micropuzzle 42 -- The numerate marathon runner}
+From the book \cite{Clessa}: ``Runners in a marathon race are assigned consecutive numbers starting at 1.
+
+One of the entrants with a mathematical bent noticed that the sum of the numbers less than his own number was equal to the sum of the numbers greater.
+
+If there were more than 100 runners but less than 1000, what number was he and how many runners were there in the race?''
+
+A preliminary remark: There is a well-known formula for the sum of the first $n$ positive integers
+(see for example \cite{CRCTablesFormulae} on page 21)
+\begin{equation}\label{SumIntegers}
+1 + 2 + 3 + \ldots + (n-1) + n = \frac{n(n+1)}{2}
+\end{equation}
+For example it is in case of $n=6$
+\[ 1 + 2 + 3 + 4 + 5 + 6 = \frac{6\cdot(6+1)}{2} = \frac{42}{2} = 21 \]
+
+Let us assume that there were altogether $n$ runners in the race and the one mathematical interested runner had himself the number $m$, then $m$ and $n$ are positive integers with $1 \le m \le n$.
+
+Then we have
+\begin{itemize}
+ \item runners with numbers $1, 2, 3, \ldots, (m-2), (m-1)$ before our runner
+ \item our mathematical runner itself with number $m$
+ \item runners with numbers $(m+1), (m+2), \ldots, (n-1), n$ after our runner
+\end{itemize}
+
+We get the sum of numbers less than his own number by putting $m-1$ for $n$ into the formula (\ref{SumIntegers}):
+\begin{equation}\label{SumBefore}
+\mbox{sum before} = \frac{(m-1)m}{2}
+\end{equation}
+We get the sum of numbers greater than our runner by subtracting from the total sum of numbers $1, 2, \ldots, n$ the sum of the numbers $1, 2, \ldots, m$ up to and including our runner:
+\begin{equation}\label{SumAfter}
+\mbox{sum after} = \frac{n(n+1)}{2} - \frac{m(m+1)}{2}
+\end{equation}
+As by the problem the sums before (\ref{SumBefore}) and after our runner (\ref{SumAfter}) must be equal, we get the equation
+\[ \frac{(m-1)m}{2} = \frac{n(n+1)}{2} - \frac{m(m+1)}{2} \]
+Multiplying both sides with $2$ gives
+\[ (m-1)m = n(n+1) - m(m+1) \]
+and by now adding $m(m+1)$ to both sides
+\[ (m-1)m + (m+1)m = n(n+1) \]
+simplifies the equation to
+\begin{equation}\label{EqualSums}
+2m^2 = n(n+1)
+\end{equation}
+
+This already allows a solution of the given puzzle by a small program in the spirit of the book.
+We can try out all possible values of $n$, then calculate $n(n+1)/2$, which is always an integer, as either $n$ or $n+1$ must be an even number. This must be equal to a square number, so we calculate the square root and then round its value and check if this potential value of $m$ multiplied itself becomes $n(n+1)/2$.
+
+{ \small
+\begin{verbatim}
+public class Micropuzzle42
+{
+    public static void main(String[] args)
+    {
+        for (long n = 101; n < 1000; ++n) {
+            long potentialSquare = n * (n+1) / 2;
+            long m = Math.round(Math.sqrt(potentialSquare));
+            if (m * m == potentialSquare) {
+                System.out.println("Runner " + m + " out of total " + n + " runners.");
+            }
+        }
+    }
+}
+\end{verbatim}
+}
+
+This gives the solution for the problem with runner 204 out of total 288 runners.
+You can also run the program for all n from for example 1 to 100000 by adjusting the values in the {\it for} statement. But it does not allow a more general statement about any solutions of (\ref{EqualSums}) within the positive integers.
+
+The right side of (\ref{EqualSums}) is $n(n+1) = n^2 + n$. By trying to simplify this you could begin with
+\[ \left(n+\frac{1}{2}\right)^2 = n^2 + n + \frac{1}{4} \]
+and
+\begin{equation}\label{binom2n} \left(2n+1\right)^2 = 4n^2 + 4n + 1 \end{equation}
+Then you can go on multiplying both sides of equation (\ref{EqualSums}) with 4 to obtain
+\[ 8m^2 = 4n(n+1) \]
+and further using (\ref{binom2n})
+\[ 2\cdot(2m)^2 = \left(2n+1\right)^2-1 \]
+and
+\begin{equation}\label{EqualSumsSimplified}
+\left(2n+1\right)^2 - 2\cdot(2m)^2 = 1
+\end{equation}
+
+Setting $x = 2n+1$, $y = 2m$ and $d = 2$ we can see that any solution of the problem must fulfill a Pell's equation $x^2-d y^2=1$ for the integers $x$ and $y$, here in the special case with $d=2$. See for example \cite{Giblin}, section 10.4 or \cite{HardyWright}, section 14.5.
+
+{ \small
+\begin{verbatim}
+public class Micropuzzle42
+{
+    public static double[] solution(int n)
+    {
+        final double sqrt2 = Math.sqrt(2.0);
+        double f1 = 3.0 + 2.0 * sqrt2;
+        double f2 = 3.0 - 2.0 * sqrt2;
+        double p1 = Math.pow(f1, n);
+        double p2 = Math.pow(f2, n);
+        return new double[] { (p1 - p2) / (4.0 * sqrt2), 0.25 * (p1 + p2) - 0.5 };
+    }
+
+    public static void main(String[] args)
+    {
+        for (int c = 1; c <= 16; ++c) {
+            double[] sol = solution(c);
+            System.out.printf("%20.0f %20.0f%n", sol[0], sol[1]);
+        }
+    }
+}
+\end{verbatim}
+}
+
+
+\pagebreak[3]
+\begin{longtable}[t]{|r|r|} \hline
+%\begin{table}[t]
+%\begin{tabular}{|r|r|} \hline
+ $m$ & $n$ \\ \hline
+             1 &                   1 \\
+             6 &                   8 \\
+            35 &                  49 \\
+           204 &                 288 \\
+          1\,189 &                1\,681 \\
+          6\,930 &                9\,800 \\
+         40\,391 &               57\,121 \\
+        235\,416 &              332\,928 \\
+       1\,372\,105 &             1\,940\,449 \\
+       7\,997\,214 &            11\,309\,768 \\
+      46\,611\,179 &            65\,918\,161 \\
+     271\,669\,860 &           384\,199\,200 \\
+    1\,583\,407\,981 &          2\,239\,277\,041 \\
+    9\,228\,778\,026 &         13\,051\,463\,048 \\
+   53\,789\,260\,175 &         76\,069\,501\,249 \\
+  313\,506\,783\,024 &        443\,365\,544\,448 \\ \hline
+%\end{tabular}
+%\end{table}
+\end{longtable}
+
+
+
+\pagebreak[3]
 \subsection{Micropuzzle 45 -- Palindromic cycles}
 The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond this range.
 

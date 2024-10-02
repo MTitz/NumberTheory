@@ -34,11 +34,11 @@ public class Micropuzzle34c
     {
         if (nDigits <= 3)
              return;
-        search(nDigits, 4, 78, 21);
-        search(nDigits, 9, 89, 10);
+        search(nDigits, 4, 21, 78);
+        search(nDigits, 9, 10, 89);
     }
 
-    private static void search(final int nDigits, long a, long dLow, long dHigh)
+    private static void search(final int nDigits, long a, long dHigh, long dLow)
     {
         final long nHigh = power(10, nDigits-4);
         int[] digits = new int[nDigits];

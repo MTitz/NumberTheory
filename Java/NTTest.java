@@ -920,6 +920,7 @@ public class NTTest
         divisorTest(997);
         divisorTest(1024);
         divisorTest(2520);
+        divisorTest(2000000);
         divisorTest(195545750400L);
         divisorTest(-210);
     }

@@ -64,9 +64,9 @@ public final class Complex {
 
     /** Returns a Complex number whose value is <code>(this / c)</code>. */
     public Complex divide(Complex c) {
-        double temp = c.re * c.re + c.im * c.im;
-        return new Complex((re * c.re + im * c.im) / temp,
-                           (c.re * im - re * c.im) / temp);
+        double denominator = c.re * c.re + c.im * c.im;
+        return new Complex((re * c.re + im * c.im) / denominator,
+                           (c.re * im - re * c.im) / denominator);
     }
 
     /** @deprecated */
@@ -131,11 +131,13 @@ public final class Complex {
                            Math.atan2(z.im, z.re));
     }
 
+    /** Returns the value of the first argument raised to the power of the second argument. */
     public static Complex pow(Complex a, double x)
     {
         return Complex.exp(Complex.log(a).multiply(x));
     }
 
+    /** Returns the value of the first argument raised to the power of the second argument. */
     public static Complex pow(Complex a, Complex z)
     {
         return Complex.exp(z.multiply(Complex.log(a)));
@@ -165,7 +167,7 @@ public final class Complex {
                            Math.sinh(z.re) * Math.sin(z.im));
     }
 
-    public boolean equals(Object o) {
+    public @Override boolean equals(Object o) {
         if (o == this)
             return true;
         if (!(o instanceof Complex))
@@ -177,7 +179,7 @@ public final class Complex {
                 Double.doubleToLongBits(c.im));
     }
 
-    public String toString() {
+    public @Override String toString() {
         return "(" + re + " + " + im + "i)";
     }
 }

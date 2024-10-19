@@ -1,7 +1,4 @@
 public final class Complex {
-    private final double re;
-    private final double im;
-
     /** The Complex constant zero. */
     public static final Complex ZERO = new Complex(0.0, 0.0);
     /** The Complex constant one. */
@@ -184,4 +181,7 @@ public final class Complex {
             ? "(" + re + " + " + im + "i)"
             : "(" + re + " - " + (-im) + "i)";
     }
+
+    private final double re;
+    private final double im;
 }

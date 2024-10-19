@@ -180,6 +180,8 @@ public final class Complex {
     }
 
     public @Override String toString() {
-        return "(" + re + " + " + im + "i)";
+        return im >= 0
+            ? "(" + re + " + " + im + "i)"
+            : "(" + re + " - " + (-im) + "i)";
     }
 }

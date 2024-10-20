@@ -1,3 +1,10 @@
+/* Complex Numbers */
+/* Reference:
+[AS] M. Abramowitz, I.A. Stegun, editors, Handbook of Mathematical Functions.
+     United States Government Printing Office, 1964.
+*/
+
+
 public final class Complex {
     /** The Complex constant zero. */
     public static final Complex ZERO = new Complex(0.0, 0.0);
@@ -141,27 +148,51 @@ public final class Complex {
     }
 
     /** Returns the trigonometric sine of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.3.55 */
     public static Complex sin(Complex z) {
         return new Complex(Math.sin(z.re) * Math.cosh(z.im),
                            Math.cos(z.re) * Math.sinh(z.im));
     }
 
     /** Returns the trigonometric cosine of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.3.56 */
     public static Complex cos(Complex z) {
         return new Complex(Math.cos(z.re) * Math.cosh(z.im),
                           -Math.sin(z.re) * Math.sinh(z.im));
     }
 
+    /** Returns the trigonometric tangent of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.3.57 */
+    public static Complex tan(Complex z) {
+        double x2 = 2.0 * z.re;
+        double y2 = 2.0 * z.im;
+        double denominator = Math.cos(x2) + Math.cosh(y2);
+        return new Complex(Math.sin(x2)  / denominator,
+                           Math.sinh(y2) / denominator);
+    }
+
     /** Returns the hyperbolic sine of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.5.49 */
     public static Complex sinh(Complex z) {
         return new Complex(Math.sinh(z.re) * Math.cos(z.im),
                            Math.cosh(z.re) * Math.sin(z.im));
     }
 
     /** Returns the hyperbolic cosine of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.5.50 */
     public static Complex cosh(Complex z) {
         return new Complex(Math.cosh(z.re) * Math.cos(z.im),
                            Math.sinh(z.re) * Math.sin(z.im));
+    }
+
+    /** Returns the hyperbolic tangent of a <code>Complex</code> value.*/
+    /* reference: [AS] 4.5.51 */
+    public static Complex tanh(Complex z) {
+        double x2 = 2.0 * z.re;
+        double y2 = 2.0 * z.im;
+        double denominator = Math.cosh(x2) + Math.cos(y2);
+        return new Complex(Math.sinh(x2) / denominator,
+                           Math.sin(y2)  / denominator);
     }
 
     public @Override boolean equals(Object o) {

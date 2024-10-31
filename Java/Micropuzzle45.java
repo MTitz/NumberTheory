@@ -40,7 +40,7 @@ public class Micropuzzle45
         loop: for (int n = 10; n <= nMax; ++n) {
             BigInteger number = BigInteger.valueOf(n);
             int count = 0;
-            while(!isPalindromic(number)) {
+            while (!isPalindromic(number)) {
                 number = step(number);
                 ++count;
                 if (count >= cycleLimit) {

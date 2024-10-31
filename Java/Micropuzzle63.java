@@ -38,7 +38,7 @@ public class Micropuzzle63
         System.out.println("Entries into the map are:");
         int maxQuot = 0;
         int maxCount = 0;
-        for(Map.Entry<Integer,Integer> pair : counter.entrySet()) {
+        for (Map.Entry<Integer,Integer> pair : counter.entrySet()) {
             int key = pair.getKey();
             int value = pair.getValue();
             if (value > maxCount) {

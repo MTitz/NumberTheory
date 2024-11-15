@@ -15,16 +15,6 @@ public class Micropuzzle45
         return new BigInteger(sb.reverse().toString());
     }
 
-    public static BigInteger step(BigInteger n)
-    {
-        return n.add(reverseDigits(n));
-    }
-
-    public static boolean isPalindromic(BigInteger n)
-    {
-        return n.compareTo(reverseDigits(n)) == 0;
-    }
-
     public static void main(String[] args)
     {
         int nMax;
@@ -39,14 +29,16 @@ public class Micropuzzle45
         Set<Integer> exceptionalCase = new TreeSet<>();
         loop: for (int n = 10; n <= nMax; ++n) {
             BigInteger number = BigInteger.valueOf(n);
+            BigInteger reverseNumber = reverseDigits(number);
             int count = 0;
-            while (!isPalindromic(number)) {
+            while (number.compareTo(reverseNumber) != 0) {
                 ++count;
                 if (count > cycleLimit) {
                     exceptionalCase.add(n);
                     continue loop;
                 }
-                number = step(number);
+                number = number.add(reverseNumber);
+                reverseNumber = reverseDigits(number);
             }
             if (count > maxCount) {
                 maxCount = count;

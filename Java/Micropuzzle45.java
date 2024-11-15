@@ -41,12 +41,12 @@ public class Micropuzzle45
             BigInteger number = BigInteger.valueOf(n);
             int count = 0;
             while (!isPalindromic(number)) {
-                number = step(number);
                 ++count;
-                if (count >= cycleLimit) {
+                if (count > cycleLimit) {
                     exceptionalCase.add(n);
                     continue loop;
                 }
+                number = step(number);
             }
             if (count > maxCount) {
                 maxCount = count;

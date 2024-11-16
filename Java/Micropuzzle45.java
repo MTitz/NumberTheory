@@ -51,11 +51,17 @@ public class Micropuzzle45
             System.out.println("Maximum of " + maxCount + " cycles reached for number " + maxNumber);
         }
         if (exceptionalCase.size() > 0) {
-            System.out.print("No palindrome after " + cycleLimit + " cycles:");
+            final int NUMBERS_PER_LINE = 8;
+            System.out.println("No palindrome after " + cycleLimit + " cycles:");
+            int outputCount = 0;
             for (Integer n : exceptionalCase) {
-                System.out.print(" " + n);
+                System.out.printf(" %7d", n);
+                ++outputCount;
+                if (outputCount % NUMBERS_PER_LINE == 0)
+                    System.out.println();
             }
-            System.out.println();
+            if (outputCount % NUMBERS_PER_LINE != 0)
+                System.out.println();
         }
     }
 }

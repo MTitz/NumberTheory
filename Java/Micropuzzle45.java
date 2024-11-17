@@ -25,7 +25,7 @@ public class Micropuzzle45
         }
         int maxCount = -1;  // not yet found any maximum
         int maxNumber = 0;
-        final int CYCLE_LIMIT = 1000;
+        final int ITERATION_LIMIT = 1000;
         Set<Integer> exceptionalCase = new TreeSet<>();
         loop: for (int n = 10; n <= nMax; ++n) {
             BigInteger number = BigInteger.valueOf(n);
@@ -33,7 +33,7 @@ public class Micropuzzle45
             int count = 0;
             while (number.compareTo(reverseNumber) != 0) {
                 ++count;
-                if (count > CYCLE_LIMIT) {
+                if (count > ITERATION_LIMIT) {
                     exceptionalCase.add(n);
                     continue loop;
                 }
@@ -48,12 +48,13 @@ public class Micropuzzle45
         }
         if (maxCount >= 0) {
             System.out.println();
-            System.out.println("Maximum of " + maxCount + " cycles reached for number " + maxNumber);
+            System.out.println("Maximum of " + maxCount +
+                    " iterations reached for number " + maxNumber);
         }
         if (exceptionalCase.size() > 0) {
             final int NUMBERS_PER_LINE = 8;
             System.out.println();
-            System.out.println("No palindrome after " + CYCLE_LIMIT + " cycles:");
+            System.out.println("No palindrome after " + ITERATION_LIMIT + " iterations:");
             int outputCount = 0;
             for (Integer n : exceptionalCase) {
                 System.out.printf(" %7d", n);

@@ -1219,6 +1219,8 @@ and
 
 Setting $x = 2n+1$, $y = 2m$ and $d = 2$ we can see that any solution of the problem must fulfill a Pell's equation $x^2-d y^2=1$ for the integers $x$ and $y$, here in the special case with $d=2$. See for example \cite{Giblin}, section 10.4 or \cite{HardyWright}, section 14.5.
 
+It follows from the theory of Pell's equations that (\ref{EqualSums}) has an infinite number of solutions that can be rather easily calculated, see program and table below.
+
 { \small
 \begin{verbatim}
 public class Micropuzzle42
@@ -1272,13 +1274,110 @@ public class Micropuzzle42
 
 
 
+\pagebreak % TEMP
 \pagebreak[3]
 \subsection{Micropuzzle 45 -- Palindromic cycles}
-The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond this range.
+Puzzle from the book \cite{Clessa}: ``That little sounds like a bike with a saddle at both ends.
 
-It is still an open problem if these cycles ever terminate for the number 196 and likewise for many numbers above 196, while the record of 24 cycles for 89 and 98 for known terminating cycles is only first exceeded beyond $10\,000$, as the number $10\,548$ reaches after 30 cycles the palindrome $17\,858\,768\,886\,785\,871$. Therefore the solution program Micropuzzle45.java follows cycles only until a given limit of 1000 cycles and lists these exceptional cases at the end of its output.
+If any two-digit number is reversed and added to itself, and the process repeated over and over, eventually a palindromic number will result (i.~e. one which reads the same forwards as backwards).
+
+Thus, consider the number 19. When reversed it gives 91. Then $19 + 91 = 110$.
+
+And repeating $110+011=121$, which is palindromic after only two operations.
+
+Which two-digit number requires the most number of operations before a palindromic sum is reached? And how many are required?
+
+Clearly there will be two answers -- since one will be the reverse of the other. Either one is acceptable.''
+
+The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond the two-digit numbers of the puzzle.
+
+Here some facts in a short overview
+
+\begin{itemize}
+\item The highest number of iterations for two-digit numbers is 24 and is reached for both the numbers 89 and 98.
+\item There are numbers where the iteration does not end in a palindromic number even after a large number of iterations. The first such number is 196, and it is still an open problem in mathematics if this iteration ever ends in a palindromic number or if it goes to infinity.
+\item The number of 24 iterations to a palindromic number is -- the exceptional cases excluded -- first surpassed only for the number $10\,548$ with 30 iterations ending in $17\,858\,768\,886\,785\,871$.
+\item For numbers up to $1\,000\,000$ the record number of iterations is 64 and achieved for the first time for the number $150\,296$ ending in the palindromic number $682\,049\,569\,465\,550\,121\,055\,564\,965\,940\,286$.
+\end{itemize}
+
+Therefore my solution program Micropuzzle45.java performs the iterations only until a given limit of 1000 and lists these exceptional cases at the end of its output.
+
+{ \small
+\begin{verbatim}
+
+import java.math.BigInteger;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Micropuzzle45
+{
+    public static BigInteger reverseDigits(BigInteger n)
+    {
+        StringBuilder sb = new StringBuilder(n.toString());
+        return new BigInteger(sb.reverse().toString());
+    }
+
+    public static void main(String[] args)
+    {
+        int nMax;
+        if (args.length == 0) {
+            nMax = 99;  // highest two-digit number, value from puzzle
+        } else {
+            nMax = Integer.parseInt(args[0]);
+        }
+        int maxCount = -1;  // not yet found any maximum
+        int maxNumber = 0;
+        final int ITERATION_LIMIT = 1000;
+        Set<Integer> exceptionalCase = new TreeSet<>();
+        loop: for (int n = 10; n <= nMax; ++n) {
+            BigInteger number = BigInteger.valueOf(n);
+            BigInteger reverseNumber = reverseDigits(number);
+            int count = 0;
+            while (number.compareTo(reverseNumber) != 0) {
+                ++count;
+                if (count > ITERATION_LIMIT) {
+                    exceptionalCase.add(n);
+                    continue loop;
+                }
+                number = number.add(reverseNumber);
+                reverseNumber = reverseDigits(number);
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                maxNumber = n;
+            }
+            System.out.printf("%7d %7d   %s%n", n, count, number);
+        }
+        if (maxCount >= 0) {
+            System.out.println();
+            System.out.println("Maximum of " + maxCount +
+                    " iterations reached for number " + maxNumber);
+        }
+        if (exceptionalCase.size() > 0) {
+            final int NUMBERS_PER_LINE = 8;
+            System.out.println();
+            System.out.println("No palindrome after " + ITERATION_LIMIT + " iterations:");
+            int outputCount = 0;
+            for (Integer n : exceptionalCase) {
+                System.out.printf(" %7d", n);
+                ++outputCount;
+                if (outputCount % NUMBERS_PER_LINE == 0)
+                    System.out.println();
+            }
+            if (outputCount % NUMBERS_PER_LINE != 0)
+                System.out.println();
+        }
+    }
+}
+\end{verbatim}
+}
+
+The reversal of the number is done by first using toString method to transfer the BigInteger to a string, reverse the string, and transfer it back to a BigInteger number. Avoiding the string conversions could save processing time.
+
+Many of the long iteration sequences soon run into the same numbers. By storing some of these numbers and checking for already investigated sequences it could be saved time.
 
 
+\pagebreak % TEMP
 \subsection{Micropuzzle 54 -- The ladder and the wall}
 Let the vertical distance from floor to top of the ladder be $x$ feet.\\
 Let the horizontal distance from wall to bottom of ladder be $y$ feet.

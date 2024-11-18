@@ -4,7 +4,7 @@
 */
 
 import java.math.BigInteger;
-import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Micropuzzle45
@@ -26,7 +26,7 @@ public class Micropuzzle45
         int maxCount = -1;  // not yet found any maximum
         int maxNumber = 0;
         final int ITERATION_LIMIT = 1000;
-        Set<Integer> exceptionalCase = new TreeSet<>();
+        SortedSet<Integer> exceptionalCase = new TreeSet<>();
         loop: for (int n = 10; n <= nMax; ++n) {
             BigInteger number = BigInteger.valueOf(n);
             BigInteger reverseNumber = reverseDigits(number);

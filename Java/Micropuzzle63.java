@@ -1,5 +1,6 @@
 /* Program Micropuzzle63.java to solve micropuzzle 63 from
    J. J. Clessa "Math and Logic Puzzles for PC Enthusiasts"
+   A recurring quotient
 */
 
 
@@ -27,8 +28,7 @@ public class Micropuzzle63
             if (n % d == 0) {
                 int quotient = n / d;
                 if (counter.containsKey(quotient)) {
-                    int val = counter.get(quotient);
-                    counter.put(quotient, ++val);
+                    counter.put(quotient, counter.get(quotient) + 1);
                 } else {
                     counter.put(quotient, 1);
                 }

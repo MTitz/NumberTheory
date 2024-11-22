@@ -44,7 +44,7 @@ public class Micropuzzle45
                 maxCount = count;
                 maxNumber = n;
             }
-            System.out.printf("%7d %7d   %s%n", n, count, number);
+            System.out.printf("%8d %7d   %d%n", n, count, number);
         }
         if (maxCount >= 0) {
             System.out.println();
@@ -57,7 +57,7 @@ public class Micropuzzle45
             System.out.println("No palindrome after " + ITERATION_LIMIT + " iterations:");
             int outputCount = 0;
             for (Integer n : exceptionalCases) {
-                System.out.printf(" %7d", n);
+                System.out.printf(" %8d", n);
                 ++outputCount;
                 if (outputCount % NUMBERS_PER_LINE == 0)
                     System.out.println();

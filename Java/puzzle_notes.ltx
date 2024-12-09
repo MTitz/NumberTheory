@@ -1246,6 +1246,7 @@ public class Micropuzzle42
 \end{verbatim}
 }
 
+The first solutions are given in the following table with $m$ the number of our runner and $n$ the total number of runners. The first case of $m = n = 1$ is the case of our runner doing a solo race.
 
 \pagebreak[3]
 \begin{longtable}[t]{|r|r|} \hline
@@ -1289,6 +1290,45 @@ Which two-digit number requires the most number of operations before a palindrom
 
 Clearly there will be two answers -- since one will be the reverse of the other. Either one is acceptable.''
 
+
+\subsubsection*{The case from the puzzle: 2-digit numbers}
+The problem can be rather well analysed for two-digit numbers:
+
+Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b$ with $a\in\{1,2,\ldots,9\}$ and $b\in\{0,2,\ldots,9\}$, in the example of 19 it is $a=1$ and $b=9$.
+
+If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are already finished with 0 operations.
+
+The reversed number is then $10b+a$, and the sum of the original two-digit and its reverse then become
+%\begin{equation}\label{two_digit_sum}
+\[
+(10a+b)+(10b+a) = 10a + a + b + 10 b = 10(a+b) + (a+b) = 11(a+b)
+\]
+%\end{equation}
+showing that the result of the first step only depends on the sum $a+b$ of the two digits $a$ and $b$ of the original two-digit number.
+
+If it is now $a+b \le 9$, then after this one step both digits become $a+b$ and we are finished after just one step. For example it is $34 + 43 = 77$.
+
+The digit sum of 18 can only be achieved by both $a=9$ and $b=9$, but then $a=b$ and the number 99 is already palindromic.
+
+Therefore the cases with $a \ne b$ and digit sum $10 \le a+b \le 17$ remain. They are treated by the following table. The lengthy but easy calculation in case of $a+b=17$ is only shown partially.
+
+\begin{longtable}[t]{|r|l|r|} \hline
+ $a+b$ & steps after the initial one & steps \\ \hline
+  10 & $110 \rightarrow 121$ & 2 \\
+  11 & $121$ & 1 \\
+  12 & $132 \rightarrow 363$ & 2 \\
+  13 & $143 \rightarrow 484$ & 2 \\
+  14 & $154 \rightarrow 605 \rightarrow 1111$ & 3 \\
+  15 & $165 \rightarrow 726 \rightarrow 1353 \rightarrow 4884$ & 4 \\
+  16 & $176 \rightarrow 847 \rightarrow 1595 \rightarrow 7546 \rightarrow 14603 \rightarrow 44044$ & 6 \\
+  17 & $187 \rightarrow 968 \rightarrow 1837 \rightarrow \ldots \rightarrow 8813200023188$ & 24 \\ \hline
+\end{longtable}
+
+Only the two-digit numbers 89 and 98 have a sum of digits of 17, therefore these are the solutions of the puzzle with the maximum number of 24 steps.
+
+
+\subsubsection*{The general case}
+
 The actual puzzle solution for only two digit numbers could have been done within the range of the long Java data type. But the interesting cases are beyond the two-digit numbers of the puzzle.
 
 Here some facts in a short overview
@@ -1300,13 +1340,13 @@ Here some facts in a short overview
 \item For numbers up to $1\,000\,000$ the record number of iterations is 64 and achieved for the first time for the number $150\,296$ ending in the palindromic number $682\,049\,569\,465\,550\,121\,055\,564\,965\,940\,286$.
 \end{itemize}
 
-Therefore my solution program Micropuzzle45.java performs the iterations only until a given limit of 1000 and lists these exceptional cases at the end of its output.
+Therefore my solution program Micropuzzle45.java performs the iterations only until a given limit of 1000 and lists these exceptional cases at the end of its output. This limit is set by the internal constant {\tt ITERATION{\_}LIMIT}.
 
 { \small
 \begin{verbatim}
 
 import java.math.BigInteger;
-import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class Micropuzzle45
@@ -1328,7 +1368,7 @@ public class Micropuzzle45
         int maxCount = -1;  // not yet found any maximum
         int maxNumber = 0;
         final int ITERATION_LIMIT = 1000;
-        Set<Integer> exceptionalCase = new TreeSet<>();
+        SortedSet<Integer> exceptionalCases = new TreeSet<>();
         loop: for (int n = 10; n <= nMax; ++n) {
             BigInteger number = BigInteger.valueOf(n);
             BigInteger reverseNumber = reverseDigits(number);
@@ -1336,7 +1376,7 @@ public class Micropuzzle45
             while (number.compareTo(reverseNumber) != 0) {
                 ++count;
                 if (count > ITERATION_LIMIT) {
-                    exceptionalCase.add(n);
+                    exceptionalCases.add(n);
                     continue loop;
                 }
                 number = number.add(reverseNumber);
@@ -1346,20 +1386,20 @@ public class Micropuzzle45
                 maxCount = count;
                 maxNumber = n;
             }
-            System.out.printf("%7d %7d   %s%n", n, count, number);
+            System.out.printf("%8d %7d   %d%n", n, count, number);
         }
         if (maxCount >= 0) {
             System.out.println();
             System.out.println("Maximum of " + maxCount +
                     " iterations reached for number " + maxNumber);
         }
-        if (exceptionalCase.size() > 0) {
+        if (!exceptionalCases.isEmpty()) {
             final int NUMBERS_PER_LINE = 8;
             System.out.println();
             System.out.println("No palindrome after " + ITERATION_LIMIT + " iterations:");
             int outputCount = 0;
-            for (Integer n : exceptionalCase) {
-                System.out.printf(" %7d", n);
+            for (Integer n : exceptionalCases) {
+                System.out.printf(" %8d", n);
                 ++outputCount;
                 if (outputCount % NUMBERS_PER_LINE == 0)
                     System.out.println();
@@ -1372,10 +1412,25 @@ public class Micropuzzle45
 \end{verbatim}
 }
 
+The program can be compiled with
+
+ {\tt javac Micropuzzle45.java}
+
+ on the command line. It can then be run by
+
+{\tt java Micropuzzle45}
+
+as the default case to solve the puzzle or with an integer argument to set another upper limit for the search, for example
+
+{\tt java Micropuzzle45 12000}
+
+would run it for all integers up to 12000.
+
 The reversal of the number is done by first using toString method to transfer the BigInteger to a string, reverse the string, and transfer it back to a BigInteger number. Avoiding the string conversions could save processing time.
 
-Many of the long iteration sequences soon run into the same numbers. By storing some of these numbers and checking for already investigated sequences it could be saved time.
+Many of the long iteration sequences eventually run into the same numbers. By storing some of these numbers and checking for already investigated sequences it could be saved time.
 
+See also the book by Martin Gardner \cite{colossal}, chapter 3 for some additional information.
 
 \pagebreak % TEMP
 \subsection{Micropuzzle 54 -- The ladder and the wall}
@@ -1547,6 +1602,10 @@ Springer, 1996.
 \bibitem{BookOfNumbers}
 John H.~Conway, Richard K.~Guy, {\it The Book of Numbers}.
 Copernicus, 1995.
+
+\bibitem{colossal}
+Martin Gardner, {\it The Colossal Book of Mathematics}, 1st Edition.
+W.~W.~Norton \& Company, 2001.
 
 \bibitem{Giblin}
 Peter Giblin, {\it Primes and Programming -- An Introduction to Number Theory with Computing}.

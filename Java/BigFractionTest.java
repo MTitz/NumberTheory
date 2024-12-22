@@ -9,6 +9,51 @@ public class BigFractionTest
     private static final BigFraction f4 = new BigFraction(9, 32);
     private static final BigFraction f5 = new BigFraction(9, 12);  // not cancelled
 
+    public static void testAddition()
+    {
+        System.out.println("Sum        f1 + f2 = " + f1.add(f2));
+        System.out.println("Sum        f3 + f4 = " + f3.add(f4));
+    }
+
+    public static void testSubtraction()
+    {
+        System.out.println("Difference f1 - f2 = " + f1.subtract(f2));
+        System.out.println("Difference f2 - f1 = " + f2.subtract(f1));
+    }
+
+    public static void testMultiplication()
+    {
+        System.out.println("Product    f1 * f2 = " + f1.multiply(f2));
+        System.out.println("Product    0 * f1  = " + f1.multiply(BigInteger.ZERO));
+        System.out.println("Product    2 * f1  = " + f1.multiply(BigInteger.TWO));
+    }
+
+    public static void testDivision()
+    {
+        System.out.println("Quotient   f1 / f2 = " + f1.divide(f2));
+        System.out.println("Quotient   f4 / f3 = " + f4.divide(f3));
+    }
+
+    public static void testPowers()
+    {
+        System.out.println("Power      f1^10   = " + f1.pow(10));
+        System.out.println("Power      f1^0    = " + f1.pow(0));
+        System.out.println("Power      f1^-10  = " + f1.pow(-10));
+        System.out.println("Power      f2^2    = " + f2.pow(2));
+        System.out.println("Power      f2^-2   = " + f2.pow(-2));
+        System.out.println("Power      f1^128  = " + f1.pow(128));
+    }
+
+    @SuppressWarnings("unlikely-arg-type")
+    public static void testComparisons()
+    {
+        System.out.println("2 * f1 == 1          " + (BigFraction.ONE == f1.multiply(BigInteger.TWO)));
+        System.out.println("equals(2 * f1, 1)    " + BigFraction.ONE.equals(f1.multiply(BigInteger.TWO)));
+        System.out.println("equals(2 * f1, 1)    " + f1.multiply(BigInteger.TWO).equals(BigInteger.ONE) + "  (comparison with BigInteger)");
+        System.out.println("equals(f2, f5)       " + f2.equals(f5));
+        System.out.println("equals(f2, f3)       " + f2.equals(f3));
+    }
+
     public static void main(String[] args)
     {
         System.out.println("Fractions: f1 = " + f1 + ", f2 = " + f2 + ", f3 = " + f3 + ", f4 = " + f4);
@@ -19,26 +64,12 @@ public class BigFractionTest
         System.out.println("Double value of f3:  " + f3.doubleValue());
         System.out.println("Better value of f3:  " + f3.bigDecimalValue(54, RoundingMode.HALF_EVEN));
         System.out.println();
-        System.out.println("Sum        f1 + f2 = " + f1.add(f2));
-        System.out.println("Sum        f3 + f4 = " + f3.add(f4));
-        System.out.println("Difference f1 - f2 = " + f1.subtract(f2));
-        System.out.println("Difference f2 - f1 = " + f2.subtract(f1));
-        System.out.println("Product    f1 * f2 = " + f1.multiply(f2));
-        System.out.println("Product    0 * f1  = " + f1.multiply(BigInteger.ZERO));
-        System.out.println("Product    2 * f1  = " + f1.multiply(BigInteger.TWO));
-        System.out.println("Quotient   f1 / f2 = " + f1.divide(f2));
-        System.out.println("Quotient   f4 / f3 = " + f4.divide(f3));
-        System.out.println("Power      f1^10   = " + f1.pow(10));
-        System.out.println("Power      f1^0    = " + f1.pow(0));
-        System.out.println("Power      f1^-10  = " + f1.pow(-10));
-        System.out.println("Power      f2^2    = " + f2.pow(2));
-        System.out.println("Power      f2^-2   = " + f2.pow(-2));
-        System.out.println("Power      f1^128  = " + f1.pow(128));
+        testAddition();
+        testSubtraction();
+        testMultiplication();
+        testDivision();
+        testPowers();
         System.out.println("cancel(f5)         = " + f5.cancel());
-        System.out.println("2 * f1 == 1          " + (BigFraction.ONE == f1.multiply(BigInteger.TWO)));
-        System.out.println("equals(2 * f1, 1)    " + BigFraction.ONE.equals(f1.multiply(BigInteger.TWO)));
-        System.out.println("equals(2 * f1, 1)    " + f1.multiply(BigInteger.TWO).equals(BigInteger.ONE) + "  (comparison with BigInteger)");
-        System.out.println("equals(f2, f5)       " + f2.equals(f5));
-        System.out.println("equals(f2, f3)       " + f2.equals(f3));
+        testComparisons();
     }
 }

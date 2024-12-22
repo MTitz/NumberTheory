@@ -62,5 +62,7 @@ public class ComplexTest extends TestCase {
         assertEquals("(1.0 - 1.0i)", Complex.ONE.subtract(Complex.I).toString());
         assertEquals("(0.3 - 0.4i)", new Complex(0.3, -0.4).toString());
         assertEquals("(3.0 + 4.0i)", new Complex(3.0, 4.0).toString());
+        assertEquals("(-3.2 + 4.1i)", new Complex(-3.2, 4.1).toString());
+        assertEquals("(-3.2 - 4.1i)", new Complex(-3.2, -4.1).toString());
     }
 }

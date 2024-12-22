@@ -2,6 +2,10 @@ JAVAC	= javac
 JFLAGS	= -O
 #JUNIT	= /usr/share/java/junit.jar
 JUNIT	= lib/junit-3.8.2.jar
+TESTPATH= .:$(JUNIT)
+ifeq ($(OS),Windows_NT)
+TESTPATH= .;$(JUNIT)
+endif
 
 .java.class:
 	$(JAVAC) $(JFLAGS) $<
@@ -25,12 +29,13 @@ all:	$(CLASSFILES) $(RESULTS) $(LISTINGS) $(DOCU)
 docu:	$(DOCU)
 
 test:	$(TESTCLASSES)
-	java -cp .:/usr/share/java/junit.jar junit.textui.TestRunner ComplexTest
+	java -cp $(TESTPATH) junit.textui.TestRunner ComplexTest
+
 clean:
 	rm -f *.class $(RESULTS) $(LISTINGS) $(DOCU)
 
 ComplexTest.class: ComplexTest.java
-	javac -cp .:$(JUNIT) $<
+	javac -cp $(TESTPATH) $<
 
 Micropuzzle01.txt: Micropuzzle01.class NumberTheory.class
 	java Micropuzzle01 1000000000 > $@

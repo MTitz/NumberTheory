@@ -7,7 +7,6 @@ public class Micropuzzle31
 {
     public static void main(String[] args)
     {
-        final int nExtraSolutions = 10;
         NumberTheory.SimpleLinearCongruence[] congruence =
             { new NumberTheory.SimpleLinearCongruence(9, 10),
               new NumberTheory.SimpleLinearCongruence(8,  9),
@@ -23,11 +22,9 @@ public class Micropuzzle31
         long m = simplified.m();
         System.out.printf("The general solution is %d + %d * n with n an arbitrary integer, for example:%n", b, m);
         System.out.print("..., ");
-        for (int i = -2; i <= nExtraSolutions; ++i) {
-            System.out.print(b + m * i);
-            if (i < nExtraSolutions)
-                System.out.print(", ");
+        for (int n = -2; n <= 10; ++n) {
+            System.out.print(b + m * n + ", ");
         }
-        System.out.println(", ...");
+        System.out.println("...");
     }
 }

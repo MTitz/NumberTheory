@@ -75,11 +75,11 @@ unsigned long square_test(unsigned long n)
     return n == q*q ? q : 0;
 }
 
-int test()
+void test()
 {
     init_square_test();
     for (unsigned int n = 0; n <= 10000; ++n)
-    printf("Square test: %lu\n", square_test(n));
+        printf("Square test: %lu\n", square_test(n));
 }
 
 int main()
@@ -91,7 +91,7 @@ int main()
     x = 0;
     while (!found) {
         ++x;
-        printf("Testing x = %lu\n", x);
+        fprintf(stderr, "Testing x = %lu\n", x);
         for (y = 2; y < x; ++y) {
             if (square_test(x-y) == 0 || square_test(x+y) == 0)
                 continue;

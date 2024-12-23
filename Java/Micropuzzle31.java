@@ -1,5 +1,6 @@
 /* Program Micropuzzle31.java to solve micropuzzle 31 from
    J. J. Clessa "Math and Logic Puzzles for PC Enthusiasts"
+   A question of remainders
 */
 
 public class Micropuzzle31
@@ -20,6 +21,7 @@ public class Micropuzzle31
         NumberTheory.SimpleLinearCongruence simplified = NumberTheory.solve(congruence);
         long b = simplified.b();
         long m = simplified.m();
+        System.out.printf("The general solution is %d + %d * n with n an arbitrary integer, for example:%n", b, m);
         for (int i = 0; i <= nExtraSolutions; ++i) {
             System.out.print(b + m * i);
             if (i < nExtraSolutions)

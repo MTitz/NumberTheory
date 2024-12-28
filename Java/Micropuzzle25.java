@@ -8,10 +8,10 @@ import java.util.Random;
 
 public class Micropuzzle25
 {
-    public static double time(double u, double v)
+    public static double walkingTime(double u, double v)
     {
        double diff1 = v - u;
-       double diff2 = 6 - v;
+       double diff2 = 6.0 - v;
        return 40.0 * sqrt(u * u + 1.0)
             + 20.0 * sqrt(diff1 * diff1 + 4.0)
             + 10.0 * sqrt(diff2 * diff2 + 9.0);
@@ -19,18 +19,18 @@ public class Micropuzzle25
 
     public static void main(String[] args)
     {
-        long n = 1000000;
+        long nExperiments = 1000000;
         if (args.length == 1) {
-            n = Long.parseLong(args[0]);
+            nExperiments = Long.parseLong(args[0]);
         } else if (args.length > 1) {
            System.err.println("Too many command line arguments, aborting.");
            return;
         }
         double uMin = 6.0;
         double vMin = 6.0;
-        double tMin = time(uMin, vMin);
+        double tMin = walkingTime(uMin, vMin);
         Random random = new Random();
-        for (long i = 1; i <= n; ++i) {
+        for (long i = 1; i <= nExperiments; ++i) {
             double u = 6.0 * random.nextDouble();
             double v = 6.0 * random.nextDouble();
             if (u > v) {
@@ -38,7 +38,7 @@ public class Micropuzzle25
                 v = u;
                 u = t;
             }
-            double tm = time(u, v);
+            double tm = walkingTime(u, v);
             if (tm < tMin) {
                 System.out.printf("%12.6f %12.6f  ->  %12.9f  (step %d)%n",
                         100.0 * u, 100.0 * v, tm, i);

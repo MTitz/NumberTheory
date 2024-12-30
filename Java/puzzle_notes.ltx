@@ -1171,7 +1171,7 @@ We get the sum of numbers greater than our runner by subtracting from the total 
 \begin{equation}\label{SumAfter}
 \mbox{sum after} = \frac{n(n+1)}{2} - \frac{m(m+1)}{2}
 \end{equation}
-As by the problem the sums before (\ref{SumBefore}) and after our runner (\ref{SumAfter}) must be equal, we get the equation
+As by the problem the sums before our runner (\ref{SumBefore}) and after our runner (\ref{SumAfter}) must be equal, we get the equation
 \[ \frac{(m-1)m}{2} = \frac{n(n+1)}{2} - \frac{m(m+1)}{2} \]
 Multiplying both sides with $2$ gives
 \[ (m-1)m = n(n+1) - m(m+1) \]
@@ -1293,6 +1293,12 @@ The first solutions are given in the following table with $m$ the number of our 
 %\end{table}
 \end{longtable}
 
+The $T_n = \frac{1}{2}n(n+1)$ are exactly the triangular numbers that are also squares, %as it is \[ \frac{1}{2}n(n+1) = m^2 \]
+compare page 204 in \cite{BookOfNumbers}.
+
+The values of $m$ in the first column are just the sequence M4217 and the values of $n$ in the second column are the sequence M4536 in \cite{Integer_sequences}.
+
+
 
 
 \pagebreak % TEMP
@@ -1312,18 +1318,16 @@ Clearly there will be two answers -- since one will be the reverse of the other.
 
 
 \subsubsection*{The case from the puzzle: 2-digit numbers}
-The problem can be rather well analysed for two-digit numbers:
+The problem can be rather well analyzed for two-digit numbers:
 
 Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b$ with $a\in\{1,2,\ldots,9\}$ and $b\in\{0,2,\ldots,9\}$, in the example of 19 it is $a=1$ and $b=9$.
 
 If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are already finished with 0 operations.
 
-The reversed number is then $10b+a$, and the sum of the original two-digit and its reverse then become
-%\begin{equation}\label{two_digit_sum}
+The reversed number is $10b+a$, and the sum of the original two-digit number and its reverse then becomes
 \[
 (10a+b)+(10b+a) = 10a + a + b + 10 b = 10(a+b) + (a+b) = 11(a+b)
 \]
-%\end{equation}
 showing that the result of the first step only depends on the sum $a+b$ of the two digits $a$ and $b$ of the original two-digit number.
 
 If it is now $a+b \le 9$, then after this one step both digits become $a+b$ and we are finished after just one step. For example it is $34 + 43 = 77$.

@@ -777,17 +777,19 @@ The fastest time is achieved when walking in straight lines across the different
 
 Let $x_1$ the horizontal distance to the point where the farmer leaves from bog to ploughed soil and $x_2$ the horizontal distance to the point where the farmer passes over from ploughed soil to turf.
 
-Then by theorem of Pythagoras
+Then it is by applying the theorem of Pythagoras ($0 \le x_1, x_2 \le 600$)
 \begin{eqnarray*}
 s_1\left(x_1,x_2\right) &=& \sqrt{x_1^2+100^2}\\
 s_2\left(x_1,x_2\right) &=& \sqrt{\left(x_2-x_1\right)^2+200^2}\\
 s_3\left(x_1,x_2\right) &=& \sqrt{\left(600-x_2\right)^2+300^2}
 \end{eqnarray*}
 
-Using $v = s/t$ in the form $t = s/v$ the total walking time in seconds becomes with $v_1=5/2$, $v_2=5$ and $v_3=10$
+Using the equation $v = s/t$, where $v$ is speed, and $t$ is time, in the form $t = s/v$ the total walking time in seconds becomes with $v_1=5/2$, $v_2=5$ and $v_3=10$
 \begin{displaymath}
 t\left(x_1,x_2\right) = \sum_{k=1}^3\frac{s_k\left(x_1,x_2\right)}{v_k}
 \end{displaymath}
+
+If $x_2 > x_1$ it is $t(x_1,x_2) > t(x_2,x_1)$, as by the middle term $s_2(x_1,x_2)$ does not change its value, and the other two terms $s_1(x_1,x_2)$ and $s_3(x_1,x_2)$ decrease with swapping of the variables. Hence, the minimum for the function $t\left(x_1,x_2\right)$ will be obtained for $x_1 \le x_2$.
 
 Therefore the function
 \begin{displaymath}

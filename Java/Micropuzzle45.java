@@ -54,7 +54,8 @@ public class Micropuzzle45
         if (!exceptionalCases.isEmpty()) {
             final int NUMBERS_PER_LINE = 8;
             System.out.println();
-            System.out.println("No palindrome after " + ITERATION_LIMIT + " iterations:");
+            System.out.println("No palindrome after " +
+                    ITERATION_LIMIT + " iterations:");
             int outputCount = 0;
             for (Integer n : exceptionalCases) {
                 System.out.printf(" %8d", n);

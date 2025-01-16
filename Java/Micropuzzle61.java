@@ -25,7 +25,8 @@ public class Micropuzzle61
                     continue divisors;
             }
 
-            System.out.println("Solution: House number " + d + ", brother's door number: " + remainder[0]);
+            System.out.println("Solution: House number " + d +
+                    ", brother's door number: " + remainder[0]);
         }
     }
 }

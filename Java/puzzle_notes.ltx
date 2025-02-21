@@ -5,6 +5,9 @@
 \usepackage{longtable}
 %\pagestyle{empty}
 
+\newcommand{\iu}{{i\mkern1mu}}
+\DeclareMathOperator*{\time_fct}{time}
+
 \frenchspacing
 
 %\textwidth15cm
@@ -78,7 +81,7 @@ In many cases the Java program solves a slightly more general problem, either by
 22 & Generating a specific value & Java & Permutation.java\\
 23 & Sums of squares & --- &\\
 24 & A very prime word & --- &\\
-25 & Fieldcraft & Mathematica &\\
+25 & Fieldcraft & Java, Mathematica & BigDecimal\\
 26 & Opening day at the local & (list cases) &\\
 27 & A very charitable dilemma & --- &\\
 28 & Cows, pigs and horses & (paper and pen) &\\
@@ -806,6 +809,163 @@ t\left(x_1,x_2\right) &\approx& 142.097659044197040067245550187723934324992
 
 The shortest time rounded to the nearest second is 2 minutes 22 seconds. The high precision is not needed for the puzzle answer, but could be useful as reference value for checking another implementation of this problem.
 
+\subsubsection*{Practical solution for the farmer}
+For any practical purpose it would be sufficient if the farmer uses $x_1 = 21 \mbox{ feet } 9 \mbox{ inches}$ and $x_2 = 115 \mbox{ feet } 8 \mbox{ inches}$, as then the walking time becomes
+\begin{eqnarray*}
+t\left(21\frac{3}{4},115\frac{2}{3}\right) &=& \frac{1}{60} \left(6 \sqrt{167569}+2 \sqrt{2921209}+\sqrt{7030129}\right)\\
+ &\approx& 142.097659047714835844301171455167
+\end{eqnarray*}
+and this would take only less than $3.52\times10^{-9}$ seconds or 3.52 ns longer than following the path of the optimal solution.
+
+%------------------------------
+\subsubsection*{A way to a very high precision solution}
+As in the formula for the walking time rather large numbers like $200^2$ are used, it makes sense to substitute variables by
+\begin{eqnarray*}
+x_1 &=& 100u\\
+x_2 &=& 100v
+\end{eqnarray*}
+
+The function for the walking time then becomes
+\begin{equation}\label{time_fct}
+\time_fct(u,v) = 40\sqrt{u^2+1} + 20 \sqrt{(u-v)^2+4} + 10 \sqrt{(6-v)^2+9}
+\end{equation}
+and has to be minimized with the constraints $0 \le u \le v \le 6$.
+
+A necessary condition for a minimum in the interior of this area is, that both partial derivatives with respect to $u$ and to $v$ become zero.
+Using $(\sqrt{x})' = \frac{1}{2\sqrt{x}}$ and the chain rule the partial derivatives of (\ref{time_fct}) are
+\begin{eqnarray*}
+\frac{\partial\time_fct(u,v)}{\partial u} &=& \frac{40u}{\sqrt{u^2+1}} + \frac{20(u-v)}{\sqrt{(u-v)^2+4}} \\
+\frac{\partial\time_fct(u,v)}{\partial v} &=& -\frac{20(u-v)}{\sqrt{(u-v)^2+4}} + \frac{10(v-6)}{\sqrt{(6-v)^2+9}}
+\end{eqnarray*}
+
+Looking for a point $(u,v)$ where the partial derivatives both become zero, it must be
+\begin{eqnarray*}
+\frac{40u}{\sqrt{u^2+1}} &=& -\frac{20(u-v)}{\sqrt{(u-v)^2+4}} \\
+\frac{20(u-v)}{\sqrt{(u-v)^2+4}} &=& \frac{10(v-6)}{\sqrt{(6-v)^2+9}}
+\end{eqnarray*}
+
+Multiplying both sides in the equations with the respective denominators and dividing by common numerical factors, the equation system now is
+\begin{eqnarray*}
+2u \sqrt{(u-v)^2+4} &=& -(u-v) \sqrt{u^2+1} \\
+2(u-v) \sqrt{(6-v)^2+9} &=& (v-6) \sqrt{(u-v)^2+4}
+\end{eqnarray*}
+
+To get rid of the square roots, now the square can be taken from both sides of the equations. This is to equivalence transformation. The new equation system can have additional solutions, so each solution needs to be checked, if it also solves the original equations.
+\begin{eqnarray}
+4u^2 \left((u-v)^2+4\right) &=& (u-v)^2 \left(u^2+1\right) \\
+4(u-v)^2 \left((6-v)^2+9\right) &=& (v-6)^2 \left((u-v)^2+4\right)
+\end{eqnarray}
+
+There exist computational expensive algorithms to simplify this system of polynomial equations, like Buchberger's algorithm to obtain a more separated equation system with the same zeros, a Gr\"obner basis, see for example the book \cite{ideals_varieties_algorithms}, chapters 2 and 3, the book \cite{modern_computer_algebra}, chapter 21 or the book \cite{algorithms_computer_algebra}, chapters 9 and 10.
+
+Using a computer algebra system for this step, with polynomials in one variable $p$ and $q$
+\begin{eqnarray}
+p(x) &=& 225x^{12} -5400 x^{11} +55140 x^{10} -270720 x^9 \nonumber \\
+     && {} + 494494 x^8 + 205872 x^7 -382388 x^6 -49120 x^5 \nonumber \\
+     && {} + 88953 x^4 +3880 x^3 -6440 x^2 -96 x + 144 \\
+q(x) &=& \frac{1}{54272} \left( -10575 x^{11} +190350 x^{10} -1067880 x^9 - 2841840 x^8 \right. \nonumber \\
+     &&      {} + 53193382 x^7 -148893612 x^6 -44541932 x^5 + 122986520 x^4 \nonumber \\
+     && \left. {} + 10116609 x^3 -26192402 x^2 -416084 x + 1049256 \right)
+\end{eqnarray}
+it is first to solve the polynomial equation (\ref{pol_equ}) of degree 12 for $u$ and then $v$ can be calculated by inserting the value of $u$ into (\ref{pol_insert})
+\begin{eqnarray}
+p(u) &=& 0 \label{pol_equ}\\
+v    &=& q(u) \label{pol_insert}
+\end{eqnarray}
+Instead of having to solve a nonlinear system of equations with two variables, now first one polynomial equation in one variable (\ref{pol_equ}) for $u$ has to be solved and then the $v$ can be calculated by just inserting the value of $u$ into (\ref{pol_insert}) and then the time calculated by inserting the values for $u$ and $v$ into (\ref{time_fct}).
+
+The polynomial $p(u)$ must have by the fundamental theorem of algebra exactly 12 zeros in the complex plane counted with multiplicity, and these can be determined approximately in increasing order of their real parts as
+\begin{eqnarray*}
+u_{1,2}   &\approx& 0.5613333 \pm 0.0210778 \iu \\
+u_3       &=& -0.23757\,81643\,89996\,62923\ldots\\
+u_4       &=& -0.22245\,18523\,57101\,62446\ldots\\
+u_5       &=& +0.21750\,05975\,31391\,85663\ldots\\
+u_6       &=& +0.23492\,11422\,05806\,35141\ldots\\
+u_{7,8}   &\approx& +0.5597088 \pm 0.0302218 \iu \\
+u_{9,10}  &\approx& +5.9979936 \pm 0.7814857 \iu \\
+u_{11,12} &\approx& +6.0074350 \pm 5.4085462 \iu
+\end{eqnarray*}
+where the real zeros are here given with additional decimal places.
+
+\subsubsection*{Newton's method}
+The first order Taylor series of the function $f(x)$ about a point $x_0$ gives under some general conditions the approximation
+\begin{equation}\label{taylor1}
+f(x) \approx f(x_0) + (x-x_0) f'(x_0)
+\end{equation}
+around the point $x_0$.
+
+If we look for a zero $f(x)=0$ of the function with a guess $x_0$, we can hope to improve it by setting the left size of (\ref{taylor1}) to 0
+\[
+0 = f(x_0) + (x_1-x_0) f'(x_0)
+\]
+and solve this for $x_1$ assuming that $f'(x_0) \ne 0$ resulting in
+\begin{equation}\label{NewtonsMethod}
+x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
+\end{equation}
+
+As in this case Newton's method has quadratic convergence, it approximately doubles with each further iteration step the number of correct decimal places, and therefore is a very efficient way to get a very high precision solution.
+
+
+Only the real zeros of (\ref{pol_equ}) are of interest and they can be determined numerically with Newton's method. It requires in this case a relatively good starting value as the real zeros are pairwise relatively close together.
+
+Then for each real zero $u_k$ the walking time $\time_fct\left(u_k, q(u_k)\right)$ can easily be calculated by (\ref{pol_insert}) and (\ref{time_fct}) with the results shown in the following table.
+\begin{table}[htbp]
+\begin{tabular}{|c|c|} \hline
+real zero $u_k$ & $\time_fct\left(u_k, q(u_k)\right)$ \\ \hline
+$u_3 = -0.23757\,81643\,89996\,62923\ldots$ & $164.96444\,02811\,96622\,88394\ldots$\\
+$u_4 = -0.22245\,18523\,57101\,62446\ldots$ & $145.92211\,25393\,28821\,96824\ldots$\\
+$u_5 = +0.21750\,05975\,31391\,85663\ldots$ & $142.09765\,90441\,97040\,06724\ldots$\\
+$u_6 = +0.23492\,11422\,05806\,35141\ldots$ & $160.33649\,04362\,10988\,34849\ldots$\\ \hline
+\end{tabular}
+\end{table}
+
+The minimal walking time is achieved by $u_5$ and it is well within the range of $0 \le u \le 6$ required by the original puzzle.
+
+Usually you would still have to check also for a possible minimum on the border of the area of definition. But here you can do another argumentation: Imagine the strips of the field with bog, ploughed soil and turf extending to the left and right without any border. Then you have for $\time_fct(u,v)$ only interior minima to consider, and all possible such candidates are the real zeros of $p(u)=0$. Among them gives $u_5$ the minimal walking time and is within the ranges of the puzzle condition, therefore this gives the global minimum and the solution for the puzzle.
+
+\subsubsection*{Result}
+I wrote a Java program using the BigDecimal class for arbitrary high precision arithmetic and got the result to more than 100\,000 decimal places with a calculation time of a few minutes, including finally calculating $v$ by (\ref{pol_insert}), $\time_fct(u,v)$ by (\ref{time_fct}) and multiplying $u$ and $v$ by 100 to obtain the original variables $x_1$ and $x_2$.
+
+The final result is to 500 decimal places
+\begin{verbatim}
+x1 =
+   21.75005 97531 39185 66355 36491 51237 50400 75075 93530 48433
+      41700 49199 83229 92656 44805 39007 61663 76044 27562 11123
+      39383 76368 64116 91216 73215 15398 16676 47237 91116 58955
+      57926 04327 86281 33813 20920 73226 90713 68957 71354 51111
+      53014 86340 27995 69087 04313 47053 45008 33031 36689 94026
+      52471 21505 22059 06073 03553 87366 74407 96805 04879 83329
+      97848 08439 90978 03131 35986 53776 62331 33141 34205 03106
+      60386 10564 69071 01302 21666 57421 69559 28798 03277 33633
+      74210 26420 29367 13314 82469 94258 19186 78357 58017 97971
+      80485 05974 50221 69555 23311 03540 59030 38353 54250 26532 ...
+x2 =
+  115.66970 35828 69959 22919 18422 39375 87885 29730 45866 43891
+      62112 08259 92595 38034 67372 55689 84659 27638 82382 34801
+      27967 71901 77992 93680 42998 11751 76836 88723 28960 18608
+      55354 50218 69416 34502 70207 36443 73266 33779 47957 45214
+      84849 38834 33978 08978 47300 43989 11380 13218 76393 46410
+      01408 22038 37122 64787 78970 48939 81521 34765 56282 40538
+      54565 39042 30112 19033 12390 46123 54751 48402 28121 46557
+      58860 67998 56642 70289 77550 98609 75475 26725 04335 25978
+      14340 32246 52151 99508 97125 38029 20720 10741 80936 65927
+      08897 45690 09900 05223 47966 83226 69890 21519 65556 29204 ...
+t =
+  142.09765 90441 97040 06724 55501 87723 93432 49916 85914 27608
+      92313 22512 28634 20433 33097 17835 22650 55791 40103 48644
+      75376 86717 81174 27522 81863 20963 13865 29763 77359 76649
+      66305 80892 99279 30965 29470 63240 99281 56022 38632 39233
+      04147 39585 17753 54868 09328 79640 25672 75727 80305 33842
+      56597 09419 61550 32206 05677 71393 30500 53848 30799 21215
+      83565 19074 37533 26337 62990 16539 87953 26385 58921 20895
+      94598 66678 10892 38098 73338 30317 43550 42925 51534 91065
+      60229 22520 12642 30173 67373 92190 15445 98688 92776 05845
+      21174 02734 21890 29408 10998 14041 23863 11049 86564 31658 ...
+\end{verbatim}
+
+%------------------------------
+\pagebreak % TEMP
+
 
 
 \subsection{Micropuzzle 34 -- An unusual number}
@@ -1223,7 +1383,8 @@ Setting $x = 2n+1$, $y = 2m$ and $d = 2$ we can see that any solution of the pro
 
 It follows from the theory of Pell's equations that (\ref{EqualSums}) has an infinite number of solutions that can be rather easily calculated, see program and table below.
 
-{ \scriptsize
+%{ \scriptsize
+{ \small
 \begin{verbatim}
 public class Micropuzzle42
 {
@@ -1266,7 +1427,7 @@ public class Micropuzzle42
 \end{verbatim}
 }
 
-The first solutions are given in the following table with $m$ the number of our runner and $n$ the total number of runners. The first case of $m = n = 1$ is the special case of our runner doing a solo race.
+The first solutions are given in the following table with $m$ the number of our runner and $n$ the total number of runners. The first row with $m = n = 1$ is the special case of our runner doing a solo race.
 
 \pagebreak[3]
 \begin{longtable}[t]{|r|r|} \hline
@@ -1293,7 +1454,7 @@ The first solutions are given in the following table with $m$ the number of our 
 %\end{table}
 \end{longtable}
 
-The $T_n = \frac{1}{2}n(n+1)$ are exactly the triangular numbers that are also squares, %as it is \[ \frac{1}{2}n(n+1) = m^2 \]
+The $T_n = \frac{1}{2}n(n+1)$ with $n$ taken from the above solutions are exactly the triangular numbers that are also squares, %as it is \[ \frac{1}{2}n(n+1) = m^2 \]
 compare page 204 in \cite{BookOfNumbers}.
 
 The values of $m$ in the first column are just the sequence M4217 and the values of $n$ in the second column are the sequence M4536 in \cite{Integer_sequences}.
@@ -1324,9 +1485,9 @@ Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b
 
 If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are already finished with 0 operations.
 
-The reversed number is $10b+a$, and the sum of the original two-digit number and its reverse then becomes
+The reversed number of $10a+b$ is $10b+a$, and the sum of the original two-digit number and its reverse then becomes
 \[
-(10a+b)+(10b+a) = 10a + a + b + 10 b = 10(a+b) + (a+b) = 11(a+b)
+(10a+b)+(10b+a) = 10a + b + 10b + a = 11a + 11b = 11(a+b)
 \]
 showing that the result of the first step only depends on the sum $a+b$ of the two digits $a$ and $b$ of the original two-digit number.
 
@@ -1531,7 +1692,7 @@ x_{1,2} &=& \frac{3}{2}R \pm \sqrt{\frac{9}{4}R^2-9R} \\
 This gives the two possible solutions
 \begin{eqnarray*}
 x_1 &\approx& 14.515503482069 \\
-x_2 &\approx& 3.781555058710
+x_2 &\approx& \,\;3.781555058710
 \end{eqnarray*}
 
 The distance between the top of the wall and the top of the ladder then becomes $15-x_{1,2}$ resulting in the two solutions of 0.4844965 feet or 11.2184449 feet.
@@ -1627,51 +1788,63 @@ Springer, 1996.
 John H.~Conway, Richard K.~Guy, {\it The Book of Numbers}.
 Copernicus, 1995.
 
+\bibitem{ideals_varieties_algorithms}
+David Cox, John Little, Donal O'Shea, {\it Ideals, Varieties and Algorithms}, 3rd edition.
+Springer,  2007.
+
 \bibitem{colossal}
 Martin Gardner, {\it The Colossal Book of Mathematics}.
 W.~W.~Norton \& Company, 2001.
+
+\bibitem{modern_computer_algebra}
+Joachim von zur Gathen, J\"urgen Gerhard, {\it Modern Computer Algebra}, 2nd edition.
+Cambridge University Press, 2003.
+
+\bibitem{algorithms_computer_algebra}
+Keith O.~Geddes, Stephen R.~Czapor, George Labahn, {\it Algorithms for Computer Algebra}.
+Kluwer Acacemic Publishers, 1992.
 
 \bibitem{Giblin}
 Peter Giblin, {\it Primes and Programming -- An Introduction to Number Theory with Computing}.
 Cambridge University Press, 1993.
 
 %\bibitem{GraRy}
-%I.~S.~Gradshteyn, I.~M.~Ryzhik, {\it Table of Integrals, Series and Products}, 7th Edition.
+%I.~S.~Gradshteyn, I.~M.~Ryzhik, {\it Table of Integrals, Series and Products}, 7th edition.
 %Academic Press, 2007.
 
 \bibitem{ConcreteMath}
-Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd Edition.
+Ronald L.~Graham, Donald E.~Knuth, Oren Patashnik, {\it Concrete Mathematics: A Foundation for Computer Science}, 2nd edition.
 Addison-Wesley, 1994.
 
 \bibitem{HardyWright}
-G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th Edition.
+G.~H.~Hardy, E.~M.~Wright, {\it An Introduction to the Theory of Numbers}, 5th edition.
 Oxford University Press, 1979.
 
 %\bibitem{taocp_1}
-%Donald E. Knuth, {\it The Art of Computer Programming v. 1. Fundamental Algorithms}, 3rd Edition.
+%Donald E. Knuth, {\it The Art of Computer Programming v. 1. Fundamental Algorithms}, 3rd edition.
 %Addison-Wesley, 1997.
 
 \bibitem{taocp_2}
-Donald E. Knuth, {\it The Art of Computer Programming v. 2. Seminumerical Algorithms}, 3rd Edition.
+Donald E. Knuth, {\it The Art of Computer Programming v. 2. Seminumerical Algorithms}, 3rd edition.
 Addison-Wesley, 1997.
 
 %\bibitem{Nathanson}
 %Melvyn B.~Nathanson, {\it Elementary Methods in Number Theory}.
 %Springer, 2000.
 
-%\bibitem{NISTHandbook}
-%Frank W.~J.~Olver et al, {\it NIST Handbook of Mathematical Formulas}.
-%Cambridge University Press, 2010.
+\bibitem{NISTHandbook}
+Frank W.~J.~Olver et al, {\it NIST Handbook of Mathematical Formulas}.
+Cambridge University Press, 2010.
 
 \bibitem{Shoup}
-Victor Shoup, {\it A Computational Introduction to Number Theory and Algebra}, 2nd Edition.
+Victor Shoup, {\it A Computational Introduction to Number Theory and Algebra}, 2nd edition.
 Cambridge University Press, 2009.
 
 \bibitem{Integer_sequences}
 N.~J.~A.~Sloane, Simon Plouffe, {\it The Encyclopedia of Integer Sequences}, Academic Press, 1995.
 
 \bibitem{CRCTablesFormulae}
-D.~Zwillinger, Editor-in-Chief, {\it CRC Standard Mathematical Tables and Formulae}, 30th Edition.
+D.~Zwillinger, Editor-in-Chief, {\it CRC Standard Mathematical Tables and Formulae}, 30th edition.
 CRC Press, 1996.
 
 \end{thebibliography}

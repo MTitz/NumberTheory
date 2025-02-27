@@ -1333,13 +1333,11 @@ We get the sum of numbers greater than our runner by subtracting from the total 
 \end{equation}
 As by the problem the sums before our runner (\ref{SumBefore}) and after our runner (\ref{SumAfter}) must be equal, we get the equation
 \[ \frac{(m-1)m}{2} = \frac{n(n+1)}{2} - \frac{m(m+1)}{2} \]
-Multiplying both sides with $2$ gives
-\[ (m-1)m = n(n+1) - m(m+1) \]
-and by now adding $m(m+1)$ to both sides
-\[ (m-1)m + (m+1)m = n(n+1) \]
-simplifies the equation to
+Adding $\frac{m(m+1)}{2}$ to both sides gives
+\[ \frac{(m-1)m + (m+1)m}{2} = \frac{n(n+1)}{2} \]
+and simplifies the equation to
 \begin{equation}\label{EqualSums}
-2m^2 = n(n+1)
+m^2 = \frac{n(n+1)}{2}
 \end{equation}
 
 This already allows a solution of the given puzzle by a small program in the spirit of the book.
@@ -1366,11 +1364,11 @@ public class Micropuzzle42
 This gives the solution for the problem with runner 204 out of total 288 runners.
 You can also run the program for all n from for example 1 to 100000 by adjusting the values in the {\it for} statement. But it does not allow a more general statement about any solutions of (\ref{EqualSums}) within the positive integers.
 
-The right side of (\ref{EqualSums}) is $n(n+1) = n^2 + n$. By trying to simplify this you could begin with
+The numerator of the right side of (\ref{EqualSums}) is $n(n+1) = n^2 + n$. By trying to simplify this you could begin with
 \[ \left(n+\frac{1}{2}\right)^2 = n^2 + n + \frac{1}{4} \]
 and
 \begin{equation}\label{binom2n} \left(2n+1\right)^2 = 4n^2 + 4n + 1 \end{equation}
-Then you can go on multiplying both sides of equation (\ref{EqualSums}) with 4 to obtain
+Then you can go on multiplying both sides of equation (\ref{EqualSums}) with 8 to obtain
 \[ 8m^2 = 4n(n+1) \]
 and further using (\ref{binom2n})
 \[ 2\cdot(2m)^2 = \left(2n+1\right)^2-1 \]

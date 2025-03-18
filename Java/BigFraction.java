@@ -25,7 +25,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
             this.numerator = numerator;
             this.denominator = denominator;
         } else if (denominatorSignum == 0) {
-            throw new ArithmeticException();
+            throw new ArithmeticException("Denominator cannot be zero");
         } else {
             this.numerator = numerator.negate();
             this.denominator = denominator.negate();
@@ -39,7 +39,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
             numerator = -numerator;
             denominator = -denominator;
         } else if (denominator == 0) {
-            throw new ArithmeticException();
+            throw new ArithmeticException("Denominator cannot be zero");
         }
         this.numerator = BigInteger.valueOf(numerator);
         this.denominator = BigInteger.valueOf(denominator);
@@ -59,9 +59,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
 
     @Override public int compareTo(BigFraction val)
     {
-        BigInteger i1 = this.numerator.multiply(val.denominator);
-        BigInteger i2 = this.denominator.multiply(val.numerator);
-        return i1.compareTo(i2);
+        return this.numerator.multiply(val.denominator).compareTo(this.denominator.multiply(val.numerator));
     }
 
     public BigDecimal bigDecimalValue(int scale, RoundingMode roundingMode)
@@ -183,7 +181,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
 
     @Override public boolean equals(Object o)
     {
-        if (!(o instanceof BigFraction))
+        if (o == null || !(o instanceof BigFraction))
             return false;
         BigFraction fraction = (BigFraction)o;
         return this.numerator.multiply(fraction.denominator).equals(this.denominator.multiply(fraction.numerator));

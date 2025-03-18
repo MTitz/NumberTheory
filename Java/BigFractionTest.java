@@ -56,7 +56,7 @@ public class BigFractionTest
 
     public static void main(String[] args)
     {
-        System.out.println("Fractions: f1 = " + f1 + ", f2 = " + f2 + ", f3 = " + f3 + ", f4 = " + f4);
+        System.out.println("Fractions: f1 = " + f1 + ", f2 = " + f2 + ", f3 = " + f3 + ", f4 = " + f4 + ", f5 = " + f5);
         System.out.println();
         System.out.println("Integer value of f3: " + f3.intValue());
         System.out.println("Long value of f3:    " + f3.longValue());

@@ -41,6 +41,12 @@ public class ComplexTest extends TestCase {
     }
 
     public void testPow() {
+        assertEquals(new Complex(+1.0, 0.0), Complex.pow(Complex.ZERO, 0), DELTA);
+        assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, 1), DELTA);
+        assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, 2), DELTA);
+        assertEquals(new Complex(+1.0, 0.0), Complex.pow(Complex.ZERO, Complex.ZERO), DELTA);
+        assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, Complex.ONE), DELTA);
+        assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, new Complex(2.0, 0.0)), DELTA);
         assertEquals(new Complex(-1.0, 0.0), Complex.pow(Complex.I, 2), DELTA);
         assertEquals(new Complex(+1.0, 0.0), Complex.pow(Complex.I, 4), DELTA);
         assertEquals(new Complex(0.20787957635076193), Complex.pow(Complex.I, Complex.I), DELTA);

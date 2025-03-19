@@ -144,7 +144,7 @@ public final class Complex {
     /** Returns the value of the first argument raised to the power of the second argument. */
     public static Complex pow(Complex a, double x)
     {
-        if (a.re == 0.0 && a.im == 0.0 && x < 0.0) {
+        if (a.re == 0.0 && a.im == 0.0) {
             if (x > 0.0) {
                 return Complex.ZERO;
             } else if (x == 0.0) {
@@ -160,7 +160,13 @@ public final class Complex {
     public static Complex pow(Complex a, Complex z)
     {
         if (a.re == 0.0 && a.im == 0.0) {
-            throw new IllegalArgumentException("Cannot raise zero to a complex power");
+            if (z.re > 0.0 && z.im == 0.0) {
+                return Complex.ZERO;
+            } else if (z.re == 0.0 && z.im == 0.0) {
+                return Complex.ONE;
+            } else {
+                throw new IllegalArgumentException("Cannot raise zero to a complex power");
+            }
         }
         return Complex.exp(z.multiply(Complex.log(a)));
     }

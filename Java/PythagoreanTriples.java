@@ -48,6 +48,11 @@ public class PythagoreanTriples
             return 0;
         }
 
+        @Override
+        public String toString() {
+            return String.format("PythagoreanTriple(a=%d, b=%d, c=%d)", a, b, c);
+        }
+
         private int a;
         private int b;
         private int c;

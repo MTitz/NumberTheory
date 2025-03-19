@@ -3,7 +3,6 @@
    Pythagoras for beginners
 */
 
-import static java.lang.Math.*;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,9 +10,7 @@ public class Micropuzzle01
 {
     public static boolean isCube(long n)
     {
-        final double eps = 1.0e-8;  // to prevent errors by rounding
-        double x = n;
-        long root = (long)floor(cbrt(x) + eps);
+        long root = Math.round(Math.cbrt(n));
         return root * root * root == n;
     }
 
@@ -43,6 +40,11 @@ public class Micropuzzle01
             if (this.b < val.b) return -1;
             if (this.b > val.b) return  1;
             return 0;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("PythagoreanTriple(a=%d, b=%d, c=%d)", a, b, c);
         }
 
         private int a;

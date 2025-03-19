@@ -69,6 +69,9 @@ public final class Complex {
     /** Returns a Complex number whose value is <code>(this / c)</code>. */
     public Complex divide(Complex c) {
         double denominator = c.re * c.re + c.im * c.im;
+        if (denominator == 0.0) {
+            throw new ArithmeticException("Division by zero in Complex division");
+        }
         return new Complex((re * c.re + im * c.im) / denominator,
                            (c.re * im - re * c.im) / denominator);
     }
@@ -131,6 +134,9 @@ public final class Complex {
     /** Returns the natural logarithm of a <code>Complex</code> value. */
     public static Complex log(Complex z)
     {
+        if (z.re == 0.0 && z.im == 0.0) {
+            throw new IllegalArgumentException("Logarithm of zero is undefined for Complex numbers");
+        }
         return new Complex(0.5 * Math.log(z.re * z.re + z.im * z.im),
                            Math.atan2(z.im, z.re));
     }
@@ -138,12 +144,24 @@ public final class Complex {
     /** Returns the value of the first argument raised to the power of the second argument. */
     public static Complex pow(Complex a, double x)
     {
+        if (a.re == 0.0 && a.im == 0.0 && x < 0.0) {
+            if (x > 0.0) {
+                return Complex.ZERO;
+            } else if (x == 0.0) {
+                return Complex.ONE;
+            } else {
+                throw new IllegalArgumentException("Cannot raise zero to a negative power");
+            }
+        }
         return Complex.exp(Complex.log(a).multiply(x));
     }
 
     /** Returns the value of the first argument raised to the power of the second argument. */
     public static Complex pow(Complex a, Complex z)
     {
+        if (a.re == 0.0 && a.im == 0.0) {
+            throw new IllegalArgumentException("Cannot raise zero to a complex power");
+        }
         return Complex.exp(z.multiply(Complex.log(a)));
     }
 

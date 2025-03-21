@@ -75,21 +75,25 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
 
     // Implementation of the methods from the abstract base class Number
 
+    /** Converts this <code>BigFraction</code> to a <code>double</code>. */
     @Override public double doubleValue()
     {
         return bigDecimalValue(20).doubleValue();
     }
 
+    /** Converts this <code>BigFraction</code> to a <code>float</code>. */
     @Override public float floatValue()
     {
         return bigDecimalValue(12).floatValue();
     }
 
+    /** Converts this <code>BigFraction</code> to an <code>int</code>. */
     @Override public int intValue()
     {
         return bigDecimalValue(12).intValue();
     }
 
+    /** Converts this <code>BigFraction</code> to a <code>long</code>. */
     @Override public long longValue()
     {
         return bigDecimalValue(20).longValue();

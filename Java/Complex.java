@@ -61,12 +61,12 @@ public final class Complex {
         return new Complex(re * c.re - im * c.im, re * c.im + im * c.re);
     }
 
-    /** Returns a Complex number whose value is <code>(this / d)</code>. */
+    /** Returns a Complex number whose value is <code>(this / d)</code> with d a number of type double. */
     public Complex divide(double d) {
         return new Complex(re / d, im / d);
     }
 
-    /** Returns a Complex number whose value is <code>(this / c)</code>. */
+    /** Returns a Complex number whose value is <code>(this / c)</code> with c a Complex number. */
     public Complex divide(Complex c) {
         double denominator = c.re * c.re + c.im * c.im;
         if (denominator == 0.0) {
@@ -81,6 +81,7 @@ public final class Complex {
         return Math.atan2(im, re);
     }
 
+    /** Returns the argument of a <code>Complex</code> number. */
     public static double arg(Complex z) {
         return Math.atan2(z.im, z.re);
     }
@@ -100,6 +101,7 @@ public final class Complex {
         return new Complex(re, -im);
     }
 
+    /** Returns the conjugate complex number of a <code>Complex</code> number. */
     public static Complex conj(Complex z) {
         return new Complex(z.re, -z.im);
     }

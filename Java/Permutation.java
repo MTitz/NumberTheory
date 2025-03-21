@@ -1,20 +1,20 @@
 public class Permutation
 {
-    public Permutation(int n, int initValue)
+    public Permutation(int nElements, int initValue)
     {
-        if (n < 0) {
-            throw new IllegalArgumentException();
+        if (nElements < 1) {
+            throw new IllegalArgumentException("A permutation must contain at least one element.");
         } else {
-            perm = new int[n];
-            for (int i = 0; i < n; ++i) {
+            perm = new int[nElements];
+            for (int i = 0; i < nElements; ++i) {
                 perm[i] = i + initValue;
             }
         }
     }
 
-    public Permutation(int n)
+    public Permutation(int nElements)
     {
-        this(n, 1);
+        this(nElements, 1);
     }
 
     public final int[] getPermutation()
@@ -58,6 +58,8 @@ public class Permutation
 
     @Override public boolean equals(Object o)
     {
+        if (o == null)
+            return false;
         if (o == this)
             return true;
         if (!(o instanceof Permutation))

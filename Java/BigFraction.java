@@ -183,6 +183,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return new BigFraction(BigInteger.valueOf(val), BigInteger.ONE);
     }
 
+    /** Compares this <code>BigFraction</code> number with the specified <code>Object</code> for equality.*/
     @Override public boolean equals(Object o)
     {
         if (o == null || !(o instanceof BigFraction))
@@ -191,6 +192,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return this.numerator.multiply(fraction.denominator).equals(this.denominator.multiply(fraction.numerator));
     }
 
+    /** Returns the String representation of this <code>BigFraction</code> number.*/
     @Override public String toString()
     {
         return denominator.equals(BigInteger.ONE)

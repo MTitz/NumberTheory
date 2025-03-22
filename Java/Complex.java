@@ -221,6 +221,7 @@ public final class Complex {
                            Math.sin(y2)  / denominator);
     }
 
+    /** Compares this <code>Complex</code> number with the specified <code>Object</code> for equality.*/
     public @Override boolean equals(Object o) {
         if (o == this)
             return true;
@@ -233,6 +234,7 @@ public final class Complex {
                 Double.doubleToLongBits(c.im));
     }
 
+    /** Returns the String representation of this <code>Complex</code> number.*/
     public @Override String toString() {
         return im >= 0
             ? "(" + re + " + " + im + "i)"

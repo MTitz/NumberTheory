@@ -10,7 +10,7 @@ public class BernoulliNumbers
     public static BigFraction[] calculateBernoulliNumbers(int n)
     {
         if (n < 1)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("need n>=2 for table of Bernoulli numbers");
         BigFraction[] B = new BigFraction[n+1];
         B[0] = BigFraction.ONE;
         B[1] = new BigFraction(-1, 2);
@@ -31,7 +31,7 @@ public class BernoulliNumbers
         return B;
     }
 
-    public static void printTable(BigFraction[] B)
+    public static void printTable(final BigFraction[] B)
     {
         if (B == null)
             return;
@@ -45,6 +45,8 @@ public class BernoulliNumbers
         DecimalFormat df3 = new DecimalFormat("0.00000000000000000000000000000000000000000000000000000000000000E0000");
         DecimalFormat df = df1;
         for (int i = 0; i < B.length; ++i) {
+            // change output format to exponential notation beginning with index 48
+            // until index 636 three digits of the exponent are sufficient
             if (i == 48)
                 df = B.length <= 636 ? df2 : df3;
             if (B[i].compareTo(BigFraction.ZERO) != 0)
@@ -54,15 +56,21 @@ public class BernoulliNumbers
 
     public static void main(String[] args)
     {
-        int limit = 30;
+        int limit = 30;  // Just a rather arbitrary default value
         if (args.length > 0) {
             limit = Integer.parseInt(args[0]);
             if (args.length >= 2) {
-                System.err.println("Command line error");
+                System.err.println("Expected only upper limit for index of Bernoulli numbers.");
                 return;
             }
         }
-        BigFraction[] bern = calculateBernoulliNumbers(limit);
-        printTable(bern);
+        if (limit > 4184) {
+            System.err.println("Index too high for output format, and program would be too slow.");
+        } else if (limit <= 1) {
+            System.err.println("Index too low for any reasonable calculation.");
+        } else {
+            BigFraction[] bern = calculateBernoulliNumbers(limit);
+            printTable(bern);
+        }
     }
 }

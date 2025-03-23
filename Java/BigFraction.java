@@ -57,16 +57,19 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return denominator;
     }
 
+    /** Compares this <code>BigFraction</code> with the specified <code>BigFraction</code>. */
     @Override public int compareTo(BigFraction val)
     {
         return this.numerator.multiply(val.denominator).compareTo(this.denominator.multiply(val.numerator));
     }
 
+    /** Converts this <code>BigFraction</code> to a <code>BigDecimal</code> with given <code>scale</code> and <code>RoundingMode roundingMode</code>. */
     public BigDecimal bigDecimalValue(int scale, RoundingMode roundingMode)
     {
         return new BigDecimal(numerator).divide(new BigDecimal(denominator), scale, roundingMode);
     }
 
+    /** Converts this <code>BigFraction</code> to a <code>BigDecimal</code> with given <code>scale</code> and default <code>RoundingMode</code>. */
     public BigDecimal bigDecimalValue(int scale)
     {
         return bigDecimalValue(scale, DEFAULT_ROUNDING_MODE);
@@ -126,6 +129,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return cancel(numerator, denominator);
     }
 
+	    /** Returns a BigFraction number whose value is <code>(this * val)</code> where <code>val</code> is a BigInteger. */
     public BigFraction multiply(BigInteger val)
     {
         return cancel(numerator.multiply(val), denominator);
@@ -170,6 +174,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
         return new BigFraction(numerator.negate(), denominator);
     }
 
+    /** Returns the signum function of this <code>BigFraction</code>. */
     public int signum()
     {
        return numerator.signum();
@@ -178,6 +183,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
 
     // Miscellaneous useful methods
 
+    /** Translates a <code>long</code> into a <code>BigFraction</code> with denominator 1. */
     public static BigFraction valueOf(long val)
     {
         return new BigFraction(BigInteger.valueOf(val), BigInteger.ONE);

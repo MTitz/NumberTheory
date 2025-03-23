@@ -23,6 +23,10 @@ CLASSFILES = AllDigits.class BernoulliNumbers.class BigFraction.class BigFractio
 RESULTS = bern60.txt BigFractionTest.txt NTTest.txt PermutationTest.txt Micropuzzle07.txt
 LISTINGS = BigFraction.pdf Complex.pdf NumberTheory.pdf Pair.pdf Permutation.pdf PrimeFactors.pdf
 DOCU = JavaNumberTheory_A4.pdf JavaNumberTheory_US.pdf puzzle_notes.pdf
+ifeq ($(OS),Windows_NT)
+DOCU = puzzle_notes.pdf
+LISTINGS =
+endif
 
 all:	$(CLASSFILES) $(RESULTS) $(LISTINGS) $(DOCU)
 

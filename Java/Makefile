@@ -11,7 +11,7 @@ endif
 	$(JAVAC) $(JFLAGS) $<
 
 .java.pdf:
-	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" $< |ps2pdf -> $@)
+	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" $< |ps2pdf - > $@)
 
 .ltx.pdf:
 	pdflatex $<
@@ -32,7 +32,7 @@ all:	$(CLASSFILES) $(RESULTS) $(LISTINGS) $(DOCU)
 
 docu:	$(DOCU)
 
-test:	$(TESTCLASSES)
+test:	$(TESTCLASSES) Complex.class
 	java -cp $(TESTPATH) junit.textui.TestRunner ComplexTest
 
 clean:
@@ -66,10 +66,10 @@ PythagoreanTriples.txt: PythagoreanTriples.class
 	java -Xmx2048m PythagoreanTriples 200000000 > $@
 
 JavaNumberTheory_A4.pdf: $(CLASSFILES)
-	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" *.java|ps2pdf -> $@)
+	(MPAGE=;mpage -H -2 -c -f -bA4 -D"%d.%m.%Y %H:%M" *.java|ps2pdf - > $@)
 
 JavaNumberTheory_US.pdf: $(CLASSFILES)
-	(MPAGE=;mpage -H -2 -c -f -b Letter -D"%Y-%m-%d %H:%M" *.java|ps2pdf -sPAPERSIZE=letter -> $@)
+	(MPAGE=;mpage -H -2 -c -f -bLetter -D"%Y-%m-%d %H:%M" *.java|ps2pdf -sPAPERSIZE=letter - > $@)
 
 .SUFFIXES:
 .SUFFIXES: .java .class .ltx .pdf

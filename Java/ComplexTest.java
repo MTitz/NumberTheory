@@ -26,12 +26,14 @@ public class ComplexTest extends TestCase {
         assertEquals(new Complex( 2, 2), new Complex(1, 1).multiply(2));
         assertEquals(new Complex(10, 4), new Complex(1, 1).multiply(new Complex(7, -3)));
         assertEquals(new Complex( 5, 1), new Complex(2, 3).multiply(new Complex(1, -1)));
+        assertEquals(new Complex(12, 9), new Complex(4, 3).multiply(3));
     }
 
     public void testDivide() {
         assertEquals(new Complex(0.5,  0.5), new Complex(1, 1).divide(2.0));
         assertEquals(new Complex(0.7, -0.1), new Complex(3, 1).divide(new Complex(4, 2)), DELTA);
         assertEquals(new Complex(2, -1), new Complex(15).divide(new Complex(6, 3)), DELTA);
+        assertEquals(new Complex(4,  3), new Complex(12, 9).divide(3), DELTA);
     }
 
     public void testSqrt() {
@@ -44,6 +46,7 @@ public class ComplexTest extends TestCase {
         assertEquals(new Complex(+1.0, 0.0), Complex.pow(Complex.ZERO, 0), DELTA);
         assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, 1), DELTA);
         assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, 2), DELTA);
+        assertEquals(new Complex(1024.0, 0.0), Complex.pow(new Complex(2, 0), 10.0), DELTA);
         assertEquals(new Complex(+1.0, 0.0), Complex.pow(Complex.ZERO, Complex.ZERO), DELTA);
         assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, Complex.ONE), DELTA);
         assertEquals(new Complex( 0.0, 0.0), Complex.pow(Complex.ZERO, new Complex(2.0, 0.0)), DELTA);
@@ -59,6 +62,24 @@ public class ComplexTest extends TestCase {
         assertEquals(new Complex(0.09983341664682815, 0.0), Complex.sin(new Complex(0.1)), DELTA);
         assertEquals(new Complex(0.0, 0.10016675001984403), Complex.sin(new Complex(0.0, 0.1)), DELTA);
         assertEquals(new Complex(0.10033299984131393, 0.09966633349210759), Complex.sin(new Complex(0.1, 0.1)), DELTA);
+    }
+
+    public void testCos() {
+        assertEquals(new Complex(1.0, 0.0), Complex.cos(Complex.ZERO), DELTA);
+        assertEquals(new Complex(0.9950041652780258, 0.0), Complex.cos(new Complex(0.1)), DELTA);
+        assertEquals(new Complex(1.0050041680558035, 0.0), Complex.cos(new Complex(0.0, 0.1)), DELTA);
+        assertEquals(new Complex(0.9999833333373015, -0.00999998888888977), Complex.cos(new Complex(0.1, 0.1)), DELTA);
+    }
+
+    public void testArray() {
+        Complex[] c = new Complex[3];
+        assertEquals(null, c[0]);
+        assertEquals(null, c[1]);
+        assertEquals(null, c[2]);
+        c[0] = Complex.ONE;
+        c[1] = Complex.I;
+        c[2] = c[0].add(c[1]);
+        assertEquals(new Complex(1.0, 1.0), c[2], DELTA);
     }
 
     public void testToString() {

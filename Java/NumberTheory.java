@@ -257,7 +257,7 @@ public class NumberTheory
         return Math.abs(x);
     }
 
-    public static final int gcd(int[] u)
+    public static final int gcd(int... u)
     {
         int n = u.length;
         int d = u[0];
@@ -269,7 +269,7 @@ public class NumberTheory
         return d;
     }
 
-    public static final long gcd(long[] u)
+    public static final long gcd(long... u)
     {
         int n = u.length;
         long d = u[0];
@@ -281,7 +281,7 @@ public class NumberTheory
         return d;
     }
 
-    public static final long repeatedLongFunction(ToLongBiFunction<Long, Long> f, long[] u)
+    public static final long repeatedLongFunction(ToLongBiFunction<Long, Long> f, long... u)
     {
         long v = u[0];
         for (int k = 1; k < u.length; ++k) {
@@ -297,7 +297,7 @@ public class NumberTheory
         return Math.abs((x / gcd(x, y)) * y);
     }
 
-    public static final long lcm(long[] u)
+    public static final long lcm(long... u)
     {
         return repeatedLongFunction((a, b) -> lcm(a,b), u);
     }

@@ -294,7 +294,7 @@ public class NTTest
 
     private static void gcdTest(long a, long b, long c)
     {
-        System.out.println("gcd(" + a + ", " + b + ", " + c + ") = " + NumberTheory.gcd(new long[]{a, b, c}));
+        System.out.println("gcd(" + a + ", " + b + ", " + c + ") = " + NumberTheory.gcd(a, b, c));
     }
 
     private static void gcdTestcases()
@@ -325,7 +325,7 @@ public class NTTest
 
     private static void lcmTest(long a, long b, long c)
     {
-        System.out.println("lcm(" + a + ", " + b + ", " + c + ") = " + NumberTheory.lcm(new long[]{a, b, c}));
+        System.out.println("lcm(" + a + ", " + b + ", " + c + ") = " + NumberTheory.lcm(a, b, c));
     }
 
     private static void lcmTestcases()

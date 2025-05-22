@@ -8,9 +8,7 @@ public class Micropuzzle36a
 {
     public static boolean isCube(long n)
     {
-        final double eps = 1.0e-4;
-        double x = n;
-        long root = (long)Math.floor(Math.cbrt(x) + eps);
+        long root = Math.round(Math.cbrt(n));
         return root * root * root == n;
     }
 

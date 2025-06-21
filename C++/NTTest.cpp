@@ -5,6 +5,7 @@
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Ribenboim] Paolo Ribenboim "The New Book of Prime Number Records", Springer, 1995
 //  [Rosen] Kenneth H. Rosen (editor-in-chief), "Handbook of discrete and combinatorial mathematics", CRC Press, 2000
 //  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
@@ -189,6 +190,10 @@ static void powerModTestcases()
     cout << "powerMod(2,  100, 10000000) = " << powerMod<int, long long int>(2,  100, 1000000) << endl;
     cout << "powerMod(2, 1000, 10000000) = " << powerMod<int, long long int>(2, 1000, 1000000) << endl;
     cout << endl;
+
+    // [Ribenboim], pages 51 and 334
+    cout << "powerMod(2, 1092, 1093^2) = " << powerMod(2, 1092, 1093 * 1093) << endl;
+    cout << "powerMod(2, 3510, 3511^2) = " << powerMod(2, 3510, 3511 * 3511) << endl;
 
     // [Giblin], chapter 4.2
     cout << "powerMod(7, 50, 11) = " << powerMod(7, 50, 11) << endl;

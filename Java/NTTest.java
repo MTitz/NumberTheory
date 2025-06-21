@@ -5,6 +5,7 @@
 //  [Giblin] Peter Giblin, "Primes and Programming", Cambridge University Press, 1993
 //  [Knuth_2] Donald E. Knuth, "The Art of Computer Programming v. 2. Seminumerical Algorithms", 3rd edition, Addison-Wesley, 1997
 //  [Nathanson] Melvyn B. Nathanson, "Elementary Methods in Number Theory", Springer, 2000
+//  [Ribenboim] Paolo Ribenboim "The New Book of Prime Number Records", Springer, 1995
 //  [Rosen] Kenneth H. Rosen (editor-in-chief), "Handbook of discrete and combinatorial mathematics", CRC Press, 2000
 //  [Scheid] Harald Scheid, "Zahlentheorie", 3. Auflage, Spektrum Akademischer Verlag, 2003
 //  [Yan] Song Y. Yan, "Number Theory for Computing", 2nd edition, Springer, 1998
@@ -207,6 +208,10 @@ public class NTTest
         System.out.println("powerMod(2,  100, 10000000) = " + NumberTheory.powerMod(2L,  100L, 1000000L));
         System.out.println("powerMod(2, 1000, 10000000) = " + NumberTheory.powerMod(2L, 1000L, 1000000L));
         System.out.println();
+
+        // [Ribenboim], pages 51 and 334
+        System.out.println("powerMod(2, 1092, 1093^2) = " + NumberTheory.powerMod(2, 1092, 1093 * 1093));
+        System.out.println("powerMod(2, 3510, 3511^2) = " + NumberTheory.powerMod(2, 3510, 3511 * 1093));
 
         // [Giblin], chapter 4.2
         System.out.println("powerMod(7, 50, 11) = " + NumberTheory.powerMod(7, 50, 11));

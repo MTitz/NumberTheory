@@ -54,5 +54,12 @@ public class PermutationTest
              System.out.println(" " + p0_2);
              p0_2.next();
         }
+
+        System.out.println();
+        Permutation p3 = new Permutation(3, -1);
+        while (p3.hasNext()) {
+             System.out.println(" " + p3);
+             p3.next();
+        }
     }
 }

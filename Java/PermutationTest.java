@@ -2,7 +2,7 @@
 
 public class PermutationTest
 {
-    public static void permTest(int n)
+    public static void permutationTest(int n)
     {
         System.out.print("Testing permutations of 1.." + n);
         Permutation permutation = new Permutation(n);
@@ -27,39 +27,26 @@ public class PermutationTest
         System.out.println();
     }
 
+    public static void permutationTest(int n, int initialValue)
+    {
+        System.out.println();
+        Permutation permutation = new Permutation(n, initialValue);
+        while (permutation.hasNext()) {
+             System.out.println(" " + permutation);
+             permutation.next();
+        }
+    }
+
     public static void main(String[] args)
     {
         for (int i = 1; i <= 6; ++i) {
-            permTest(i);
+            permutationTest(i);
         }
 
         System.out.println("Testing permutations with other initial values");
-        System.out.println();
-        Permutation p5_8 = new Permutation(4, 5);
-        while (p5_8.hasNext()) {
-             System.out.println(" " + p5_8);
-             p5_8.next();
-        }
-
-        System.out.println();
-        Permutation p0_1 = new Permutation(2, 0);
-        while (p0_1.hasNext()) {
-             System.out.println(" " + p0_1);
-             p0_1.next();
-        }
-
-        System.out.println();
-        Permutation p0_2 = new Permutation(3, 0);
-        while (p0_2.hasNext()) {
-             System.out.println(" " + p0_2);
-             p0_2.next();
-        }
-
-        System.out.println();
-        Permutation p3 = new Permutation(3, -1);
-        while (p3.hasNext()) {
-             System.out.println(" " + p3);
-             p3.next();
-        }
+        permutationTest(4, 5);
+        permutationTest(2, 0);
+        permutationTest(3, 0);
+        permutationTest(3,-1);
     }
 }

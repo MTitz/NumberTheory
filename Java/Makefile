@@ -56,7 +56,7 @@ bern1000.txt: BernoulliNumbers.class BigFraction.class
 BigFractionTest.txt: BigFraction.class BigFractionTest.class
 	java BigFractionTest > $@
 
-NTTest.txt: NTTest.class HeadsAlgorithm.class NumberTheory.class Pair.class
+NTTest.txt: NTTest.class HeadsAlgorithm.class NumberTheory.class Pair.class PrimeFactors.class
 	java -Xmx1024m NTTest > $@
 
 PermutationTest.txt: Permutation.class PermutationTest.class

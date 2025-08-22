@@ -4,11 +4,8 @@ import java.util.LinkedList;
 
 public class PrimeFactors
 {
-    class Factor
+    public static class Factor
     {
-        private long base;
-        private int exponent;
-
         public Factor(long base, int exponent)
         {
             this.base = base;
@@ -36,12 +33,16 @@ public class PrimeFactors
             }
             return str.toString();
         }
+
+        private long base;
+        private int exponent;
     }
 
 
-    private long number;
-    private int sign;
-    private List<Factor> factor;
+    public PrimeFactors()
+    {
+        this(0);
+    }
 
     public PrimeFactors(long number)
     {
@@ -70,7 +71,7 @@ public class PrimeFactors
         return factor.size();
     }
 
-    public Factor factors(int i)
+    public Factor getFactor(int i)
     {
         return factor.get(i);
     }
@@ -151,4 +152,8 @@ public class PrimeFactors
         }
         return str.toString();
     }
+
+    private long number;
+    private int sign;
+    private List<Factor> factor;
 }

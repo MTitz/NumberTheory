@@ -622,7 +622,7 @@ public class NumberTheory
         int[] a = new int[n+1];
         int[] m = new int[n+1];
         for (int i = 1; i <= n; ++i) {
-            m[i] = primefactors.factors(i-1).exponent();
+            m[i] = primefactors.getFactor(i-1).exponent();
         }
 
         for (int i = 0; i <= n; ++i) {
@@ -633,7 +633,7 @@ public class NumberTheory
         while (true) {
             long d = 1;
             for (int i = 1; i <= n; ++i) {
-                d *= power(primefactors.factors(i-1).base(), a[i]);
+                d *= power(primefactors.getFactor(i-1).base(), a[i]);
             }
             div[index++] = d;
 
@@ -665,7 +665,7 @@ public class NumberTheory
         int[] a = new int[n+1];
         int[] m = new int[n+1];
         for (int i = 1; i <= n; ++i) {
-            m[i] = primefactors.factors(i-1).exponent();
+            m[i] = primefactors.getFactor(i-1).exponent();
         }
 
         for (int i = 0; i <= n; ++i) {
@@ -676,7 +676,7 @@ public class NumberTheory
         while (true) {
             long d = 1;
             for (int i = 1; i <= n; ++i) {
-                d *= power(primefactors.factors(i-1).base(), a[i]);
+                d *= power(primefactors.getFactor(i-1).base(), a[i]);
             }
             if (d <= limit)
                 div[index++] = d;
@@ -712,7 +712,7 @@ public class NumberTheory
         long result = 0;
         final int nFactors = primefactors.nFactors();
         for (int i = 0; i < nFactors; ++i) {
-            PrimeFactors.Factor factor = primefactors.factors(i);
+            PrimeFactors.Factor factor = primefactors.getFactor(i);
             result += factorF.applyAsLong(factor.base(), factor.exponent());
         }
         return result;
@@ -723,7 +723,7 @@ public class NumberTheory
         long result = 1;
         final int nFactors = primefactors.nFactors();
         for (int i = 0; i < nFactors; ++i) {
-            PrimeFactors.Factor factor = primefactors.factors(i);
+            PrimeFactors.Factor factor = primefactors.getFactor(i);
             result *= factorF.applyAsLong(factor.base(), factor.exponent());
         }
         return result;
@@ -1092,7 +1092,7 @@ public class NumberTheory
     {
         int n = primefactors.nFactors();
         for (int i = 0; i < n; ++i) {
-            if (primefactors.factors(i).exponent() >= 2)
+            if (primefactors.getFactor(i).exponent() >= 2)
                 return false;
         }
         return true;
@@ -1135,7 +1135,7 @@ public class NumberTheory
         long res = 1;
         int nFactors = pf.nFactors();
         for (int i = 0; i < nFactors; ++i) {
-            res = lcm(res, ord2(a, pf.factors(i).base(), pf.factors(i).exponent()));
+            res = lcm(res, ord2(a, pf.getFactor(i).base(), pf.getFactor(i).exponent()));
         }
         return res;
     }
@@ -1155,7 +1155,7 @@ public class NumberTheory
         PrimeFactors pf = new PrimeFactors(p-1);
         int nFactors = pf.nFactors();
         for (int i = 0; i < nFactors; ++i) {
-            long m = (p-1) / pf.factors(i).base();
+            long m = (p-1) / pf.getFactor(i).base();
             if (powerMod(n, m, p) == 1)
                 return false;
         }
@@ -1170,7 +1170,7 @@ public class NumberTheory
     {
         int nFactors = pf.nFactors();
         for (int i = 0; i < nFactors; ++i) {
-            long m = (p-1) / pf.factors(i).base();
+            long m = (p-1) / pf.getFactor(i).base();
             if (powerMod(n, m, p) == 1)
                 return false;
         }
@@ -1203,10 +1203,10 @@ public class NumberTheory
             return 0;
         PrimeFactors pf = new PrimeFactors(n);
         if (pf.nFactors() == 1) {
-            if (pf.factors(0).base() == 2 && pf.factors(0).exponent() >= 3)
+            if (pf.getFactor(0).base() == 2 && pf.getFactor(0).exponent() >= 3)
                 return 0;
         } else if (pf.nFactors() == 2) {
-            if (pf.factors(0).base() != 2 || pf.factors(0).exponent() >= 2)
+            if (pf.getFactor(0).base() != 2 || pf.getFactor(0).exponent() >= 2)
                 return 0;
         } else if (pf.nFactors() >= 3) {
             return 0;
@@ -1234,10 +1234,10 @@ public class NumberTheory
             return new long[0];
         PrimeFactors pf = new PrimeFactors(n);
         if (pf.nFactors() == 1) {
-            if (pf.factors(0).base() == 2 && pf.factors(0).exponent() >= 3)
+            if (pf.getFactor(0).base() == 2 && pf.getFactor(0).exponent() >= 3)
                 return new long[0];
         } else if (pf.nFactors() == 2) {
-            if (pf.factors(0).base() != 2 || pf.factors(0).exponent() >= 2)
+            if (pf.getFactor(0).base() != 2 || pf.getFactor(0).exponent() >= 2)
                 return new long[0];
         } else if (pf.nFactors() >= 3) {
             return new long[0];
@@ -1270,9 +1270,9 @@ public class NumberTheory
         if (n <= 2 || even(n))
             return false;  // must be odd and have at least 3 prime factors
         for (int i = 0; i < n; ++i) {
-            if (primefactors.factors(i).exponent() >= 2)
+            if (primefactors.getFactor(i).exponent() >= 2)
                 return false;  // not squarefree
-            if ((primefactors.getNumber()-1) % (primefactors.factors(i).base()-1) != 0)
+            if ((primefactors.getNumber()-1) % (primefactors.getFactor(i).base()-1) != 0)
                 return false;
         }
         return true;
@@ -1310,11 +1310,11 @@ public class NumberTheory
             // N = p with p prime number
             return power(2L, N-1);
         } else if (nFactors.nFactors() == 2
-                        && nFactors.factors(0).exponent() == 1
-                        && nFactors.factors(1).exponent() == 1) {
+                        && nFactors.getFactor(0).exponent() == 1
+                        && nFactors.getFactor(1).exponent() == 1) {
             // N = p*q with p < q prime numbers
-            return power(2L, (int)nFactors.factors(1).base()-1) *
-                   power(3L, (int)nFactors.factors(0).base()-1);
+            return power(2L, (int)nFactors.getFactor(1).base()-1) *
+                   power(3L, (int)nFactors.getFactor(0).base()-1);
         }
         long n = 1;
         while (sigma0(n) != N) {

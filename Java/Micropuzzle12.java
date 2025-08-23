@@ -1,17 +1,18 @@
 /* Program Micropuzzle12.java to solve micropuzzle 12 from
    J. J. Clessa "Math and Logic Puzzles for PC Enthusiasts"
+   Squaring the cube
 */
 
 public class Micropuzzle12
 {
     public static int toNumber(int[] digits, int indexStart, int totalDigits)
     {
-        final int base = 10;
+        final int BASE = 10;
         if (digits == null)
             return 0;
         int n = 0;
         for (int i = 0; i < totalDigits; ++i) {
-            n *= base;
+            n *= BASE;
             n += digits[indexStart + i];
         }
         return n;

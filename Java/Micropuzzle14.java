@@ -48,7 +48,6 @@ public class Micropuzzle14
             digitCounts(square, digitCount);
             for (int d = 0; d < 10; ++d) {
                 if (digitCount[d] > digitRecord[d]) {
-                    //System.out.println("New record for digit " + d + " with count " + digitCount[d] + " for " + square);
                     digitRecord[d] = digitCount[d];
                     recordNumber[d] = n;
                 }

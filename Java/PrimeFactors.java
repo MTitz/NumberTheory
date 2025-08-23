@@ -44,10 +44,10 @@ public class PrimeFactors
         this.number = number;
         if (number == 0) {
             sign = 0;
-            factor = Collections.emptyList();
+            factorList = Collections.emptyList();
         } else {
             sign = number > 0 ? 1 : -1;
-            factor = factorize(sign * number);
+            factorList = factorize(sign * number);
         }
     }
 
@@ -58,22 +58,22 @@ public class PrimeFactors
 
     public List<Factor> getFactors()
     {
-        return factor;
+        return factorList;
     }
 
     public int nFactors()
     {
-        return factor.size();
+        return factorList.size();
     }
 
     public Factor getFactor(int i)
     {
-        return factor.get(i);
+        return factorList.get(i);
     }
 
     public boolean isPrime()
     {
-        return factor.size() == 1 && factor.get(0).exponent() == 1;
+        return factorList.size() == 1 && factorList.get(0).exponent() == 1;
     }
 
     public List<Factor> factorize(long n)
@@ -134,15 +134,15 @@ public class PrimeFactors
     public String toString()
     {
         StringBuilder str = new StringBuilder();
-        if (sign != 1 || factor.isEmpty()) {
+        if (sign != 1 || factorList.isEmpty()) {
             str.append(sign);
         }
         boolean printOperator = sign != 1;
-        for (Factor f : factor) {
+        for (Factor factor : factorList) {
             if (printOperator) {
                 str.append('*');
             }
-            str.append(f);
+            str.append(factor);
             printOperator = true;
         }
         return str.toString();
@@ -150,5 +150,5 @@ public class PrimeFactors
 
     final private long number;
     final private int sign;
-    final private List<Factor> factor;
+    final private List<Factor> factorList;
 }

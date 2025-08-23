@@ -34,15 +34,10 @@ public class PrimeFactors
             return str.toString();
         }
 
-        private long base;
-        private int exponent;
+        final private long base;
+        final private int exponent;
     }
 
-
-    public PrimeFactors()
-    {
-        this(0);
-    }
 
     public PrimeFactors(long number)
     {
@@ -153,7 +148,7 @@ public class PrimeFactors
         return str.toString();
     }
 
-    private long number;
-    private int sign;
-    private List<Factor> factor;
+    final private long number;
+    final private int sign;
+    final private List<Factor> factor;
 }

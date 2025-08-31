@@ -12,8 +12,13 @@ public class Micropuzzle57
     {
         System.out.printf("%nLooking for solutions for product %d%n", product);
         long[] divisors = NumberTheory.divisors(product);
+        long limit = (long)Math.floor(Math.cbrt(product));
+        int index = divisors.length-1;
+        while (divisors[index] > limit && index > 0) {
+            --index;
+        }
         Set<Long> found = new HashSet<>();
-        for (int i = 0; i < divisors.length; ++i) {
+        for (int i = 0; i <= index; ++i) {
             long age1 = divisors[i];
             for (int j = i; j < divisors.length; ++j) {
                 long age2 = divisors[j];
@@ -23,7 +28,7 @@ public class Micropuzzle57
                         long sum = age1 + age2 + age3;
                         System.out.printf("%6d %6d %6d    %6d%n", age1, age2, age3, sum);
                         if (found.contains(sum)) {
-                            System.out.println(" (solution found with door number " + sum + ")");
+                            System.out.println(" (solution found with sum " + sum + ")");
                         } else {
                             found.add(sum);
                         }

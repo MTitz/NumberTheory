@@ -102,7 +102,7 @@ public class NTTest
     private static void oddEvenTestcases()
     {
         for (int i : new int[] {-2, -1, 0, 1, 2, 15, 16, 79, 80, 81, 82, 83, 84}) {
-            System.out.print("" + i + " is ");
+            System.out.print(i + " is ");
             if (NumberTheory.odd(i))
                 System.out.print("odd");
             if (NumberTheory.even(i))
@@ -593,7 +593,7 @@ public class NTTest
         System.out.println();
         System.out.println("The problem");
         for (int i = 0; i < congruence.length; ++i) {
-            System.out.println("" + congruence[i].a() + " * x = " + congruence[i].b() + " mod " + congruence[i].m());
+            System.out.println(congruence[i].a() + " * x = " + congruence[i].b() + " mod " + congruence[i].m());
         }
         NumberTheory.SimpleLinearCongruence solution = NumberTheory.solve(congruence);
         if (solution.m() == 0)
@@ -1121,7 +1121,7 @@ public class NTTest
             int nSquares = NumberTheory.nSquaresFor(n);
             if (nSquares == -1)
                 continue;
-            System.out.println("" + n + " is sum of " + nSquares + (nSquares == 1 ? " square." : " squares."));
+            System.out.println(n + " is sum of " + nSquares + (nSquares == 1 ? " square." : " squares."));
         }
 
         // Compare [Rosen] Section 4.8.5 Fact 5

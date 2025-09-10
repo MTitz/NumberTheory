@@ -350,7 +350,7 @@ template<typename T> void modInverseTable(T m)
     for (T i = 1; i < m; ++i) {
         try {
             int inv = modInverse(i, m);
-            cout << '\t' << i << '\t' << inv << endl;
+            cout << setw(8) << i << setw(8) << inv << endl;
         }
         catch (std::exception&) {
         }

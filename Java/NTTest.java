@@ -211,7 +211,7 @@ public class NTTest
 
         // [Ribenboim], pages 51 and 334
         System.out.println("powerMod(2, 1092, 1093^2) = " + NumberTheory.powerMod(2, 1092, 1093 * 1093));
-        System.out.println("powerMod(2, 3510, 3511^2) = " + NumberTheory.powerMod(2, 3510, 3511 * 1093));
+        System.out.println("powerMod(2, 3510, 3511^2) = " + NumberTheory.powerMod(2, 3510, 3511 * 3511));
 
         // [Giblin], chapter 4.2
         System.out.println("powerMod(7, 50, 11) = " + NumberTheory.powerMod(7, 50, 11));
@@ -368,7 +368,7 @@ public class NTTest
         for (long i = 1; i < m; ++i) {
             try {
                 long inv = NumberTheory.modInverse(i, m);
-                System.out.println("\t" + i + "\t" + inv);
+                System.out.printf("%8d%8d%n", i, inv);
             }
             catch (RuntimeException e) {
             }

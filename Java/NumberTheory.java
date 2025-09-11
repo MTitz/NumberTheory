@@ -59,6 +59,11 @@ public class NumberTheory
         return bits;
     }
 
+    public static final int bitlength(BigInteger n)
+    {
+        return n.bitLength();
+    }
+
     public static final int digitSum(int n)
     {
         final int base = 10;
@@ -220,6 +225,15 @@ public class NumberTheory
     {
         HeadsAlgorithm ha = new HeadsAlgorithm(m);
         return hyperExpMod(a, k, ha);
+    }
+
+    public static final BigInteger hyperExpMod(BigInteger a, BigInteger k, BigInteger m)
+    {
+        if (k.compareTo(BigInteger.ONE) == 0) {
+            return a.mod(m);
+        } else {
+           return powerMod(a, hyperExpMod(a, k.subtract(BigInteger.ONE), m), m);
+        }
     }
 
     public static final int primefactorInFactorial(final int number, final int p)
@@ -1037,7 +1051,7 @@ public class NumberTheory
 
     public static final int[] primes;
     static {
-        int n = 1000000;
+        int n = 1_000_000;
         //System.err.println("Sieving for primes until " + n);
         boolean[] sieve = eratosthenes(n);
         // count how many primes we actually have until n

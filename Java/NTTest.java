@@ -50,6 +50,11 @@ public class NTTest
         System.out.println("bitlength(" + n + ") = " + NumberTheory.bitlength(n));
     }
 
+    private static void bitlengthTest(BigInteger n)
+    {
+        System.out.println("bitlength(" + n + ") = " + NumberTheory.bitlength(n));
+    }
+
     private static void bitlengthTestcases()
     {
         intBitlengthTest(1);
@@ -65,6 +70,9 @@ public class NTTest
         intBitlengthTest((1<<24)-1);
         intBitlengthTest(1<<24);
         System.out.println("bitlength(" + Long.MAX_VALUE + ") = " + NumberTheory.bitlength(Long.MAX_VALUE));
+        bitlengthTest(BigInteger.ZERO);
+        bitlengthTest(BigInteger.ONE);
+        bitlengthTest(BigInteger.TEN);
     }
 
     private static void digitSumTest(int n)
@@ -242,6 +250,14 @@ public class NTTest
         System.out.println("hyperExpMod(9, 3, 10^8) = " + NumberTheory.hyperExpMod(9, 3, 100000000));
         System.out.printf("hyperExpMod(1777, 1855, 10^8)  = %16d%n", NumberTheory.hyperExpMod(1777, 1855, 100000000));
         System.out.printf("hyperExpMod(1777, 1855, 10^16) = %16d%n", NumberTheory.hyperExpMod(1777L, 1855L, 10000000000000000L));
+        System.out.printf("hyperExpMod(1777, 1855, 10^16) = %16d%n",
+                NumberTheory.hyperExpMod(BigInteger.valueOf(1777L),
+                                         BigInteger.valueOf(1855L),
+                                         BigInteger.valueOf(10000000000000000L)));
+        System.out.printf("hyperExpMod(1777, 1855, 10^40) = %40d%n",
+                NumberTheory.hyperExpMod(BigInteger.valueOf(1777L),
+                                         BigInteger.valueOf(1855L),
+                                         BigInteger.TEN.pow(40)));
     }
 
     private static void primeInFactorialTest(int n, int p)

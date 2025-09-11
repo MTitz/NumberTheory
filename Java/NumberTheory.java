@@ -208,7 +208,7 @@ public class NumberTheory
         if (k == 1) {
             return a % m;
         } else {
-           return powerMod(a, hyperExpMod(a, k-1, m), m);
+            return powerMod(a, hyperExpMod(a, k-1, m), m);
         }
     }
 
@@ -217,7 +217,7 @@ public class NumberTheory
         if (k == 1) {
             return powerMod(a, 1, ha);
         } else {
-           return powerMod(a, hyperExpMod(a, k-1, ha), ha);
+            return powerMod(a, hyperExpMod(a, k-1, ha), ha);
         }
     }
 
@@ -232,7 +232,7 @@ public class NumberTheory
         if (k.compareTo(BigInteger.ONE) == 0) {
             return a.mod(m);
         } else {
-           return powerMod(a, hyperExpMod(a, k.subtract(BigInteger.ONE), m), m);
+            return powerMod(a, hyperExpMod(a, k.subtract(BigInteger.ONE), m), m);
         }
     }
 
@@ -654,7 +654,7 @@ public class NumberTheory
             int j = n;
             while (a[j] == m[j]) {
                 a[j] = 0;
-               --j;
+                --j;
             }
             if (j == 0)
                 break;
@@ -698,7 +698,7 @@ public class NumberTheory
             int j = n;
             while (a[j] == m[j]) {
                 a[j] = 0;
-               --j;
+                --j;
             }
             if (j == 0)
                 break;

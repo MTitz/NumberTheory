@@ -610,7 +610,7 @@ bool isSquare(const T& n)
         return false;
     if (!q11[r % 11])
         return false;
-    T i_sqrt  = integerSqrt(n);
+    T i_sqrt = integerSqrt(n);
     return i_sqrt * i_sqrt == n;
 }
 

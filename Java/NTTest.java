@@ -636,8 +636,8 @@ public class NTTest
         linearCongruence( 4,  9, 11);  // [Nathanson], chapter 2.2, exercise 1 (page 56)
         linearCongruence(12,  3, 45);  // [Nathanson], chapter 2.2, exercise 2 (page 56)
         linearCongruence(28, 35, 42);  // [Nathanson], chapter 2.2, exercise 3 (page 56)
-        linearCongruence(10, 3, 27);  // [Giblin}, chapter 3.2, exercise 2.2 (a)
-        linearCongruence(35, 14, 182);  // [Giblin}, chapter 3.2, exercise 2.2 (a)
+        linearCongruence(10, 3, 27);  // [Giblin], chapter 3.2, exercise 2.2 (a)
+        linearCongruence(35, 14, 182);  // [Giblin], chapter 3.2, exercise 2.2 (a)
 
         // [Andrews], section 5-1, exercise 2 (a)-(f) (page 61)
         linearCongruence(99, 100, 101);

@@ -11,7 +11,7 @@ CFLAGS	= $(OPTFLAGS) $(WARNINGS)
 CXXFLAGS= $(OPTFLAGS) $(WARNINGS)
 LFLAGS	=
 
-BINARIES= a_congruence gcd lag480 jacobi lagarias micropuzzle36 modInverse NTTest phivalues PrimeTable bigunsigned_test divsmall divtbl ProjectEuler668
+BINARIES= a_congruence gcd lag480 jacobi lagarias micropuzzle36 modInverse NTTest phivalues PrimeTable bigunsigned_test divsmall divtbl
 OBJECTS	= harmonic.o numbertheory.o
 LIBS	=
 
@@ -80,10 +80,6 @@ phivalues: phivalues.o numbertheory.o
 
 PrimeTable: PrimeTable.o numbertheory.o
 	$(CXX) PrimeTable.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
-	strip $@
-
-ProjectEuler668: ProjectEuler668.o numbertheory.o
-	$(CXX) ProjectEuler668.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
 	strip $@
 
 
@@ -162,8 +158,6 @@ modInverse.o:	modInverse.cpp numbertheory.h
 NTTest.o:	NTTest.cpp numbertheory.h showSequence.h
 
 phivalues.o:	phivalues.cpp numbertheory.h
-
-ProjectEuler668.o:	ProjectEuler668.cpp numbertheory.h
 
 clean:
 	$(RM) *.o core $(BINARIES)

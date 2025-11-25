@@ -9,7 +9,7 @@ CFLAGS	= $(OPTFLAGS) $(WARNINGS)
 CXXFLAGS= $(OPTFLAGS) $(WARNINGS)
 LFLAGS	=
 
-BINARIES= a_congruence.exe gcd.exe lag480.exe jacobi.exe lagarias.exe micropuzzle36.exe modInverse.exe NTTest.exe phivalues.exe PrimeTable.exe bigunsigned_test.exe divsmall.exe divtbl.exe ProjectEuler668.exe
+BINARIES= a_congruence.exe gcd.exe lag480.exe jacobi.exe lagarias.exe micropuzzle36.exe modInverse.exe NTTest.exe phivalues.exe PrimeTable.exe bigunsigned_test.exe divsmall.exe divtbl.exe
 OBJECTS	= harmonic.o numbertheory.o
 LIBS	=
 
@@ -80,10 +80,6 @@ PrimeTable.exe: PrimeTable.o numbertheory.o
 	$(CXX) PrimeTable.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
 	strip $@
 
-ProjectEuler668.exe: ProjectEuler668.o numbertheory.o
-	$(CXX) ProjectEuler668.o numbertheory.o -o $@ $(LFLAGS) $(LIBS)
-	strip $@
-
 divtbl100.txt: divtbl.exe
 	$< 100 > $@
 
@@ -120,6 +116,7 @@ phivalues_tables: phivalues5.txt phivalues6.txt phivalues7.txt
 
 NTTest.txt: NTTest.exe
 	NTTest.exe > NTTest.txt
+
 
 a_congruence.o:	a_congruence.cpp numbertheory.h
 
@@ -158,8 +155,6 @@ modInverse.o:	modInverse.cpp numbertheory.h
 NTTest.o:	NTTest.cpp numbertheory.h showSequence.h
 
 phivalues.o:	phivalues.cpp numbertheory.h
-
-ProjectEuler668.o:	ProjectEuler668.cpp numbertheory.h
 
 clean:
 	$(RM) *.o core $(BINARIES)

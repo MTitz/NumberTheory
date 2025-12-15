@@ -129,7 +129,7 @@ class HeadsAlgorithm
             throw std::invalid_argument("m too large for Head's algorithm");
         }
         _m = m;
-        _T = (long)std::floor(std::sqrt(m) + 0.5);
+        _T = (T)std::floor(std::sqrt(m) + 0.5);
         _t = _T * _T - m;
     }
 
@@ -660,7 +660,7 @@ std::vector<bool> eratosthenes(I n)
 }
 
 extern const int primes[];
-extern std::size_t n_primes;
+extern const std::size_t n_primes;
 
 template<typename T>
 class Factor

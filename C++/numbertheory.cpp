@@ -12,7 +12,7 @@ const int primes[] = {
 #endif
 };
 
-std::size_t n_primes = sizeof(primes) / sizeof(int);
+const std::size_t n_primes = sizeof(primes) / sizeof(int);
 
 
 const bool q11[] = { true, true, false, true, true, true, false, false, false, true, false };

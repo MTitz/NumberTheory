@@ -30,8 +30,7 @@ public class Fibonacci
         BigInteger y = BigInteger.ZERO;
 
         final int bitLength = bitlength(n);
-        for (int k = bitLength-2; k >= 0; --k)
-        {
+        for (int k = bitLength-2; k >= 0; --k) {
             BigInteger x2 = x.multiply(x);
             x = x2.add(BigInteger.TWO.multiply(x).multiply(y));
             y = x2.add(y.multiply(y));
@@ -47,8 +46,7 @@ public class Fibonacci
 
     public static void main(String[] args)
     {
-        for (int i = 0; i < args.length; ++i)
-        {
+        for (int i = 0; i < args.length; ++i) {
             int n = Integer.parseInt(args[i]);
             System.out.println("fib(" + n + ") = " + fibonacci(n));
         }

@@ -59,7 +59,7 @@ using triple_set = std::set<pythagorean_triple>;
 static triple_set generate_triples(int limit, bool primitive_only = true)
 {
     triple_set triples;
-    for (int m = 1; m * m <= limit; ++m) {
+    for (int m = 1; m * m < limit; ++m) {
         for (int n = (m & 1) + 1; n < m; n += 2) {
             if (gcd(m, n) == 1) {
                 int a = m*m - n*n;

@@ -1477,13 +1477,13 @@ Clearly there will be two answers -- since one will be the reverse of the other.
 
 
 \subsubsection*{The case from the puzzle: 2-digit numbers}
-The problem can be rather well analyzed for two-digit numbers:
+The problem can be rather well analyzed by hand for two-digit numbers:
 
 Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b$ with $a\in\{1,2,\ldots,9\}$ and $b\in\{0,2,\ldots,9\}$, in the example of 19 it is $a=1$ and $b=9$.
 
-If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are already finished with 0 operations.
+If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are finished with 0 operations.
 
-The reversed number of $10a+b$ is $10b+a$, and the sum of the original two-digit number and its reverse then becomes
+Let now be $a \not= b$. The reversed number of $10a+b$ is $10b+a$, and the sum of the original two-digit number and its reverse then becomes
 \[
 (10a+b)+(10b+a) = 10a + b + 10b + a = 11a + 11b = 11(a+b)
 \]
@@ -1519,8 +1519,8 @@ Here some facts in a short overview
 \begin{itemize}
 \item The highest number of iterations for two-digit numbers is 24 and is reached for both the numbers 89 and 98.
 \item There are numbers where the iteration does not end in a palindromic number even after a large number of iterations. The first such number is 196, and it is still an open problem in mathematics if this iteration ever ends in a palindromic number or if it goes to infinity.
-\item The number of 24 iterations to a palindromic number is -- the exceptional cases excluded -- first surpassed only for the number $10\,548$ with 30 iterations ending in $17\,858\,768\,886\,785\,871$.
-\item For numbers up to $1\,000\,000$ the record number of iterations is 64 and achieved for the first time for the number $150\,296$ ending in the palindromic number $682\,049\,569\,465\,550\,121\,055\,564\,965\,940\,286$.
+\item The number of 24 iterations to a palindromic number is -- the exceptional cases excluded -- first surpassed only for the number $10\,548$ with 30 iterations terminating in $17\,858\,768\,886\,785\,871$.
+\item For numbers up to $1\,000\,000$ the record number of not exceptional iterations is 64 and achieved for the first time for the number $150\,296$ terminating in the palindromic number $682\,049\,569\,465\,550\,121\,055\,564\,965\,940\,286$.
 \end{itemize}
 
 Therefore my solution program Micropuzzle45.java performs the iterations only until a given limit of 1000 and lists these exceptional cases at the end of its output. This limit is set by the internal constant {\tt ITERATION{\_}LIMIT}.

@@ -358,7 +358,7 @@ Indeed it is \[4\cdot102564=410256\]
 \[
 N = \frac{2 \cdot \left(4^3-1\right)}{7} = \frac{2 \cdot 63}{7} = 18
 \]
-Therefore \[2 \cdot\left(102\right)_4 = \left(210\right)_4 \]
+Therefore \[ \left(2\right)_4 \cdot \left(102\right)_4 = \left(210\right)_4 \]
 
 For verification it is
 \begin{eqnarray*}
@@ -432,14 +432,14 @@ The results for the base $B = 10$ of the usual decimal system are the solution o
 \begin{table}[htbp]
 \begin{tabular}{|c|r|l|} \hline
 $d_0$ & $n$ & $N$ \\ \hline
- 2 & 18 & 105,263,157,894,736,842 \\
- 3 & 28 & 1,034,482,758,620,689,655,172,413,793 \\
- 4 &  6 & 102,564 \\
- 5 & 42 & 102,040,816,326,530,612,244,897,959,183,673,469,387,755 \\
- 6 & 58 & 1,016,949,152,542,372,881,355,932,203,389,830,508,474,576,271,186,440,677,966 \\
- 7 & 22 & 1,014,492,753,623,188,405,797 \\
- 8 & 13 & 1,012,658,227,848 \\
- 9 & 44 & 10,112,359,550,561,797,752,808,988,764,044,943,820,224,719 \\
+ 2 & 18 & 105\,263\,157\,894\,736\,842 \\
+ 3 & 28 & 1\,034\,482\,758\,620\,689\,655\,172\,413\,793 \\
+ 4 &  6 & 102\,564 \\
+ 5 & 42 & 102\,040\,816\,326\,530\,612\,244\,897\,959\,183\,673\,469\,387\,755 \\
+ 6 & 58 & 1\,016\,949\,152\,542\,372\,881\,355\,932\,203\,389\,830\,508\,474\,576\,271\,186\,440\,677\,966 \\
+ 7 & 22 & 1\,014\,492\,753\,623\,188\,405\,797 \\
+ 8 & 13 & 1\,012\,658\,227\,848 \\
+ 9 & 44 & 10\,112\,359\,550\,561\,797\,752\,808\,988\,764\,044\,943\,820\,224\,719 \\
 \hline \end{tabular}
 \end{table}
 
@@ -670,6 +670,8 @@ $   49$ & $   7^2 $ & $ 9409$ & $  97^2 $ & $ 18769$ & $ 137^2 $ & 9360 \\
 \hline \end{tabular}
 \end{table}
 
+
+
 \subsection{Micropuzzle 11 -- The not-so-perfect square}
 From the book \cite{Clessa}: ``A certain perfect square has the property that, if 5 is added to it, a second perfect square is obtained, and if 5 is subtracted from it, a third perfect square is obtained.
 
@@ -686,7 +688,7 @@ Multiplying all numbers by $d^2$ we get
 \[ a^2-5d^2,\quad a^2,\quad a^2+5d^2 \]
 where $a^2-5d^2$ and $a^2+5d^2$ must be perfect squares within the integers.
 
-As it has to be $a^2-5d^2 > 0$ it must be $d < a / \sqrt{5}$.
+As it has to be $a^2-5d^2 > 0$ it must be $d < a / \sqrt{5}$. The solution $a=41$, $d=12$ can be found by a search with a computer program up to a given limit for $a$.
 
 
 
@@ -744,7 +746,7 @@ The last solution is the only one that does not require usage of halfpenny coina
 
 
 \subsection{Micropuzzle 14 -- Ten-digit perfect squares}
-The program Micropuzzle14.java is more general than the exercise, allowing to give the number of digits as command line parameter. As the Java type long is used for the calculation, a maximum of 18 digits is possible.
+The program Micropuzzle14.java is more general than the exercise, allowing to give the number of decimal digits as command line parameter. As the Java type {\tt long} is used for the calculation, a maximum of 18 digits is possible.
 
 Nice individual results for square numbers with the most fours within 5 to 8 decimal digits:
 \begin{eqnarray*}
@@ -1479,7 +1481,7 @@ Clearly there will be two answers -- since one will be the reverse of the other.
 \subsubsection*{The case from the puzzle: 2-digit numbers}
 The problem can be rather well analyzed by hand for two-digit numbers:
 
-Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b$ with $a\in\{1,2,\ldots,9\}$ and $b\in\{0,2,\ldots,9\}$, in the example of 19 it is $a=1$ and $b=9$.
+Let $a$ and $b$ be the digits of this number, then the number is given by $10a+b$ with $a\in\{1,2,\ldots,9\}$ and $b\in\{0,1,2,\ldots,9\}$, in the example of 19 it is $a=1$ and $b=9$.
 
 If and only if the two digits are identical, this means $a=b$, the number is already a palindrome, and we are finished with 0 operations.
 

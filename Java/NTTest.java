@@ -70,9 +70,14 @@ public class NTTest
         intBitlengthTest((1<<24)-1);
         intBitlengthTest(1<<24);
         System.out.println("bitlength(" + Long.MAX_VALUE + ") = " + NumberTheory.bitlength(Long.MAX_VALUE));
+        System.out.println("... and some tests for BigInteger");
         bitlengthTest(BigInteger.ZERO);
         bitlengthTest(BigInteger.ONE);
         bitlengthTest(BigInteger.TEN);
+        bitlengthTest(BigInteger.ONE.shiftLeft(63).subtract(BigInteger.ONE));
+        bitlengthTest(BigInteger.ONE.shiftLeft(63));
+        bitlengthTest(BigInteger.ONE.shiftLeft(64).subtract(BigInteger.ONE));
+        bitlengthTest(BigInteger.ONE.shiftLeft(64));
     }
 
     private static void digitSumTest(int n)
@@ -1141,8 +1146,8 @@ public class NTTest
         }
 
         // Compare [Rosen] Section 4.8.5 Fact 5
-        final int nMax = 100;
-        System.out.printf("%nPositive integers less than %d that are not the sum of three squares are%n", nMax);
+        final int nMax = 144;
+        System.out.printf("%nPositive integers up to %d that are not the sum of less than four squares are%n", nMax);
         for (int n = 1; n <= nMax; ++n) {
             if (NumberTheory.nSquaresFor(n) == 4)
                 System.out.printf(" %d", n);

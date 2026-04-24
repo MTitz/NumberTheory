@@ -53,6 +53,10 @@ static void bitlengthTestcases()
     bitlengthTest(-1024);
     bitlengthTest((1<<24)-1);
     bitlengthTest(1<<24);
+    cout << "... and some tests for unsigned long long" << endl;
+    bitlengthTest(0ULL);
+    bitlengthTest(1ULL);
+    bitlengthTest(10ULL);
     bitlengthTest(9223372036854775807ULL);
     bitlengthTest(9223372036854775808ULL);
     bitlengthTest(18446744073709551615ULL);
@@ -1064,8 +1068,8 @@ static void nSquaresSumTestcases()
     }
 
     // Compare [Rosen] Section 4.8.5 Fact 5
-    const int nMax = 100;
-    cout << endl << "Positive integers less than " << nMax << " that are not the sum of three squares are" << endl;
+    const int nMax = 144;
+    cout << endl << "Positive integers up to " << nMax << " that are not the sum of less than four squares are" << endl;
     for (int n = 1; n <= nMax; ++n) {
         if (nSquaresSum(n) == 4)
             cout << " " << n;

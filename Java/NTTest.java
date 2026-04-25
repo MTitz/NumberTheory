@@ -443,140 +443,140 @@ public class NTTest
           new NumberTheory.SimpleLinearCongruence(3, 4)};
 
     static NumberTheory.LinearCongruence[] exercise4 =
-       { new NumberTheory.LinearCongruence(3,  1,  5),
-         new NumberTheory.LinearCongruence(4,  6, 14),
-         new NumberTheory.LinearCongruence(5, 11,  3)};
+        { new NumberTheory.LinearCongruence(3,  1,  5),
+          new NumberTheory.LinearCongruence(4,  6, 14),
+          new NumberTheory.LinearCongruence(5, 11,  3)};
 
     static NumberTheory.LinearCongruence[] exercise5 =
-       { new NumberTheory.LinearCongruence(4,  2,  6),
-         new NumberTheory.LinearCongruence(3,  5,  7),
-         new NumberTheory.LinearCongruence(2,  4, 11)};
+        { new NumberTheory.LinearCongruence(4,  2,  6),
+          new NumberTheory.LinearCongruence(3,  5,  7),
+          new NumberTheory.LinearCongruence(2,  4, 11)};
 
     // [Scheid] Kapitel 4.1 (Seite 199)
     static NumberTheory.SimpleLinearCongruence[] exercise6 =
-       { new NumberTheory.SimpleLinearCongruence(-1, 3),
-         new NumberTheory.SimpleLinearCongruence(-1, 4),
-         new NumberTheory.SimpleLinearCongruence(-1, 5),
-         new NumberTheory.SimpleLinearCongruence(-1, 6)};
+        { new NumberTheory.SimpleLinearCongruence(-1, 3),
+          new NumberTheory.SimpleLinearCongruence(-1, 4),
+          new NumberTheory.SimpleLinearCongruence(-1, 5),
+          new NumberTheory.SimpleLinearCongruence(-1, 6)};
 
     // [Scheid] Kapitel 4.1 (Seite 199)
     static NumberTheory.LinearCongruence[] exercise6b =
-       { new NumberTheory.LinearCongruence(1, -1, 3),
-         new NumberTheory.LinearCongruence(1, -1, 4),
-         new NumberTheory.LinearCongruence(1, -1, 5),
-         new NumberTheory.LinearCongruence(1, -1, 6)};
+        { new NumberTheory.LinearCongruence(1, -1, 3),
+          new NumberTheory.LinearCongruence(1, -1, 4),
+          new NumberTheory.LinearCongruence(1, -1, 5),
+          new NumberTheory.LinearCongruence(1, -1, 6)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise7 =
-       { new NumberTheory.SimpleLinearCongruence(1, 2),
-         new NumberTheory.SimpleLinearCongruence(1, 3),
-         new NumberTheory.SimpleLinearCongruence(1, 4),
-         new NumberTheory.SimpleLinearCongruence(1, 5),
-         new NumberTheory.SimpleLinearCongruence(1, 6),
-         new NumberTheory.SimpleLinearCongruence(0, 7)};
+        { new NumberTheory.SimpleLinearCongruence(1, 2),
+          new NumberTheory.SimpleLinearCongruence(1, 3),
+          new NumberTheory.SimpleLinearCongruence(1, 4),
+          new NumberTheory.SimpleLinearCongruence(1, 5),
+          new NumberTheory.SimpleLinearCongruence(1, 6),
+          new NumberTheory.SimpleLinearCongruence(0, 7)};
 
     // from [Scheid] Kapitel IV.12, Aufgabe 6b (Seite 264)
     static NumberTheory.LinearCongruence[] exercise7a =
-       { new NumberTheory.LinearCongruence(5, 2, 12),
-         new NumberTheory.LinearCongruence(7, 0, 15)};
+        { new NumberTheory.LinearCongruence(5, 2, 12),
+          new NumberTheory.LinearCongruence(7, 0, 15)};
 
     static NumberTheory.LinearCongruence[] exercise7b =
-       { new NumberTheory.LinearCongruence(5, 2, 12),
-         new NumberTheory.LinearCongruence(7, 1, 15)};
+        { new NumberTheory.LinearCongruence(5, 2, 12),
+          new NumberTheory.LinearCongruence(7, 1, 15)};
 
     static NumberTheory.LinearCongruence[] exercise7c =
-       { new NumberTheory.LinearCongruence(5, 2, 12),
-         new NumberTheory.LinearCongruence(7, 2, 15)};
+        { new NumberTheory.LinearCongruence(5, 2, 12),
+          new NumberTheory.LinearCongruence(7, 2, 15)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise8 =
-       { new NumberTheory.SimpleLinearCongruence(1, 2),
-         new NumberTheory.SimpleLinearCongruence(2, 4)};
+        { new NumberTheory.SimpleLinearCongruence(1, 2),
+          new NumberTheory.SimpleLinearCongruence(2, 4)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise9a =
-       { new NumberTheory.SimpleLinearCongruence(1,  6),
-         new NumberTheory.SimpleLinearCongruence(1, 10),
-         new NumberTheory.SimpleLinearCongruence(1, 15)};
+        { new NumberTheory.SimpleLinearCongruence(1,  6),
+          new NumberTheory.SimpleLinearCongruence(1, 10),
+          new NumberTheory.SimpleLinearCongruence(1, 15)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise9b =
-       { new NumberTheory.SimpleLinearCongruence(1,  6),
-         new NumberTheory.SimpleLinearCongruence(1, 10),
-         new NumberTheory.SimpleLinearCongruence(6, 15)};
+        { new NumberTheory.SimpleLinearCongruence(1,  6),
+          new NumberTheory.SimpleLinearCongruence(1, 10),
+          new NumberTheory.SimpleLinearCongruence(6, 15)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise9c =
-       { new NumberTheory.SimpleLinearCongruence( 1,  6),
-         new NumberTheory.SimpleLinearCongruence( 1, 10),
-         new NumberTheory.SimpleLinearCongruence(11, 15)};
+        { new NumberTheory.SimpleLinearCongruence( 1,  6),
+          new NumberTheory.SimpleLinearCongruence( 1, 10),
+          new NumberTheory.SimpleLinearCongruence(11, 15)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise10 =
-       { new NumberTheory.SimpleLinearCongruence(1,  2),
-         new NumberTheory.SimpleLinearCongruence(1,  3),
-         new NumberTheory.SimpleLinearCongruence(1,  4),
-         new NumberTheory.SimpleLinearCongruence(1,  5),
-         new NumberTheory.SimpleLinearCongruence(1,  6),
-         new NumberTheory.SimpleLinearCongruence(1,  7),
-         new NumberTheory.SimpleLinearCongruence(1,  8),
-         new NumberTheory.SimpleLinearCongruence(1,  9),
-         new NumberTheory.SimpleLinearCongruence(1, 10),
-         new NumberTheory.SimpleLinearCongruence(1, 11),
-         new NumberTheory.SimpleLinearCongruence(1, 12),
-         new NumberTheory.SimpleLinearCongruence(1, 13),
-         new NumberTheory.SimpleLinearCongruence(1, 14),
-         new NumberTheory.SimpleLinearCongruence(1, 15),
-         new NumberTheory.SimpleLinearCongruence(1, 16),
-         new NumberTheory.SimpleLinearCongruence(1, 17),
-         new NumberTheory.SimpleLinearCongruence(1, 18),
-         new NumberTheory.SimpleLinearCongruence(1, 19),
-         new NumberTheory.SimpleLinearCongruence(1, 20),
-         new NumberTheory.SimpleLinearCongruence(1, 21),
-         new NumberTheory.SimpleLinearCongruence(1, 22),
-         new NumberTheory.SimpleLinearCongruence(1, 23),
-         new NumberTheory.SimpleLinearCongruence(1, 24),
-         new NumberTheory.SimpleLinearCongruence(1, 25),
-         new NumberTheory.SimpleLinearCongruence(1, 26),
-         new NumberTheory.SimpleLinearCongruence(1, 27),
-         new NumberTheory.SimpleLinearCongruence(1, 28),
-         new NumberTheory.SimpleLinearCongruence(1, 29),
-         new NumberTheory.SimpleLinearCongruence(1, 30),
-         new NumberTheory.SimpleLinearCongruence(0, 31)};
+        { new NumberTheory.SimpleLinearCongruence(1,  2),
+          new NumberTheory.SimpleLinearCongruence(1,  3),
+          new NumberTheory.SimpleLinearCongruence(1,  4),
+          new NumberTheory.SimpleLinearCongruence(1,  5),
+          new NumberTheory.SimpleLinearCongruence(1,  6),
+          new NumberTheory.SimpleLinearCongruence(1,  7),
+          new NumberTheory.SimpleLinearCongruence(1,  8),
+          new NumberTheory.SimpleLinearCongruence(1,  9),
+          new NumberTheory.SimpleLinearCongruence(1, 10),
+          new NumberTheory.SimpleLinearCongruence(1, 11),
+          new NumberTheory.SimpleLinearCongruence(1, 12),
+          new NumberTheory.SimpleLinearCongruence(1, 13),
+          new NumberTheory.SimpleLinearCongruence(1, 14),
+          new NumberTheory.SimpleLinearCongruence(1, 15),
+          new NumberTheory.SimpleLinearCongruence(1, 16),
+          new NumberTheory.SimpleLinearCongruence(1, 17),
+          new NumberTheory.SimpleLinearCongruence(1, 18),
+          new NumberTheory.SimpleLinearCongruence(1, 19),
+          new NumberTheory.SimpleLinearCongruence(1, 20),
+          new NumberTheory.SimpleLinearCongruence(1, 21),
+          new NumberTheory.SimpleLinearCongruence(1, 22),
+          new NumberTheory.SimpleLinearCongruence(1, 23),
+          new NumberTheory.SimpleLinearCongruence(1, 24),
+          new NumberTheory.SimpleLinearCongruence(1, 25),
+          new NumberTheory.SimpleLinearCongruence(1, 26),
+          new NumberTheory.SimpleLinearCongruence(1, 27),
+          new NumberTheory.SimpleLinearCongruence(1, 28),
+          new NumberTheory.SimpleLinearCongruence(1, 29),
+          new NumberTheory.SimpleLinearCongruence(1, 30),
+          new NumberTheory.SimpleLinearCongruence(0, 31)};
 
     static NumberTheory.SimpleLinearCongruence[] exercise11 =
-       { new NumberTheory.SimpleLinearCongruence(0,  2),
-         new NumberTheory.SimpleLinearCongruence(0,  3),
-         new NumberTheory.SimpleLinearCongruence(0,  4),
-         new NumberTheory.SimpleLinearCongruence(0,  5),
-         new NumberTheory.SimpleLinearCongruence(0,  6),
-         new NumberTheory.SimpleLinearCongruence(0,  7),
-         new NumberTheory.SimpleLinearCongruence(0,  8),
-         new NumberTheory.SimpleLinearCongruence(0,  9),
-         new NumberTheory.SimpleLinearCongruence(0, 10),
-         new NumberTheory.SimpleLinearCongruence(0, 11),
-         new NumberTheory.SimpleLinearCongruence(0, 12),
-         new NumberTheory.SimpleLinearCongruence(0, 13),
-         new NumberTheory.SimpleLinearCongruence(0, 14),
-         new NumberTheory.SimpleLinearCongruence(0, 15),
-         new NumberTheory.SimpleLinearCongruence(0, 16),
-         new NumberTheory.SimpleLinearCongruence(0, 17),
-         new NumberTheory.SimpleLinearCongruence(0, 18),
-         new NumberTheory.SimpleLinearCongruence(0, 19),
-         new NumberTheory.SimpleLinearCongruence(0, 20),
-         new NumberTheory.SimpleLinearCongruence(0, 21),
-         new NumberTheory.SimpleLinearCongruence(0, 22),
-         new NumberTheory.SimpleLinearCongruence(0, 23),
-         new NumberTheory.SimpleLinearCongruence(0, 24),
-         new NumberTheory.SimpleLinearCongruence(0, 25),
-         new NumberTheory.SimpleLinearCongruence(0, 26),
-         new NumberTheory.SimpleLinearCongruence(0, 27),
-         new NumberTheory.SimpleLinearCongruence(0, 28),
-         new NumberTheory.SimpleLinearCongruence(0, 29),
-         new NumberTheory.SimpleLinearCongruence(0, 30),
-         new NumberTheory.SimpleLinearCongruence(1, 31)};
+        { new NumberTheory.SimpleLinearCongruence(0,  2),
+          new NumberTheory.SimpleLinearCongruence(0,  3),
+          new NumberTheory.SimpleLinearCongruence(0,  4),
+          new NumberTheory.SimpleLinearCongruence(0,  5),
+          new NumberTheory.SimpleLinearCongruence(0,  6),
+          new NumberTheory.SimpleLinearCongruence(0,  7),
+          new NumberTheory.SimpleLinearCongruence(0,  8),
+          new NumberTheory.SimpleLinearCongruence(0,  9),
+          new NumberTheory.SimpleLinearCongruence(0, 10),
+          new NumberTheory.SimpleLinearCongruence(0, 11),
+          new NumberTheory.SimpleLinearCongruence(0, 12),
+          new NumberTheory.SimpleLinearCongruence(0, 13),
+          new NumberTheory.SimpleLinearCongruence(0, 14),
+          new NumberTheory.SimpleLinearCongruence(0, 15),
+          new NumberTheory.SimpleLinearCongruence(0, 16),
+          new NumberTheory.SimpleLinearCongruence(0, 17),
+          new NumberTheory.SimpleLinearCongruence(0, 18),
+          new NumberTheory.SimpleLinearCongruence(0, 19),
+          new NumberTheory.SimpleLinearCongruence(0, 20),
+          new NumberTheory.SimpleLinearCongruence(0, 21),
+          new NumberTheory.SimpleLinearCongruence(0, 22),
+          new NumberTheory.SimpleLinearCongruence(0, 23),
+          new NumberTheory.SimpleLinearCongruence(0, 24),
+          new NumberTheory.SimpleLinearCongruence(0, 25),
+          new NumberTheory.SimpleLinearCongruence(0, 26),
+          new NumberTheory.SimpleLinearCongruence(0, 27),
+          new NumberTheory.SimpleLinearCongruence(0, 28),
+          new NumberTheory.SimpleLinearCongruence(0, 29),
+          new NumberTheory.SimpleLinearCongruence(0, 30),
+          new NumberTheory.SimpleLinearCongruence(1, 31)};
 
     // [Clessa], Micropuzzle 39
     static NumberTheory.SimpleLinearCongruence[] micropuzzle39 =
-       { new NumberTheory.SimpleLinearCongruence( 3,  4),
-         new NumberTheory.SimpleLinearCongruence( 1,  5),
-         new NumberTheory.SimpleLinearCongruence( 2,  7),
-         new NumberTheory.SimpleLinearCongruence( 2, 11),
-         new NumberTheory.SimpleLinearCongruence(12, 17)};
+        { new NumberTheory.SimpleLinearCongruence( 3,  4),
+          new NumberTheory.SimpleLinearCongruence( 1,  5),
+          new NumberTheory.SimpleLinearCongruence( 2,  7),
+          new NumberTheory.SimpleLinearCongruence( 2, 11),
+          new NumberTheory.SimpleLinearCongruence(12, 17)};
 
     static NumberTheory.LinearCongruence[] unsolvableTest =
         { new NumberTheory.LinearCongruence(0, 1, 2),

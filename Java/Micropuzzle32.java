@@ -65,7 +65,6 @@ public class Micropuzzle32
             System.err.println("Cannot generate partitions of a negative number.");
             return;
         }
-        a = null;
         a = new int[m];
         isPrime = eratosthenes(m);
         recursivePrimePartition(m, m, 0);
@@ -76,9 +75,8 @@ public class Micropuzzle32
         if (args.length == 0) {
             generatePrimePartitions(100);
         }
-        for (int i = 0; i < args.length; ++i)
-        {
-            if ( i > 0)
+        for (int i = 0; i < args.length; ++i) {
+            if (i > 0)
                 System.out.println();
             int n = Integer.parseInt(args[i]);
             generatePrimePartitions(n);

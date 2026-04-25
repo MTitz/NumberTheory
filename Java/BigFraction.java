@@ -7,7 +7,7 @@ public final class BigFraction extends Number implements Comparable<BigFraction>
     /** The BigFraction constant zero. */
     public static final BigFraction ZERO = new BigFraction();
     /** The BigFraction constant one. */
-    public static final BigFraction ONE  = new BigFraction(BigInteger.ONE, BigInteger.ONE);
+    public static final BigFraction ONE = new BigFraction(BigInteger.ONE, BigInteger.ONE);
     /** The default rounding mode for the BigFraction class. */
     public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_EVEN;
 

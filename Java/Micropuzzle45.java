@@ -25,6 +25,7 @@ public class Micropuzzle45
         }
         int maxCount = -1;  // not yet found any maximum
         int maxNumber = 0;
+        BigInteger maxPalindrome = BigInteger.ZERO;
         final int ITERATION_LIMIT = 1000;
         SortedSet<Integer> exceptionalCases = new TreeSet<>();
         loop: for (int n = 10; n <= nMax; ++n) {
@@ -43,13 +44,15 @@ public class Micropuzzle45
             if (count > maxCount) {
                 maxCount = count;
                 maxNumber = n;
+                maxPalindrome = number;
             }
             System.out.printf("%8d %7d   %d%n", n, count, number);
         }
         if (maxCount >= 0) {
             System.out.println();
             System.out.println("Maximum of " + maxCount +
-                    " iterations reached for number " + maxNumber);
+                    " iterations reached for number " + maxNumber +
+                    " ending in palindrome " + maxPalindrome);
         }
         if (!exceptionalCases.isEmpty()) {
             final int NUMBERS_PER_LINE = 8;

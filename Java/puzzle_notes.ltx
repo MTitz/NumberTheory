@@ -829,33 +829,33 @@ x_2 &=& 100v
 
 The function for the walking time then becomes
 \begin{equation}\label{time_fct}
-\time_fct(u,v) = 40\sqrt{u^2+1} + 20 \sqrt{(u-v)^2+4} + 10 \sqrt{(6-v)^2+9}
+\time_fct(u,v) = 40\sqrt{u^2+1} + 20 \sqrt{(v-u)^2+4} + 10 \sqrt{(6-v)^2+9}
 \end{equation}
 and has to be minimized with the constraints $0 \le u \le v \le 6$.
 
 A necessary condition for a minimum in the interior of this area is, that both partial derivatives with respect to $u$ and to $v$ become zero.
 Using $(\sqrt{x})' = \frac{1}{2\sqrt{x}}$ and the chain rule the partial derivatives of (\ref{time_fct}) are
 \begin{eqnarray*}
-\frac{\partial\time_fct(u,v)}{\partial u} &=& \frac{40u}{\sqrt{u^2+1}} + \frac{20(u-v)}{\sqrt{(u-v)^2+4}} \\
-\frac{\partial\time_fct(u,v)}{\partial v} &=& -\frac{20(u-v)}{\sqrt{(u-v)^2+4}} + \frac{10(v-6)}{\sqrt{(6-v)^2+9}}
+\frac{\partial\time_fct(u,v)}{\partial u} &=& \frac{40u}{\sqrt{u^2+1}} - \frac{20(v-u)}{\sqrt{(v-u)^2+4}} \\
+\frac{\partial\time_fct(u,v)}{\partial v} &=& \frac{20(v-u)}{\sqrt{(v-u)^2+4}} - \frac{10(6-v)}{\sqrt{(6-v)^2+9}}
 \end{eqnarray*}
 
-Looking for a point $(u,v)$ where the partial derivatives both become zero, it must be
+Looking for a point $(u,v)$ where the partial derivatives both become zero as a necessary condition for a local minimum, it must be for such a point
 \begin{eqnarray*}
-\frac{40u}{\sqrt{u^2+1}} &=& -\frac{20(u-v)}{\sqrt{(u-v)^2+4}} \\
-\frac{20(u-v)}{\sqrt{(u-v)^2+4}} &=& \frac{10(v-6)}{\sqrt{(6-v)^2+9}}
+\frac{40u}{\sqrt{u^2+1}} &=& \frac{20(v-u)}{\sqrt{(v-u)^2+4}} \\
+\frac{20(v-u)}{\sqrt{(v-u)^2+4}} &=& \frac{10(6-v)}{\sqrt{(6-v)^2+9}}
 \end{eqnarray*}
 
 Multiplying both sides in the equations with the respective denominators and dividing by common numerical factors, the equation system now is
 \begin{eqnarray*}
-2u \sqrt{(u-v)^2+4} &=& -(u-v) \sqrt{u^2+1} \\
-2(u-v) \sqrt{(6-v)^2+9} &=& (v-6) \sqrt{(u-v)^2+4}
+2u \sqrt{(v-u)^2+4} &=& (v-u) \sqrt{u^2+1} \\
+2(v-u) \sqrt{(6-v)^2+9} &=& (6-v) \sqrt{(v-u)^2+4}
 \end{eqnarray*}
 
-To get rid of the square roots, now the square can be taken from both sides of the equations. This is to equivalence transformation. The new equation system can have additional solutions, so each solution needs to be checked, if it also solves the original equations.
+To get rid of the square roots, now the square can be taken from both sides of the equations. Beware, as this is no equivalence transformation. The new equation system might have additional solutions, so each solution needs to be checked, if it also solves the original equations.
 \begin{eqnarray}
-4u^2 \left((u-v)^2+4\right) &=& (u-v)^2 \left(u^2+1\right) \\
-4(u-v)^2 \left((6-v)^2+9\right) &=& (v-6)^2 \left((u-v)^2+4\right)
+4u^2 \left((v-u)^2+4\right) &=& (v-u)^2 \left(u^2+1\right) \\
+4(v-u)^2 \left((6-v)^2+9\right) &=& (6-v)^2 \left((v-u)^2+4\right)
 \end{eqnarray}
 
 There exist computational expensive algorithms to simplify this system of polynomial equations, like Buchberger's algorithm to obtain a more separated equation system with the same zeros, a Gr\"obner basis, see for example the book \cite{ideals_varieties_algorithms}, chapters 2 and 3, the book \cite{modern_computer_algebra}, chapter 21 or the book \cite{algorithms_computer_algebra}, chapters 9 and 10.
@@ -1497,7 +1497,7 @@ The digit sum of 18 can only be achieved by both $a=9$ and $b=9$, but then $a=b$
 
 Therefore the cases with $a \ne b$ and digit sum $10 \le a+b \le 17$ remain. They are treated by the following table. The lengthy but easy calculation in case of $a+b=17$ is only shown partially.
 
-\begin{longtable}[t]{|r|l|r|} \hline
+\begin{longtable}[t]{|c|l|r|} \hline
  $a+b$ & steps after the initial one & steps \\ \hline
   10 & $110 \rightarrow 121$ & 2 \\
   11 & $121$ & 1 \\
@@ -1506,10 +1506,10 @@ Therefore the cases with $a \ne b$ and digit sum $10 \le a+b \le 17$ remain. The
   14 & $154 \rightarrow 605 \rightarrow 1111$ & 3 \\
   15 & $165 \rightarrow 726 \rightarrow 1353 \rightarrow 4884$ & 4 \\
   16 & $176 \rightarrow 847 \rightarrow 1595 \rightarrow 7546 \rightarrow 14003 \rightarrow 44044$ & 6 \\
-  17 & $187 \rightarrow 968 \rightarrow 1837 \rightarrow \ldots \rightarrow 8813200023188$ & 24 \\ \hline
+  17 & $187 \rightarrow 968 \rightarrow 1837 \rightarrow 9218 \rightarrow \ldots \rightarrow 8813200023188$ & 24 \\ \hline
 \end{longtable}
 
-Only the two-digit numbers 89 and 98 have a sum of digits of 17, therefore these are the solutions of the puzzle with the maximum number of 24 steps.
+Only the two-digit numbers 89 and 98 have a sum of digits of 17, therefore these are the two solutions of the puzzle with the maximum number of 24 steps each.
 
 
 \subsubsection*{The general case}
@@ -1609,7 +1609,7 @@ as the default case to solve the puzzle or with an integer argument to set anoth
 
 {\tt java Micropuzzle45 12000}
 
-would run it for all integers up to 12000.
+would run it for all positive integers up to 12000.
 
 The reversal of the number is done by first using toString method to transfer the BigInteger to a string, reverse the string, and transfer it back to a BigInteger number. Avoiding the string conversions could save processing time.
 

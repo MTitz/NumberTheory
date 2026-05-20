@@ -48,7 +48,7 @@ public class NewtonMethod
         int fctScale = mc.getPrecision() + GUARD_DIGITS_FCT;
         BigDecimal x = x0;
         int iter = 0;
-        boolean done1 = false, done2 = false, done = false;
+        boolean done = false;
         System.out.println("iteration: " + iter);
         System.out.println("  x = " + x);
 
@@ -56,6 +56,7 @@ public class NewtonMethod
         // until the desired precision is achieved or the maximum number of iterations is reached.
         do {
             ++iter;
+            boolean done1 = false, done2 = false;
             BigDecimal y = fct.apply(x);
             if (y.scale() != fctScale) {
                 y = y.setScale(fctScale, mc.getRoundingMode());
